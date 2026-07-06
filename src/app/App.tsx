@@ -42,7 +42,7 @@ export default function App() {
         <Cursor />
         <ScrollBar />
         <Navbar dark={dark} setDark={setDark} lang={lang} setLang={setLang} t={t} />
-        <Hero dark={dark} t={t} />
+        <Hero dark={dark} t={t} lang={lang} />
         <About dark={dark} t={t} lang={lang} />
         <Journey dark={dark} t={t} lang={lang} />
         <DevProcess dark={dark} t={t} />

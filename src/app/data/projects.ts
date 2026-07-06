@@ -76,7 +76,7 @@ export const projects: Project[] = [
       pt: "Sistema full stack desenvolvido com React, PHP e MySQL, integrado à PokéAPI para consulta e gerenciamento de informações de Pokémon. O projeto utiliza consumo de APIs, banco de dados relacional, roteamento de páginas e interface responsiva para proporcionar uma experiência dinâmica ao usuário.",
       en: "Full stack system built with React, PHP, and MySQL, integrated with PokéAPI to search and manage Pokémon data. The project uses API consumption, a relational database, page routing, and a responsive interface to deliver a dynamic user experience.",
     },
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=450&fit=crop&auto=format",
+    image: "/projects/Pokedex.png",
     tags: ["React", "PHP", "MySQL"],
     category: "Full Stack",
     status: "in_progress",

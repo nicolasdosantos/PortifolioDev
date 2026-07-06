@@ -1,10 +1,11 @@
 import { motion } from "motion/react";
 import { ArrowRight, ChevronDown, Download, Github, Linkedin, Mail, MapPin, MessageSquare } from "lucide-react";
-import type { Translation } from "../../types";
+import type { Lang, Translation } from "../../types";
 
 interface HeroProps {
   dark: boolean;
   t: Translation;
+  lang: Lang;
 }
 
 const SOCIALS = [
@@ -13,7 +14,10 @@ const SOCIALS = [
   { Icon: Mail, href: "mailto:nicolaspichiteli245@gmail.com" },
 ];
 
-export function Hero({ dark, t }: HeroProps) {
+export function Hero({ dark, t, lang }: HeroProps) {
+  const cvHref = lang === "en" ? "/nicolas-pichiteli-cv-en.pdf" : "/nicolas-pichiteli-cv.pdf";
+  const cvFilename = lang === "en" ? "Nicolas-Pichiteli-CV-EN.pdf" : "Nicolas-Pichiteli-CV.pdf";
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       <div
@@ -87,8 +91,8 @@ export function Hero({ dark, t }: HeroProps) {
                 {t.cta_contact} <MessageSquare size={15} />
               </button>
               <a
-                href="/nicolas-pichiteli-cv.pdf"
-                download="Nicolas-Pichiteli-CV.pdf"
+                href={cvHref}
+                download={cvFilename}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/75 hover:bg-white/[0.05]" : "border-black/12 text-black/70 hover:bg-black/[0.04]"}`}
               >
                 <Download size={15} /> {t.cta_cv}
