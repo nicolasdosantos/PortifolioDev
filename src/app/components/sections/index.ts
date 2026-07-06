@@ -1,0 +1,14 @@
+export { Hero } from "./Hero";
+export { About } from "./About";
+export { Journey } from "./Journey";
+export { DevProcess } from "./DevProcess";
+export { Skills } from "./Skills";
+export { Projects } from "./Projects";
+export { Stats } from "./Stats";
+export { Certificates } from "./Certificates";
+export { Experience } from "./Experience";
+export { FavoriteTools } from "./FavoriteTools";
+export { GitHubActivity } from "./GitHubActivity";
+export { Blog } from "./Blog";
+export { FAQ } from "./FAQ";
+export { Contact } from "./Contact";
