@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { IconType } from "react-icons";
 
 export type Lang = "pt" | "en";
 
@@ -81,6 +82,7 @@ export interface SkillItem {
   name: string;
   level: number;
   desc: string;
+  icon: IconType;
 }
 
 export interface SkillCategory {

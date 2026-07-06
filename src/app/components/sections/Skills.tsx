@@ -40,7 +40,9 @@ export function Skills({ dark, t, lang }: SectionProps) {
             transition={{ duration: 0.25 }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4"
           >
-            {cat.skills.map((skill, i) => (
+            {cat.skills.map((skill, i) => {
+              const SkillIcon = skill.icon;
+              return (
               <motion.div
                 key={skill.name}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -49,8 +51,8 @@ export function Skills({ dark, t, lang }: SectionProps) {
                 whileHover={{ y: -5, scale: 1.03 }}
                 className={`p-5 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-white/[0.025] border-white/[0.07] hover:border-violet-500/30 hover:shadow-[0_0_25px_rgba(124,58,237,0.12)]" : "bg-white border-black/[0.07] hover:border-violet-300 hover:shadow-[0_8px_25px_rgba(124,58,237,0.08)]"}`}
               >
-                <div className="w-9 h-9 rounded-xl mb-4 flex items-center justify-center text-xs font-mono2 font-bold" style={{ background: cat.color + "22", color: cat.color }}>
-                  {skill.name.slice(0, 2)}
+                <div className="w-9 h-9 rounded-xl mb-4 flex items-center justify-center" style={{ background: cat.color + "22", color: cat.color }}>
+                  <SkillIcon size={18} />
                 </div>
                 <div className={`font-body font-semibold text-sm mb-1 ${dark ? "text-white" : "text-[#08080A]"}`}>{skill.name}</div>
                 <div className={`text-xs mb-3 font-body ${dark ? "text-white/38" : "text-black/40"}`}>{skill.desc}</div>
@@ -66,7 +68,8 @@ export function Skills({ dark, t, lang }: SectionProps) {
                 </div>
                 <div className={`text-xs font-mono2 mt-1.5 ${dark ? "text-white/28" : "text-black/30"}`}>{skill.level}%</div>
               </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </AnimatePresence>
       </div>
