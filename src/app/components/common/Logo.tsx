@@ -7,7 +7,7 @@ interface LogoProps {
 export function Logo({ size = 36, className = "" }: LogoProps) {
   return (
     <div
-      className={`flex items-center justify-center rounded-2xl bg-[#0F0F14] border border-white/10 ${className}`}
+      className={`flex items-center justify-center rounded-[6px] bg-[#0F0F14] border border-white/10 ${className}`}
       style={{ width: size, height: size, boxShadow: "0 0 22px rgba(124,58,237,0.28)" }}
     >
       <svg width={size * 0.7} height={size * 0.58} viewBox="0 0 120 100" fill="none">

@@ -20,7 +20,7 @@ export function Projects({ dark, t, lang }: SectionProps) {
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader label={t.projects_label} title={t.projects_title} dark={dark} />
 
-        <div className="grid lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {/* Featured */}
           <motion.div
             initial={{ opacity: 0, y: 28 }}
@@ -158,7 +158,7 @@ export function Projects({ dark, t, lang }: SectionProps) {
                   </div>
                 </div>
                 <p className={`text-sm font-body leading-relaxed mb-7 ${dark ? "text-white/55" : "text-black/55"}`}>{sel.fullDesc[lang]}</p>
-                <div className="grid sm:grid-cols-3 gap-4 mb-7">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-7">
                   {[
                     { lbl: lang === "pt" ? "Problema" : "Problem", txt: sel.problem[lang] },
                     { lbl: lang === "pt" ? "Solução" : "Solution", txt: sel.solution[lang] },

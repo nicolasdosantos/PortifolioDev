@@ -32,7 +32,7 @@ export function Contact({ dark, t }: ContactProps) {
     <section id="contato" className="py-32 relative">
       <div className="max-w-5xl mx-auto px-6">
         <SectionHeader label={t.contact_label} title={t.contact_title} dark={dark} />
-        <div className="grid lg:grid-cols-[1fr_1.3fr] gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 items-start">
           <div>
             <p className={`text-sm font-body leading-relaxed mb-10 ${dark ? "text-white/48" : "text-black/48"}`}>{t.contact_subtitle}</p>
             <div className="space-y-3">

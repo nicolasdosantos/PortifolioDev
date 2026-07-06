@@ -15,7 +15,7 @@ export function Blog({ dark, t, lang }: SectionProps) {
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader label={t.blog_label} title={t.blog_title} dark={dark} />
         <p className={`-mt-10 mb-10 text-sm font-body ${dark ? "text-white/38" : "text-black/38"}`}>{t.blog_coming}</p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {POSTS.map((p, i) => (
             <motion.div
               key={i}

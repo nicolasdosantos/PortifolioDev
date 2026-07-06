@@ -17,7 +17,7 @@ export function About({ dark, t, lang }: SectionProps) {
     <section id="sobre" className="py-32 relative">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader label={t.about_label} title={t.about_title} dark={dark} />
-        <div className="grid lg:grid-cols-[1.3fr_1fr] gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
             <p className={`font-body text-lg leading-relaxed mb-8 ${dark ? "text-white/55" : "text-black/55"}`}>{t.about_bio}</p>
             <div className="flex flex-wrap gap-2">

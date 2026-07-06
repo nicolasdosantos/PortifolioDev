@@ -17,14 +17,14 @@ export function Hero({ dark, t }: HeroProps) {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       <div
-        className="absolute inset-0 opacity-[0.025]"
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
           backgroundImage: `linear-gradient(${dark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.5)"} 1px,transparent 1px),linear-gradient(90deg,${dark ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.5)"} 1px,transparent 1px)`,
           backgroundSize: "64px 64px",
         }}
       />
       <div className="max-w-7xl mx-auto px-6 py-24 w-full">
-        <div className="grid lg:grid-cols-[1fr_auto] gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-center">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -86,9 +86,13 @@ export function Hero({ dark, t }: HeroProps) {
               >
                 {t.cta_contact} <MessageSquare size={15} />
               </button>
-              <button className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/75 hover:bg-white/[0.05]" : "border-black/12 text-black/70 hover:bg-black/[0.04]"}`}>
+              <a
+                href="/nicolas-pichiteli-cv.pdf"
+                download="Nicolas-Pichiteli-CV.pdf"
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/75 hover:bg-white/[0.05]" : "border-black/12 text-black/70 hover:bg-black/[0.04]"}`}
+              >
                 <Download size={15} /> {t.cta_cv}
-              </button>
+              </a>
             </motion.div>
 
             <motion.div

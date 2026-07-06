@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { motion } from "motion/react";
-import { Logo } from "./Logo";
 
 interface IntroProps {
   onDone: () => void;
@@ -40,8 +39,18 @@ export function Intro({ onDone }: IntroProps) {
         animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
         transition={{ duration: 1, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="mx-auto mb-6">
-          <Logo size={72} />
+        <div
+          className="mx-auto mb-6 w-24 h-24 rounded-full p-[3px]"
+          style={{
+            background: "linear-gradient(135deg, #C4B5FD, #7C3AED, #4C1D95)",
+            boxShadow: "0 0 40px rgba(124,58,237,0.45)",
+          }}
+        >
+          <img
+            src="/profile.jpg"
+            alt="Nicolas Santos"
+            className="w-full h-full rounded-full object-cover border-2 border-[#08080A]"
+          />
         </div>
         <h1
           className="font-display text-4xl md:text-6xl font-bold tracking-tight"
