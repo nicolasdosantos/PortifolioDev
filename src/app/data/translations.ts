@@ -17,7 +17,7 @@ export const translations: Record<Lang, Translation> = {
     about_label: "Sobre Mim",
     about_title: "Em início de carreira, construindo soluções reais",
     about_bio:
-      "Desenvolvedor Full Stack em início de carreira, focado na criação de aplicações web modernas e responsivas. Tenho experiência com React, TypeScript, PHP e Python, além de integração com bancos de dados e consumo de APIs. Busco evoluir em ambientes que valorizem boas práticas, código limpo e experiência do usuário, construindo produtos escaláveis com impacto real.",
+      "Sou Desenvolvedor Full Stack, atualmente estagiário na Agência VoêFly e estudante de Análise e Desenvolvimento de Sistemas na Unisalesiano. Trabalho com React, TypeScript, PHP e Python, do frontend à modelagem de banco de dados e integração de APIs, sempre com foco em código limpo, performance e boa experiência de uso. Gosto de ambientes colaborativos que valorizam boas práticas de engenharia, e busco contribuir com soluções escaláveis que gerem impacto real para o negócio.",
     skills_label: "Habilidades",
     skills_title: "Stack Técnico",
     projects_label: "Projetos",
@@ -70,7 +70,7 @@ export const translations: Record<Lang, Translation> = {
     faq_items: [
       { q: "Você está disponível para estágio ou vaga júnior?", a: "Sim! Estou cursando Análise e Desenvolvimento de Sistemas e aberto a estágios, vagas júnior e freelas para aplicar e evoluir minhas habilidades em projetos reais." },
       { q: "Qual é o seu tempo de resposta?", a: "Respondo em até 24 horas em dias úteis. Para contato mais rápido, prefira o WhatsApp." },
-      { q: "Você tem experiência com trabalho remoto?", a: "Sim, meu estágio atual na Agência VoêFly é remoto e tenho boa experiência com GitHub e comunicação assíncrona em equipe." },
+      { q: "Você tem experiência com trabalho remoto?", a: "Sim, meu estágio atual na Agência VoêFly é presencial, mas ocasionalmente trabalho remoto, e tenho boa experiência com GitHub e comunicação assíncrona em equipe." },
       { q: "Você assina NDA?", a: "Sim, sem problema. Entendo a importância de proteger informações confidenciais de projetos e empresas." },
       { q: "Você aceita oportunidades fora de Birigui-SP?", a: "Sim! Estou disponível para oportunidades remotas em qualquer lugar do Brasil ou do exterior." },
     ],
@@ -91,7 +91,7 @@ export const translations: Record<Lang, Translation> = {
     about_label: "About Me",
     about_title: "Early in my career, building real solutions",
     about_bio:
-      "Full Stack developer at the beginning of my career, focused on building modern and responsive web applications. I have experience with React, TypeScript, PHP and Python, as well as API integration and database management. I'm looking to grow in environments that value best practices, clean code and user experience, building scalable products with real impact.",
+      "I'm a Full Stack Developer, currently interning at Agência VoêFly and studying Systems Analysis and Development at Unisalesiano. I work across React, TypeScript, PHP and Python, from frontend to database design and API integration, always focused on clean code, performance and a solid user experience. I thrive in collaborative environments that value strong engineering practices, and I'm looking to contribute to scalable solutions that create real business impact.",
     skills_label: "Skills",
     skills_title: "Tech Stack",
     projects_label: "Projects",
@@ -144,7 +144,7 @@ export const translations: Record<Lang, Translation> = {
     faq_items: [
       { q: "Are you available for internships or junior roles?", a: "Yes! I'm studying Systems Analysis and Development and I'm open to internships, junior roles and freelance work to apply and grow my skills on real projects." },
       { q: "What is your response time?", a: "I respond within 24 hours on business days. For faster contact, prefer WhatsApp." },
-      { q: "Do you have experience with remote work?", a: "Yes, my current internship at Agência VoêFly is remote, and I have good experience with GitHub and asynchronous team communication." },
+      { q: "Do you have experience with remote work?", a: "Yes, my current internship at Agência VoêFly is on-site, but I occasionally work remotely, and I have good experience with GitHub and asynchronous team communication." },
       { q: "Do you sign NDAs?", a: "Yes, no problem. I understand the importance of protecting confidential project and company information." },
       { q: "Do you take opportunities outside Birigui-SP?", a: "Yes! I'm available for remote opportunities anywhere in Brazil or abroad." },
     ],

@@ -5,7 +5,7 @@ export const experience: ExperienceItem[] = [
     role: { pt: "Estagiário de Desenvolvimento", en: "Development Intern" },
     company: "Agência VoêFly",
     period: { pt: "2026 — Presente", en: "2026 — Present" },
-    type: { pt: "Estágio · Remoto", en: "Internship · Remote" },
+    type: { pt: "Estágio · Presencial", en: "Internship · On-site" },
     desc: { pt: "Desenvolvimento de interfaces de alta performance para clientes de e-commerce e fintech. Construção de telas responsivas com atenção a usabilidade, performance e consistência visual. Colaboração em fluxos de entrega web, ajustes de frontend e integração com tecnologias modernas.", en: "Development of high-performance interfaces for e-commerce and fintech clients. Building responsive screens with attention to usability, performance and visual consistency. Collaborating on web delivery workflows, frontend adjustments and integration with modern technologies." },
     tags: ["React", "TypeScript", "Tailwind CSS"],
   },

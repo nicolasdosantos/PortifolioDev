@@ -137,7 +137,7 @@ export interface Certificate {
 
 export interface Tool {
   name: string;
-  icon: string;
+  icon: IconType;
 }
 
 /** Shared props for full sections that need theme, language and copy. */
