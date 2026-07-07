@@ -5,3 +5,4 @@ export { ScrollBar } from "./ScrollBar";
 export { SectionHeader } from "./SectionHeader";
 export { Intro } from "./Intro";
 export { Logo } from "./Logo";
+export { GradientIcon } from "./GradientIcon";

@@ -39,8 +39,16 @@ export function Cursor() {
 
   return (
     <>
-      <div ref={dotRef} className="fixed top-0 left-0 z-[9999] w-2 h-2 rounded-full bg-violet-400 pointer-events-none" style={{ mixBlendMode: "difference" }} />
-      <div ref={ringRef} className={`fixed top-0 left-0 z-[9998] rounded-full border pointer-events-none transition-[width,height,border-color,background-color] duration-200 ${hov ? "w-12 h-12 border-violet-400/70 bg-violet-400/10" : "w-10 h-10 border-white/25"}`} />
+      <div
+        ref={dotRef}
+        className="fixed top-0 left-0 z-[9999] w-2 h-2 rounded-full bg-violet-400 pointer-events-none"
+        style={{ mixBlendMode: "difference", boxShadow: "0 0 8px 2px rgba(124,58,237,0.9)" }}
+      />
+      <div
+        ref={ringRef}
+        className={`fixed top-0 left-0 z-[9998] rounded-full border pointer-events-none transition-[width,height,border-color,background-color,box-shadow] duration-200 ${hov ? "w-12 h-12 border-cyan-300/70 bg-violet-400/10" : "w-10 h-10 border-white/25"}`}
+        style={hov ? { boxShadow: "0 0 24px rgba(103,232,249,0.35)" } : undefined}
+      />
     </>
   );
 }

@@ -4,4 +4,4 @@ export { projects } from "./projects";
 export { journeyItems } from "./journey";
 export { experience } from "./experience";
 export { certificates } from "./certificates";
-export { toolsList } from "./tools";
+export { toolCategories } from "./tools";

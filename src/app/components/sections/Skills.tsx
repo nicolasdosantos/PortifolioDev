@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { SectionProps } from "../../types";
-import { SectionHeader } from "../common";
+import { GradientIcon, SectionHeader } from "../common";
 import { skillCategories } from "../../data";
 
 export function Skills({ dark, t, lang }: SectionProps) {
   const [active, setActive] = useState("frontend");
+  const [hovered, setHovered] = useState<string | null>(null);
   const cat = skillCategories.find(c => c.id === active)!;
 
   return (
@@ -42,31 +43,65 @@ export function Skills({ dark, t, lang }: SectionProps) {
           >
             {cat.skills.map((skill, i) => {
               const SkillIcon = skill.icon;
+              const brand = (dark ? skill.color : skill.lightColor ?? skill.color) || skill.color;
+              const isHovered = hovered === skill.name;
+              const gradientColors = skill.colors && skill.colors.length > 1 ? skill.colors : [brand, brand];
+              const gradientCss = `linear-gradient(135deg, ${gradientColors.join(", ")})`;
+              const glowFrom = gradientColors[0];
+              const glowTo = gradientColors[gradientColors.length - 1];
               return (
               <motion.div
                 key={skill.name}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.28, delay: i * 0.05 }}
-                whileHover={{ y: -5, scale: 1.03 }}
-                className={`p-5 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-white/[0.025] border-white/[0.07] hover:border-violet-500/30 hover:shadow-[0_0_25px_rgba(124,58,237,0.12)]" : "bg-white border-black/[0.07] hover:border-violet-300 hover:shadow-[0_8px_25px_rgba(124,58,237,0.08)]"}`}
+                whileHover={{ y: -5, scale: 1.03, transition: { duration: 0.25, ease: "easeOut" } }}
+                onHoverStart={() => setHovered(skill.name)}
+                onHoverEnd={() => setHovered(null)}
+                className="relative p-5 rounded-2xl cursor-default transition-shadow duration-300"
+                style={{
+                  background: dark
+                    ? "linear-gradient(150deg, rgba(255,255,255,0.07), rgba(255,255,255,0.015))"
+                    : "linear-gradient(150deg, rgba(0,0,0,0.06), rgba(0,0,0,0.015))",
+                  boxShadow: isHovered ? `0 10px 30px -8px ${glowFrom}66, 0 10px 30px -8px ${glowTo}4d` : "none",
+                }}
               >
-                <div className="w-9 h-9 rounded-xl mb-4 flex items-center justify-center" style={{ background: cat.color + "22", color: cat.color }}>
-                  <SkillIcon size={18} />
+                <span
+                  className="absolute inset-0 rounded-2xl transition-opacity duration-300 pointer-events-none"
+                  style={{ background: gradientCss, opacity: isHovered ? 1 : 0 }}
+                />
+                <span
+                  className="absolute inset-[1.5px] rounded-[14px] transition-colors duration-300 pointer-events-none"
+                  style={{ background: dark ? "#0d0d12" : "#ffffff" }}
+                />
+                <div
+                  className="relative z-10 w-9 h-9 rounded-xl mb-4 flex items-center justify-center transition-colors duration-300"
+                  style={{ background: isHovered ? `${brand}22` : cat.color + "22", color: !isHovered ? cat.color : undefined }}
+                >
+                  {isHovered ? (
+                    <GradientIcon icon={SkillIcon} colors={gradientColors} size={18} />
+                  ) : (
+                    <SkillIcon size={18} />
+                  )}
                 </div>
-                <div className={`font-body font-semibold text-sm mb-1 ${dark ? "text-white" : "text-[#08080A]"}`}>{skill.name}</div>
-                <div className={`text-xs mb-3 font-body ${dark ? "text-white/38" : "text-black/40"}`}>{skill.desc}</div>
-                <div className={`h-1 rounded-full overflow-hidden ${dark ? "bg-white/8" : "bg-black/8"}`}>
+                <div
+                  className={`relative z-10 font-body font-semibold text-sm mb-1 transition-colors duration-300 ${!isHovered && (dark ? "text-white" : "text-[#08080A]")}`}
+                  style={isHovered ? { backgroundImage: gradientCss, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" } : undefined}
+                >
+                  {skill.name}
+                </div>
+                <div className={`relative z-10 text-xs mb-3 font-body ${dark ? "text-white/38" : "text-black/40"}`}>{skill.desc}</div>
+                <div className={`relative z-10 h-1 rounded-full overflow-hidden ${dark ? "bg-white/8" : "bg-black/8"}`}>
                   <motion.div
-                    className="h-full rounded-full"
-                    style={{ background: cat.color }}
+                    className="h-full rounded-full transition-colors duration-300"
+                    style={{ background: isHovered ? gradientCss : cat.color }}
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.9, delay: i * 0.05 }}
                   />
                 </div>
-                <div className={`text-xs font-mono2 mt-1.5 ${dark ? "text-white/28" : "text-black/30"}`}>{skill.level}%</div>
+                <div className={`relative z-10 text-xs font-mono2 mt-1.5 ${dark ? "text-white/28" : "text-black/30"}`}>{skill.level}%</div>
               </motion.div>
               );
             })}

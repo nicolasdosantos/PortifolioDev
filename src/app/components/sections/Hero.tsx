@@ -35,8 +35,12 @@ export function Hero({ dark, t, lang }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-400 text-xs font-mono2 mb-8"
+              style={{ boxShadow: "0 0 20px rgba(124,58,237,0.15)" }}
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="relative flex w-2 h-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                <span className="relative inline-flex rounded-full w-2 h-2 bg-emerald-400" />
+              </span>
               {t.badge}
             </motion.div>
 
@@ -48,7 +52,16 @@ export function Hero({ dark, t, lang }: HeroProps) {
             >
               {t.name.split(" ").map((w, i) => (
                 <span key={i} className="block">
-                  {i === 1 ? <span className="text-violet-500">{w}</span> : w}
+                  {i === 1 ? (
+                    <span
+                      className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-300 text-shimmer"
+                      style={{ filter: "drop-shadow(0 0 30px rgba(124,58,237,0.35))" }}
+                    >
+                      {w}
+                    </span>
+                  ) : (
+                    w
+                  )}
                 </span>
               ))}
             </motion.h1>
@@ -80,9 +93,16 @@ export function Hero({ dark, t, lang }: HeroProps) {
             >
               <button
                 onClick={() => document.querySelector("#projetos")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(124,58,237,0.4)]"
+                className="group relative flex items-center gap-2 px-6 py-3 rounded-xl text-white text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(124,58,237,0.45)] overflow-hidden"
+                style={{ background: "linear-gradient(135deg, #7C3AED, #6D28D9)" }}
               >
-                {t.cta_projects} <ArrowRight size={15} />
+                <span
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: "linear-gradient(135deg, #8B5CF6, #06B6D4)" }}
+                />
+                <span className="relative flex items-center gap-2">
+                  {t.cta_projects} <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
               </button>
               <button
                 onClick={() => document.querySelector("#contato")?.scrollIntoView({ behavior: "smooth" })}
@@ -124,24 +144,93 @@ export function Hero({ dark, t, lang }: HeroProps) {
             initial={{ opacity: 0, scale: 0.92, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="hidden lg:block"
+            whileHover={{ y: -4, transition: { duration: 0.3, ease: "easeOut" } }}
+            className="hidden lg:block relative group/card"
           >
-            <div className={`w-72 rounded-2xl border overflow-hidden ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-black/[0.02] border-black/[0.07]"}`}>
+            <motion.div
+              className="absolute -inset-8 rounded-3xl -z-10"
+              style={{ background: "radial-gradient(circle, rgba(124,58,237,0.28) 0%, transparent 70%)", filter: "blur(24px)" }}
+              animate={{ opacity: [0.5, 0.9, 0.5] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <div
+              className={`relative w-[25rem] rounded-2xl border overflow-hidden transition-shadow duration-300 ease-out group-hover/card:shadow-[0_0_50px_rgba(124,58,237,0.25)] ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-black/[0.02] border-black/[0.07]"}`}
+            >
+              <motion.div
+                className="absolute inset-x-0 top-0 h-px"
+                style={{ background: "linear-gradient(90deg, transparent, #C4B5FD, #67E8F9, transparent)", backgroundSize: "200% auto" }}
+                animate={{ backgroundPosition: ["0% 0%", "200% 0%"] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
               <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${dark ? "border-white/[0.06]" : "border-black/[0.06]"}`}>
                 {["#FF5F57", "#FFBD2E", "#28C840"].map(c => <span key={c} className="w-3 h-3 rounded-full" style={{ background: c }} />)}
                 <span className={`ml-2 text-xs font-mono2 ${dark ? "text-white/25" : "text-black/25"}`}>developer.ts</span>
+                <span className="ml-auto flex items-center gap-1.5 text-[10px] font-mono2 text-emerald-400/70">
+                  <span className="relative flex w-1.5 h-1.5">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                    <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-400" />
+                  </span>
+                  online
+                </span>
               </div>
               <div className="p-5 space-y-1.5">
-                {[
-                  { code: <><span className="text-violet-400/70">const </span><span className="text-blue-400/70">dev</span><span className="text-white/25"> = {"{"}</span></> },
-                  { indent: true, code: <><span className="text-white/30">name: </span><span className="text-emerald-400/70">&quot;Nicolas Santos&quot;</span><span className="text-white/20">,</span></> },
-                  { indent: true, code: <><span className="text-white/30">role: </span><span className="text-amber-400/70">&quot;Full Stack Dev&quot;</span><span className="text-white/20">,</span></> },
-                  { indent: true, code: <><span className="text-white/30">xp: </span><span className="text-sky-400/70">&quot;3+ years&quot;</span><span className="text-white/20">,</span></> },
-                  { indent: true, code: <><span className="text-white/30">open: </span><span className="text-emerald-400/70">true</span><span className="text-white/20">,</span></> },
-                  { code: <span className="text-white/25">{"}"}</span> },
-                ].map((line, i) => (
-                  <div key={i} className={`text-xs font-mono2 ${line.indent ? "pl-5" : ""}`}>{line.code}</div>
-                ))}
+                {(() => {
+                  const lines = [
+                    { code: <><span className="text-violet-400/70">const </span><span className="text-blue-400/70">dev</span><span className="text-white/25"> = {"{"}</span></> },
+                    { indent: true, code: <><span className="text-white/30">name: </span><span className="text-emerald-400/70">&quot;Nicolas Santos&quot;</span><span className="text-white/20">,</span></> },
+                    { indent: true, code: <><span className="text-white/30">fullName: </span><span className="text-emerald-400/70">&quot;Nicolas Pichiteli dos Santos&quot;</span><span className="text-white/20">,</span></> },
+                    { indent: true, code: <><span className="text-white/30">age: </span><span className="text-sky-400/70">19</span><span className="text-white/20">,</span></> },
+                    { indent: true, code: <><span className="text-white/30">role: </span><span className="text-amber-400/70">&quot;Full Stack Developer&quot;</span><span className="text-white/20">,</span></> },
+                    { indent: true, code: <><span className="text-white/30">location: </span><span className="text-amber-400/70">&quot;Birigui, BR&quot;</span><span className="text-white/20">,</span></> },
+                    { indent: true, code: <><span className="text-white/30">xp: </span><span className="text-sky-400/70">&quot;3+ years&quot;</span><span className="text-white/20">,</span></> },
+                    {
+                      indent: true,
+                      wrap: true,
+                      code: (
+                        <>
+                          <span className="text-white/30">stack: </span>
+                          <span className="text-white/25">[</span>
+                          {["React", "TypeScript", "Node", "PHP", "Python"].map((s, idx, arr) => (
+                            <span key={s}>
+                              <span className="text-sky-400/70">&quot;{s}&quot;</span>
+                              {idx < arr.length - 1 && <span className="text-white/20">, </span>}
+                            </span>
+                          ))}
+                          <span className="text-white/25">],</span>
+                        </>
+                      ),
+                    },
+                    { indent: true, code: <><span className="text-white/30">focus: </span><span className="text-emerald-400/70">&quot;clean code &amp; UX&quot;</span><span className="text-white/20">,</span></> },
+                    { indent: true, code: <><span className="text-white/30">open: </span><span className="text-emerald-400/70">true</span><span className="text-white/20">,</span></> },
+                    { code: <span className="text-white/25">{"}"}</span> },
+                    { blank: true },
+                    { code: <span className="text-white/25">{"// building the future, one commit at a time"}</span> },
+                  ];
+                  let elapsed = 0.7;
+                  return lines.map((line, i) => {
+                    const delay = elapsed;
+                    const duration = line.blank ? 0.1 : 0.45;
+                    elapsed += line.blank ? 0.08 : duration * 0.55;
+                    return (
+                      <div key={i} className={`overflow-hidden ${line.blank ? "h-1.5" : ""}`}>
+                        <motion.div
+                          initial={{ clipPath: "inset(0 100% 0 0)" }}
+                          animate={{ clipPath: "inset(0 0% 0 0)" }}
+                          transition={{ duration, delay, ease: "linear" }}
+                          className={`text-xs font-mono2 ${line.wrap ? "whitespace-normal break-words" : "whitespace-nowrap"} ${line.indent ? "pl-5" : ""}`}
+                        >
+                          {line.code}
+                        </motion.div>
+                      </div>
+                    );
+                  });
+                })()}
+                <motion.span
+                  className="inline-block w-[6px] h-[12px] bg-cyan-300/80 align-middle"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.9, repeat: Infinity, delay: 3.4 }}
+                />
               </div>
             </div>
           </motion.div>

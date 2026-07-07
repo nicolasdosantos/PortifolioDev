@@ -83,6 +83,11 @@ export interface SkillItem {
   level: number;
   desc: string;
   icon: IconType;
+  color: string;
+  /** Alternate brand color used on light backgrounds when `color` is too light to read. */
+  lightColor?: string;
+  /** When the brand logo is multi-color, the full gradient stop sequence. */
+  colors?: string[];
 }
 
 export interface SkillCategory {
@@ -138,6 +143,18 @@ export interface Certificate {
 export interface Tool {
   name: string;
   icon: IconType;
+  color: string;
+  /** Alternate brand color used on light backgrounds when `color` is too light to read. */
+  lightColor?: string;
+  /** When the brand logo is multi-color, the full gradient stop sequence. */
+  colors?: string[];
+  href: string;
+}
+
+export interface ToolCategory {
+  icon: LucideIcon;
+  label: string;
+  tools: Tool[];
 }
 
 /** Shared props for full sections that need theme, language and copy. */

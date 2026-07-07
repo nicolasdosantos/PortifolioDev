@@ -1,9 +1,6 @@
-export function Aurora({ dark }: { dark: boolean }) {
+export function Aurora({ dark: _dark }: { dark: boolean }) {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      <div className={`a1 absolute -top-72 -left-72 w-[700px] h-[700px] rounded-full blur-[160px] ${dark ? "bg-violet-600/25" : "bg-violet-400/20"}`} />
-      <div className={`a2 absolute top-1/2 -right-72 w-[550px] h-[550px] rounded-full blur-[130px] ${dark ? "bg-indigo-600/20" : "bg-purple-400/15"}`} />
-      <div className={`a3 absolute -bottom-72 left-1/3 w-[500px] h-[500px] rounded-full blur-[110px] ${dark ? "bg-purple-700/22" : "bg-violet-300/18"}`} />
       <div
         className="absolute inset-0 opacity-[0.018]"
         style={{

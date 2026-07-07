@@ -1,27 +1,25 @@
 export function GlobalStyles() {
   return (
     <style>{`
-      @keyframes aurora1 {
-        0%, 100% { transform: translate(0,0) scale(1); opacity:0.7; }
-        50%       { transform: translate(22%,18%) scale(1.15); opacity:0.9; }
+      @keyframes glowPulse {
+        0%, 100% { opacity: 0.5; }
+        50%       { opacity: 1; }
       }
-      @keyframes aurora2 {
-        0%, 100% { transform: translate(0,0) scale(1); opacity:0.5; }
-        50%       { transform: translate(-18%,22%) scale(1.2); opacity:0.7; }
+      @keyframes shimmer {
+        0%   { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
       }
-      @keyframes aurora3 {
-        0%, 100% { transform: translate(0,0) scale(1); opacity:0.5; }
-        50%       { transform: translate(12%,-22%) scale(0.9); opacity:0.7; }
+      .glow-pulse { animation: glowPulse 2.6s ease-in-out infinite; }
+      .text-shimmer {
+        background-size: 200% auto;
+        animation: shimmer 5s linear infinite;
       }
-      .a1 { animation: aurora1 22s ease-in-out infinite; }
-      .a2 { animation: aurora2 28s ease-in-out infinite; }
-      .a3 { animation: aurora3 34s ease-in-out infinite; }
 
       html { cursor: none; }
       ::-webkit-scrollbar { width: 3px; }
       ::-webkit-scrollbar-track { background: transparent; }
-      ::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.4); border-radius: 3px; }
-      ::-webkit-scrollbar-thumb:hover { background: rgba(124,58,237,0.7); }
+      ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #C4B5FD, #67E8F9); border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #DDD6FE, #A5F3FC); }
 
       .font-display { font-family: 'Bricolage Grotesque', sans-serif; }
       .font-body    { font-family: 'Inter', sans-serif; }
