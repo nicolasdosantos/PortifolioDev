@@ -145,7 +145,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             whileHover={{ y: -4, transition: { duration: 0.3, ease: "easeOut" } }}
-            className="hidden lg:block relative group/card"
+            className="relative group/card w-full"
           >
             <motion.div
               className="absolute -inset-8 rounded-3xl -z-10"
@@ -154,7 +154,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
             <div
-              className={`relative w-[25rem] rounded-2xl border overflow-hidden transition-shadow duration-300 ease-out group-hover/card:shadow-[0_0_50px_rgba(124,58,237,0.25)] ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-black/[0.02] border-black/[0.07]"}`}
+              className={`relative w-full max-w-[25rem] mx-auto lg:mx-0 rounded-2xl border overflow-hidden transition-shadow duration-300 ease-out group-hover/card:shadow-[0_0_50px_rgba(124,58,237,0.25)] ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-black/[0.02] border-black/[0.07]"}`}
             >
               <motion.div
                 className="absolute inset-x-0 top-0 h-px"

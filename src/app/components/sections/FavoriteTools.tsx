@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import type { Translation } from "../../types";
 import { GradientIcon, SectionHeader } from "../common";
 import { toolCategories } from "../../data";
+import { useHasHover } from "../../hooks/useHasHover";
 
 interface FavoriteToolsProps {
   dark: boolean;
@@ -12,6 +13,7 @@ interface FavoriteToolsProps {
 export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
   const [active, setActive] = useState(toolCategories[0].label);
   const [hovered, setHovered] = useState<string | null>(null);
+  const hasHover = useHasHover();
   const cat = toolCategories.find(c => c.label === active)!;
 
   return (
@@ -49,7 +51,7 @@ export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
             {cat.tools.map((tool, i) => {
               const ToolIcon = tool.icon;
               const brand = (dark ? tool.color : tool.lightColor ?? tool.color) || tool.color;
-              const isHovered = hovered === tool.name;
+              const isHovered = hasHover ? hovered === tool.name : true;
               const gradientColors = tool.colors && tool.colors.length > 1 ? tool.colors : [brand, brand];
               const gradientCss = `linear-gradient(135deg, ${gradientColors.join(", ")})`;
               const glowFrom = gradientColors[0];
@@ -65,9 +67,9 @@ export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.28, delay: i * 0.05 }}
-                  whileHover={{ y: -5, scale: 1.03, transition: { duration: 0.25, ease: "easeOut" } }}
-                  onHoverStart={() => setHovered(tool.name)}
-                  onHoverEnd={() => setHovered(null)}
+                  whileHover={hasHover ? { y: -5, scale: 1.03, transition: { duration: 0.25, ease: "easeOut" } } : undefined}
+                  onHoverStart={() => hasHover && setHovered(tool.name)}
+                  onHoverEnd={() => hasHover && setHovered(null)}
                   className="relative flex flex-col items-center text-center gap-3 p-5 rounded-2xl transition-shadow duration-300"
                   style={{
                     background: dark

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { useHasHover } from "../../hooks/useHasHover";
 
 export function Cursor() {
+  const hasHover = useHasHover();
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const target = useRef({ x: -100, y: -100 });
@@ -9,6 +11,7 @@ export function Cursor() {
   const [hov, setHov] = useState(false);
 
   useEffect(() => {
+    if (!hasHover) return;
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
     let raf: number;
     const tick = () => {
@@ -35,7 +38,9 @@ export function Cursor() {
       cancelAnimationFrame(raf);
       window.removeEventListener("mousemove", onMove);
     };
-  }, []);
+  }, [hasHover]);
+
+  if (!hasHover) return null;
 
   return (
     <>

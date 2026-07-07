@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useIsMobile } from "../ui/use-mobile";
 
 interface IntroProps {
   onDone: () => void;
@@ -9,15 +10,17 @@ const NAME = "Nicolas Santos";
 
 const SYMBOLS = ["{ }", "</>", ";", "=>", "01", "10", "( )", "&&", "#!", "[ ]", "0x1F", "==", "++"];
 
-const PARTICLES = Array.from({ length: 22 }, (_, i) => ({
-  id: i,
-  symbol: SYMBOLS[i % SYMBOLS.length],
-  x: Math.round((Math.sin(i * 12.9898) * 43758.5453) % 1 * 10000) / 100,
-  delay: (i % 10) * 0.4,
-  duration: 6 + (i % 5) * 1.4,
-  size: 11 + (i % 3) * 2,
-  hue: i % 3,
-}));
+function buildParticles(count: number) {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    symbol: SYMBOLS[i % SYMBOLS.length],
+    x: Math.round((Math.sin(i * 12.9898) * 43758.5453) % 1 * 10000) / 100,
+    delay: (i % 10) * 0.4,
+    duration: 6 + (i % 5) * 1.4,
+    size: 11 + (i % 3) * 2,
+    hue: i % 3,
+  }));
+}
 
 const TERMINAL_LINES = [
   { prompt: "whoami", out: "nicolas.santos" },
@@ -26,7 +29,11 @@ const TERMINAL_LINES = [
 ];
 
 export function Intro({ onDone }: IntroProps) {
-  const [progress, setProgress] = useState(0);
+  const isMobile = useIsMobile();
+  const particles = useMemo(() => buildParticles(isMobile ? 10 : 22), [isMobile]);
+  const barRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(onDone, 3900);
@@ -34,8 +41,13 @@ export function Intro({ onDone }: IntroProps) {
     const raf = { id: 0 };
     const tick = (now: number) => {
       const pct = Math.min(100, ((now - start) / 3300) * 100);
-      setProgress(pct);
-      if (pct < 100) raf.id = requestAnimationFrame(tick);
+      if (barRef.current) barRef.current.style.width = `${pct}%`;
+      if (labelRef.current) labelRef.current.textContent = pct < 100 ? `compiling... ${Math.round(pct)}%` : "build ready";
+      if (pct < 100) {
+        raf.id = requestAnimationFrame(tick);
+      } else {
+        setDone(true);
+      }
     };
     raf.id = requestAnimationFrame(tick);
     return () => {
@@ -61,13 +73,25 @@ export function Intro({ onDone }: IntroProps) {
       >
         <motion.div
           className="absolute -inset-[20%]"
-          animate={{
-            background: [
-              "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(124,58,237,0.22) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 60%)",
-              "radial-gradient(ellipse 800px 600px at 75% 25%, rgba(236,72,153,0.16) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 25% 75%, rgba(124,58,237,0.22) 0%, transparent 60%)",
-              "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(124,58,237,0.22) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 60%)",
-            ],
-          }}
+          style={
+            isMobile
+              ? {
+                  background:
+                    "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(124,58,237,0.22) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 60%)",
+                }
+              : undefined
+          }
+          animate={
+            isMobile
+              ? undefined
+              : {
+                  background: [
+                    "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(124,58,237,0.22) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 60%)",
+                    "radial-gradient(ellipse 800px 600px at 75% 25%, rgba(236,72,153,0.16) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 25% 75%, rgba(124,58,237,0.22) 0%, transparent 60%)",
+                    "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(124,58,237,0.22) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 60%)",
+                  ],
+                }
+          }
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
       </motion.div>
@@ -84,7 +108,7 @@ export function Intro({ onDone }: IntroProps) {
       />
 
       {/* Falling code symbols */}
-      {PARTICLES.map((p) => {
+      {particles.map((p) => {
         const colors = ["#C4B5FD", "#67E8F9", "#F0ABFC"];
         return (
           <motion.span
@@ -267,24 +291,25 @@ export function Intro({ onDone }: IntroProps) {
           transition={{ duration: 0.4, delay: 2.3 }}
         >
           <div className="h-[2px] rounded-full bg-white/10 overflow-hidden">
-            <motion.div
+            <div
+              ref={barRef}
               className="h-full rounded-full"
               style={{
-                width: `${progress}%`,
+                width: "0%",
                 background: "linear-gradient(90deg, #C4B5FD, #67E8F9)",
                 boxShadow: "0 0 10px rgba(124,58,237,0.8)",
               }}
             />
           </div>
-          <div className="mt-1.5 text-center text-[10px] font-mono2 text-white/30">
-            {progress < 100 ? `compiling... ${Math.round(progress)}%` : "build ready"}
+          <div ref={labelRef} className="mt-1.5 text-center text-[10px] font-mono2 text-white/30">
+            compiling... 0%
           </div>
         </motion.div>
       </motion.div>
 
       {/* Flash sweep on exit-ready */}
       <AnimatePresence>
-        {progress >= 100 && (
+        {done && (
           <motion.div
             className="absolute inset-0 pointer-events-none"
             initial={{ opacity: 0 }}

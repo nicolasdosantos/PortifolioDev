@@ -3,10 +3,12 @@ import { AnimatePresence, motion } from "motion/react";
 import type { SectionProps } from "../../types";
 import { GradientIcon, SectionHeader } from "../common";
 import { skillCategories } from "../../data";
+import { useHasHover } from "../../hooks/useHasHover";
 
 export function Skills({ dark, t, lang }: SectionProps) {
   const [active, setActive] = useState("frontend");
   const [hovered, setHovered] = useState<string | null>(null);
+  const hasHover = useHasHover();
   const cat = skillCategories.find(c => c.id === active)!;
 
   return (
@@ -44,7 +46,7 @@ export function Skills({ dark, t, lang }: SectionProps) {
             {cat.skills.map((skill, i) => {
               const SkillIcon = skill.icon;
               const brand = (dark ? skill.color : skill.lightColor ?? skill.color) || skill.color;
-              const isHovered = hovered === skill.name;
+              const isHovered = hasHover ? hovered === skill.name : true;
               const gradientColors = skill.colors && skill.colors.length > 1 ? skill.colors : [brand, brand];
               const gradientCss = `linear-gradient(135deg, ${gradientColors.join(", ")})`;
               const glowFrom = gradientColors[0];
@@ -55,9 +57,9 @@ export function Skills({ dark, t, lang }: SectionProps) {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.28, delay: i * 0.05 }}
-                whileHover={{ y: -5, scale: 1.03, transition: { duration: 0.25, ease: "easeOut" } }}
-                onHoverStart={() => setHovered(skill.name)}
-                onHoverEnd={() => setHovered(null)}
+                whileHover={hasHover ? { y: -5, scale: 1.03, transition: { duration: 0.25, ease: "easeOut" } } : undefined}
+                onHoverStart={() => hasHover && setHovered(skill.name)}
+                onHoverEnd={() => hasHover && setHovered(null)}
                 className="relative p-5 rounded-2xl cursor-default transition-shadow duration-300"
                 style={{
                   background: dark

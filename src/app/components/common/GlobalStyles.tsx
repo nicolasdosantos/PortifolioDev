@@ -15,7 +15,9 @@ export function GlobalStyles() {
         animation: shimmer 5s linear infinite;
       }
 
-      html { cursor: none; }
+      @media (hover: hover) and (pointer: fine) {
+        html { cursor: none; }
+      }
       ::-webkit-scrollbar { width: 3px; }
       ::-webkit-scrollbar-track { background: transparent; }
       ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #C4B5FD, #67E8F9); border-radius: 3px; }
