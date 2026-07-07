@@ -36,7 +36,7 @@ export function Stats({ dark, t }: StatsProps) {
   return (
     <section className="py-24 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className={`rounded-2xl border p-8 md:p-14 ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-white border-black/[0.07]"}`}>
+        <div className={`rounded-2xl border p-8 md:p-14 ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-white border-black/[0.16]"}`}>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-4">
             {items.map(({ v, s, l }) => <StatItem key={l} value={v} suffix={s} label={l} dark={dark} />)}
           </div>

@@ -26,14 +26,14 @@ export function DevProcess({ dark, t }: DevProcessProps) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.07 }}
                 whileHover={{ y: -6 }}
-                className={`relative p-5 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-white/[0.025] border-white/[0.07] hover:border-violet-500/30 hover:shadow-[0_0_24px_rgba(124,58,237,0.1)]" : "bg-white border-black/[0.07] hover:border-violet-300 hover:shadow-[0_8px_24px_rgba(124,58,237,0.08)]"}`}
+                className={`relative p-5 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-white/[0.025] border-white/[0.07] hover:border-violet-500/30 hover:shadow-[0_0_24px_rgba(124,58,237,0.1)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_24px_rgba(124,58,237,0.08)]"}`}
               >
                 <div className={`text-xs font-mono2 mb-3 ${dark ? "text-violet-400/50" : "text-violet-400"}`}>0{i + 1}</div>
-                <Icon size={19} className={`mb-3 ${dark ? "text-white/50" : "text-black/50"}`} />
+                <Icon size={19} className={`mb-3 ${dark ? "text-white/50" : "text-black/70"}`} />
                 <div className={`font-display font-semibold text-sm mb-2 ${dark ? "text-white" : "text-[#08080A]"}`}>{step.title}</div>
-                <div className={`text-xs leading-relaxed font-body ${dark ? "text-white/38" : "text-black/40"}`}>{step.desc}</div>
+                <div className={`text-xs leading-relaxed font-body ${dark ? "text-white/38" : "text-black/62"}`}>{step.desc}</div>
                 {i < 5 && (
-                  <div className={`absolute -right-2.5 top-1/2 -translate-y-1/2 hidden lg:flex z-10 ${dark ? "text-white/15" : "text-black/15"}`}>
+                  <div className={`absolute -right-2.5 top-1/2 -translate-y-1/2 hidden lg:flex z-10 ${dark ? "text-white/15" : "text-black/40"}`}>
                     <ChevronRight size={14} />
                   </div>
                 )}

@@ -33,7 +33,7 @@ export default function App() {
   const t = translations[lang];
 
   return (
-    <div className={`min-h-screen relative transition-colors duration-500 ${dark ? "bg-[#08080A]" : "bg-[#F8F8FF]"}`}>
+    <div className={`min-h-screen relative transition-colors duration-500 ${dark ? "bg-[#08080A]" : "bg-[#E9E9F0]"}`}>
       <GlobalStyles />
       <AnimatePresence>{!done && <Intro onDone={() => setDone(true)} />}</AnimatePresence>
 

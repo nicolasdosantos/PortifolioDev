@@ -72,15 +72,15 @@ export function Hero({ dark, t, lang }: HeroProps) {
               transition={{ duration: 0.6, delay: 0.45 }}
               className="flex items-center gap-3 mb-6"
             >
-              <span className={`text-xl font-mono2 ${dark ? "text-white/30" : "text-black/30"}`}>—</span>
-              <span className={`text-lg font-body font-medium ${dark ? "text-white/65" : "text-black/60"}`}>{t.role}</span>
+              <span className={`text-xl font-mono2 ${dark ? "text-white/30" : "text-black/54"}`}>—</span>
+              <span className={`text-lg font-body font-medium ${dark ? "text-white/65" : "text-black/75"}`}>{t.role}</span>
             </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className={`font-body text-base max-w-lg leading-relaxed mb-8 ${dark ? "text-white/45" : "text-black/50"}`}
+              className={`font-body text-base max-w-lg leading-relaxed mb-8 ${dark ? "text-white/45" : "text-black/70"}`}
             >
               {t.description}
             </motion.p>
@@ -106,14 +106,14 @@ export function Hero({ dark, t, lang }: HeroProps) {
               </button>
               <button
                 onClick={() => document.querySelector("#contato")?.scrollIntoView({ behavior: "smooth" })}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/75 hover:bg-white/[0.05] hover:border-white/22" : "border-black/12 text-black/70 hover:bg-black/[0.04]"}`}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/75 hover:bg-white/[0.05] hover:border-white/22" : "border-black/[0.18] text-black/80 hover:bg-black/[0.07]"}`}
               >
                 {t.cta_contact} <MessageSquare size={15} />
               </button>
               <a
                 href={cvHref}
                 download={cvFilename}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/75 hover:bg-white/[0.05]" : "border-black/12 text-black/70 hover:bg-black/[0.04]"}`}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/75 hover:bg-white/[0.05]" : "border-black/[0.18] text-black/80 hover:bg-black/[0.07]"}`}
               >
                 <Download size={15} /> {t.cta_cv}
               </a>
@@ -125,13 +125,13 @@ export function Hero({ dark, t, lang }: HeroProps) {
               transition={{ duration: 0.6, delay: 0.75 }}
               className="flex flex-wrap items-center gap-4"
             >
-              <div className={`flex items-center gap-1.5 text-xs font-mono2 ${dark ? "text-white/35" : "text-black/35"}`}>
+              <div className={`flex items-center gap-1.5 text-xs font-mono2 ${dark ? "text-white/35" : "text-black/58"}`}>
                 <MapPin size={12} /> {t.location}
               </div>
-              <div className={`w-px h-4 ${dark ? "bg-white/10" : "bg-black/10"}`} />
+              <div className={`w-px h-4 ${dark ? "bg-white/10" : "bg-black/[0.14]"}`} />
               <div className="flex items-center gap-2">
                 {SOCIALS.map(({ Icon, href }, i) => (
-                  <a key={i} href={href} className={`p-2 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 ${dark ? "border-white/10 text-white/45 hover:text-white hover:bg-white/[0.05] hover:border-white/20" : "border-black/10 text-black/45 hover:text-black hover:bg-black/[0.04]"}`}>
+                  <a key={i} href={href} className={`p-2 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 ${dark ? "border-white/10 text-white/45 hover:text-white hover:bg-white/[0.05] hover:border-white/20" : "border-black/[0.16] text-black/65 hover:text-black hover:bg-black/[0.07]"}`}>
                     <Icon size={15} />
                   </a>
                 ))}
@@ -154,7 +154,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
             <div
-              className={`relative w-full max-w-[25rem] mx-auto lg:mx-0 rounded-2xl border overflow-hidden transition-shadow duration-300 ease-out group-hover/card:shadow-[0_0_50px_rgba(124,58,237,0.25)] ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-black/[0.02] border-black/[0.07]"}`}
+              className={`relative w-full max-w-[25rem] mx-auto lg:mx-0 rounded-2xl border overflow-hidden transition-shadow duration-300 ease-out group-hover/card:shadow-[0_0_50px_rgba(124,58,237,0.25)] ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-black/[0.045] border-black/[0.16]"}`}
             >
               <motion.div
                 className="absolute inset-x-0 top-0 h-px"
@@ -162,9 +162,9 @@ export function Hero({ dark, t, lang }: HeroProps) {
                 animate={{ backgroundPosition: ["0% 0%", "200% 0%"] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               />
-              <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${dark ? "border-white/[0.06]" : "border-black/[0.06]"}`}>
+              <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${dark ? "border-white/[0.06]" : "border-black/[0.15]"}`}>
                 {["#FF5F57", "#FFBD2E", "#28C840"].map(c => <span key={c} className="w-3 h-3 rounded-full" style={{ background: c }} />)}
-                <span className={`ml-2 text-xs font-mono2 ${dark ? "text-white/25" : "text-black/25"}`}>developer.ts</span>
+                <span className={`ml-2 text-xs font-mono2 ${dark ? "text-white/25" : "text-black/50"}`}>developer.ts</span>
                 <span className="ml-auto flex items-center gap-1.5 text-[10px] font-mono2 text-emerald-400/70">
                   <span className="relative flex w-1.5 h-1.5">
                     <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
@@ -242,9 +242,9 @@ export function Hero({ dark, t, lang }: HeroProps) {
           transition={{ delay: 1.6, duration: 0.6 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className={`text-xs font-mono2 ${dark ? "text-white/25" : "text-black/25"}`}>{t.scroll_hint}</span>
+          <span className={`text-xs font-mono2 ${dark ? "text-white/25" : "text-black/50"}`}>{t.scroll_hint}</span>
           <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            <ChevronDown size={16} className={dark ? "text-white/25" : "text-black/25"} />
+            <ChevronDown size={16} className={dark ? "text-white/25" : "text-black/50"} />
           </motion.div>
         </motion.div>
       </div>

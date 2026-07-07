@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import type { IconType } from "react-icons";
 import type { Translation } from "../../types";
-import { GradientIcon, SectionHeader } from "../common";
+import { ConfirmNavigateDialog, GradientIcon, SectionHeader } from "../common";
 import { toolCategories } from "../../data";
 import { useHasHover } from "../../hooks/useHasHover";
+
+interface PendingLink {
+  name: string;
+  href: string;
+  icon: IconType;
+  colors: string[];
+}
 
 interface FavoriteToolsProps {
   dark: boolean;
@@ -13,6 +21,7 @@ interface FavoriteToolsProps {
 export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
   const [active, setActive] = useState(toolCategories[0].label);
   const [hovered, setHovered] = useState<string | null>(null);
+  const [pending, setPending] = useState<PendingLink | null>(null);
   const hasHover = useHasHover();
   const cat = toolCategories.find(c => c.label === active)!;
 
@@ -31,7 +40,7 @@ export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
                   ? "bg-violet-600 border-violet-600 text-white shadow-[0_0_20px_rgba(124,58,237,0.3)]"
                   : dark
                     ? "border-white/10 text-white/50 hover:text-white hover:bg-white/[0.05]"
-                    : "border-black/10 text-black/50 hover:text-black hover:bg-black/[0.05]"
+                    : "border-black/[0.16] text-black/70 hover:text-black hover:bg-black/[0.08]"
                 }`}
               >
                 <CatIcon size={14} /> {c.label}
@@ -58,11 +67,10 @@ export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
               const glowTo = gradientColors[gradientColors.length - 1];
 
               return (
-                <motion.a
+                <motion.button
                   key={tool.name}
-                  href={tool.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  type="button"
+                  onClick={() => setPending({ name: tool.name, href: tool.href, icon: ToolIcon, colors: gradientColors })}
                   aria-label={`Documentação de ${tool.name}`}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -111,12 +119,22 @@ export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
                   >
                     {tool.name}
                   </span>
-                </motion.a>
+                </motion.button>
               );
             })}
           </motion.div>
         </AnimatePresence>
       </div>
+
+      <ConfirmNavigateDialog
+        pending={pending}
+        dark={dark}
+        onCancel={() => setPending(null)}
+        onConfirm={() => {
+          if (pending) window.open(pending.href, "_blank", "noopener,noreferrer");
+          setPending(null);
+        }}
+      />
     </section>
   );
 }

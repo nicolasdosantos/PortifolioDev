@@ -23,7 +23,7 @@ export function Journey({ dark, t, lang }: SectionProps) {
                 <div className="absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full bg-violet-500 ring-4 ring-violet-500/20" />
                 <div className={`text-xs font-mono2 mb-1 ${dark ? "text-violet-400" : "text-violet-600"}`}>{item.year}</div>
                 <div className={`font-display font-semibold mb-1.5 ${dark ? "text-white" : "text-[#08080A]"}`}>{item.title[lang]}</div>
-                <div className={`text-sm font-body ${dark ? "text-white/45" : "text-black/45"}`}>{item.desc[lang]}</div>
+                <div className={`text-sm font-body ${dark ? "text-white/45" : "text-black/65"}`}>{item.desc[lang]}</div>
               </motion.div>
             ))}
           </div>

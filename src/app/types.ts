@@ -42,6 +42,7 @@ export interface Translation {
   contact_label: string;
   contact_title: string;
   contact_subtitle: string;
+  contact_response_badge: string;
   form_name: string;
   form_email: string;
   form_message: string;
@@ -60,8 +61,22 @@ export interface Translation {
   faq_title: string;
   certs_label: string;
   certs_title: string;
+  certs_stat_certs: string;
+  certs_stat_institutions: string;
+  certs_stat_hours: string;
+  certs_verified: string;
   github_label: string;
   github_title: string;
+  github_subtitle: string;
+  github_cta: string;
+  github_legend_less: string;
+  github_legend_more: string;
+  github_repos: string;
+  github_contributions: string;
+  github_streak: string;
+  github_stars: string;
+  github_top_lang: string;
+  github_tooltip: string;
   stats_label: string;
   stat_projects: string;
   stat_commits: string;
@@ -88,6 +103,7 @@ export interface SkillItem {
   lightColor?: string;
   /** When the brand logo is multi-color, the full gradient stop sequence. */
   colors?: string[];
+  href: string;
 }
 
 export interface SkillCategory {
@@ -138,6 +154,8 @@ export interface Certificate {
   issuer: string;
   year: string;
   color: string;
+  icon: LucideIcon;
+  hours?: string;
 }
 
 export interface Tool {

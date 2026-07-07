@@ -1,13 +1,22 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import type { IconType } from "react-icons";
 import type { SectionProps } from "../../types";
-import { GradientIcon, SectionHeader } from "../common";
+import { ConfirmNavigateDialog, GradientIcon, SectionHeader } from "../common";
 import { skillCategories } from "../../data";
 import { useHasHover } from "../../hooks/useHasHover";
+
+interface PendingLink {
+  name: string;
+  href: string;
+  icon: IconType;
+  colors: string[];
+}
 
 export function Skills({ dark, t, lang }: SectionProps) {
   const [active, setActive] = useState("frontend");
   const [hovered, setHovered] = useState<string | null>(null);
+  const [pending, setPending] = useState<PendingLink | null>(null);
   const hasHover = useHasHover();
   const cat = skillCategories.find(c => c.id === active)!;
 
@@ -26,7 +35,7 @@ export function Skills({ dark, t, lang }: SectionProps) {
                   ? "bg-violet-600 border-violet-600 text-white shadow-[0_0_20px_rgba(124,58,237,0.3)]"
                   : dark
                     ? "border-white/10 text-white/50 hover:text-white hover:bg-white/[0.05]"
-                    : "border-black/10 text-black/50 hover:text-black hover:bg-black/[0.05]"
+                    : "border-black/[0.16] text-black/70 hover:text-black hover:bg-black/[0.08]"
                 }`}
               >
                 <Icon size={14} /> {c.label[lang]}
@@ -60,7 +69,13 @@ export function Skills({ dark, t, lang }: SectionProps) {
                 whileHover={hasHover ? { y: -5, scale: 1.03, transition: { duration: 0.25, ease: "easeOut" } } : undefined}
                 onHoverStart={() => hasHover && setHovered(skill.name)}
                 onHoverEnd={() => hasHover && setHovered(null)}
-                className="relative p-5 rounded-2xl cursor-default transition-shadow duration-300"
+                onClick={() => setPending({ name: skill.name, href: skill.href, icon: SkillIcon, colors: gradientColors })}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") setPending({ name: skill.name, href: skill.href, icon: SkillIcon, colors: gradientColors });
+                }}
+                className="relative p-5 rounded-2xl cursor-pointer transition-shadow duration-300"
                 style={{
                   background: dark
                     ? "linear-gradient(150deg, rgba(255,255,255,0.07), rgba(255,255,255,0.015))"
@@ -92,8 +107,8 @@ export function Skills({ dark, t, lang }: SectionProps) {
                 >
                   {skill.name}
                 </div>
-                <div className={`relative z-10 text-xs mb-3 font-body ${dark ? "text-white/38" : "text-black/40"}`}>{skill.desc}</div>
-                <div className={`relative z-10 h-1 rounded-full overflow-hidden ${dark ? "bg-white/8" : "bg-black/8"}`}>
+                <div className={`relative z-10 text-xs mb-3 font-body ${dark ? "text-white/38" : "text-black/62"}`}>{skill.desc}</div>
+                <div className={`relative z-10 h-1 rounded-full overflow-hidden ${dark ? "bg-white/8" : "bg-black/[0.12]"}`}>
                   <motion.div
                     className="h-full rounded-full transition-colors duration-300"
                     style={{ background: isHovered ? gradientCss : cat.color }}
@@ -103,13 +118,23 @@ export function Skills({ dark, t, lang }: SectionProps) {
                     transition={{ duration: 0.9, delay: i * 0.05 }}
                   />
                 </div>
-                <div className={`relative z-10 text-xs font-mono2 mt-1.5 ${dark ? "text-white/28" : "text-black/30"}`}>{skill.level}%</div>
+                <div className={`relative z-10 text-xs font-mono2 mt-1.5 ${dark ? "text-white/28" : "text-black/54"}`}>{skill.level}%</div>
               </motion.div>
               );
             })}
           </motion.div>
         </AnimatePresence>
       </div>
+
+      <ConfirmNavigateDialog
+        pending={pending}
+        dark={dark}
+        onCancel={() => setPending(null)}
+        onConfirm={() => {
+          if (pending) window.open(pending.href, "_blank", "noopener,noreferrer");
+          setPending(null);
+        }}
+      />
     </section>
   );
 }

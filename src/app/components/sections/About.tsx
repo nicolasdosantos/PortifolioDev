@@ -19,10 +19,10 @@ export function About({ dark, t, lang }: SectionProps) {
         <SectionHeader label={t.about_label} title={t.about_title} dark={dark} />
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <p className={`font-body text-lg leading-relaxed mb-8 ${dark ? "text-white/55" : "text-black/55"}`}>{t.about_bio}</p>
+            <p className={`font-body text-lg leading-relaxed mb-8 ${dark ? "text-white/55" : "text-black/72"}`}>{t.about_bio}</p>
             <div className="flex flex-wrap gap-2">
               {STACK.map(tech => (
-                <span key={tech} className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border ${dark ? "border-white/10 bg-white/[0.04] text-white/55" : "border-black/10 bg-black/[0.04] text-black/55"}`}>
+                <span key={tech} className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border ${dark ? "border-white/10 bg-white/[0.04] text-white/55" : "border-black/[0.16] bg-black/[0.07] text-black/72"}`}>
                   {tech}
                 </span>
               ))}
@@ -37,11 +37,11 @@ export function About({ dark, t, lang }: SectionProps) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 whileHover={{ y: -5, scale: 1.03 }}
-                className={`p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-white/[0.025] border-white/[0.07] hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.1)]" : "bg-white border-black/[0.07] hover:border-violet-300 hover:shadow-[0_8px_30px_rgba(124,58,237,0.08)]"}`}
+                className={`p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-white/[0.025] border-white/[0.07] hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.1)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_30px_rgba(124,58,237,0.08)]"}`}
               >
                 <Icon size={22} className={`${clr} mb-3`} />
                 <div className={`font-display text-4xl font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{val}</div>
-                <div className={`text-xs mt-1 font-body ${dark ? "text-white/40" : "text-black/40"}`}>{lbl[lang]}</div>
+                <div className={`text-xs mt-1 font-body ${dark ? "text-white/40" : "text-black/62"}`}>{lbl[lang]}</div>
               </motion.div>
             ))}
           </div>

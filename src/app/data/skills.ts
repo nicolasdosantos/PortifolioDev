@@ -25,10 +25,10 @@ export const skillCategories: SkillCategory[] = [
     icon: Monitor,
     color: "#7C3AED",
     skills: [
-      { name: "React", level: 85, desc: "Hooks, Components, State", icon: SiReact, color: "#61DAFB" },
-      { name: "TypeScript", level: 75, desc: "Types, Interfaces", icon: SiTypescript, color: "#3178C6" },
-      { name: "JavaScript", level: 88, desc: "ES6+, DOM, Async", icon: SiJavascript, color: "#F7DF1E" },
-      { name: "Tailwind CSS", level: 82, desc: "Utility-first, Responsive", icon: SiTailwindcss, color: "#38BDF8" },
+      { name: "React", level: 85, desc: "Hooks, Components, State", icon: SiReact, color: "#61DAFB", href: "https://react.dev" },
+      { name: "TypeScript", level: 75, desc: "Types, Interfaces", icon: SiTypescript, color: "#3178C6", href: "https://www.typescriptlang.org/docs" },
+      { name: "JavaScript", level: 88, desc: "ES6+, DOM, Async", icon: SiJavascript, color: "#F7DF1E", href: "https://developer.mozilla.org/docs/Web/JavaScript" },
+      { name: "Tailwind CSS", level: 82, desc: "Utility-first, Responsive", icon: SiTailwindcss, color: "#38BDF8", href: "https://tailwindcss.com/docs" },
     ],
   },
   {
@@ -37,12 +37,12 @@ export const skillCategories: SkillCategory[] = [
     icon: Server,
     color: "#2563EB",
     skills: [
-      { name: "PHP", level: 78, desc: "APIs, Routing", icon: SiPhp, color: "#777BB4" },
-      { name: "Laravel", level: 65, desc: "MVC, Eloquent", icon: SiLaravel, color: "#FF2D20" },
-      { name: "Livewire", level: 60, desc: "Reactive components", icon: SiLivewire, color: "#4E56A6" },
-      { name: "Python", level: 75, desc: "Scripts, Automations", icon: SiPython, color: "#3776AB", colors: ["#3776AB", "#FFD43B"] },
-      { name: "Flask", level: 78, desc: "REST APIs, CRUD", icon: SiFlask, color: "#FFFFFF", lightColor: "#000000" },
-      { name: "Java", level: 55, desc: "OOP fundamentals", icon: FaJava, color: "#E76F00", colors: ["#E76F00", "#5382A1"] },
+      { name: "PHP", level: 78, desc: "APIs, Routing", icon: SiPhp, color: "#777BB4", href: "https://www.php.net/docs.php" },
+      { name: "Laravel", level: 65, desc: "MVC, Eloquent", icon: SiLaravel, color: "#FF2D20", href: "https://laravel.com/docs" },
+      { name: "Livewire", level: 60, desc: "Reactive components", icon: SiLivewire, color: "#4E56A6", href: "https://livewire.laravel.com/docs" },
+      { name: "Python", level: 75, desc: "Scripts, Automations", icon: SiPython, color: "#3776AB", colors: ["#3776AB", "#FFD43B"], href: "https://docs.python.org/3" },
+      { name: "Flask", level: 78, desc: "REST APIs, CRUD", icon: SiFlask, color: "#FFFFFF", lightColor: "#000000", href: "https://flask.palletsprojects.com" },
+      { name: "Java", level: 55, desc: "OOP fundamentals", icon: FaJava, color: "#E76F00", colors: ["#E76F00", "#5382A1"], href: "https://docs.oracle.com/en/java" },
     ],
   },
   {
@@ -51,8 +51,8 @@ export const skillCategories: SkillCategory[] = [
     icon: Database,
     color: "#059669",
     skills: [
-      { name: "MySQL", level: 80, desc: "Queries, Relations", icon: SiMysql, color: "#4479A1" },
-      { name: "Supabase", level: 75, desc: "Postgres, Auth, Storage", icon: SiSupabase, color: "#3ECF8E", colors: ["#3ECF8E", "#249361"] },
+      { name: "MySQL", level: 80, desc: "Queries, Relations", icon: SiMysql, color: "#4479A1", href: "https://dev.mysql.com/doc" },
+      { name: "Supabase", level: 75, desc: "Postgres, Auth, Storage", icon: SiSupabase, color: "#3ECF8E", colors: ["#3ECF8E", "#249361"], href: "https://supabase.com/docs" },
     ],
   },
   {
@@ -61,9 +61,9 @@ export const skillCategories: SkillCategory[] = [
     icon: Wrench,
     color: "#0891B2",
     skills: [
-      { name: "Git", level: 85, desc: "Versioning, GitHub", icon: SiGit, color: "#F05032" },
-      { name: "Figma", level: 60, desc: "Prototyping", icon: SiFigma, color: "#F24E1E", colors: ["#A259FF", "#F24E1E"] },
-      { name: "Vercel", level: 82, desc: "Deploys, Hosting", icon: SiVercel, color: "#FFFFFF", lightColor: "#000000" },
+      { name: "Git", level: 85, desc: "Versioning, GitHub", icon: SiGit, color: "#F05032", href: "https://git-scm.com/doc" },
+      { name: "Figma", level: 60, desc: "Prototyping", icon: SiFigma, color: "#F24E1E", colors: ["#A259FF", "#F24E1E"], href: "https://help.figma.com" },
+      { name: "Vercel", level: 82, desc: "Deploys, Hosting", icon: SiVercel, color: "#FFFFFF", lightColor: "#000000", href: "https://vercel.com/docs" },
     ],
   },
 ];

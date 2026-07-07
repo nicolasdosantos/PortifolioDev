@@ -25,7 +25,7 @@ export function FAQ({ dark, t }: FAQProps) {
               transition={{ duration: 0.38, delay: i * 0.07 }}
               className={`rounded-2xl border overflow-hidden transition-all duration-300 ${openIdx === i
                 ? dark ? "bg-white/[0.04] border-violet-500/20" : "bg-violet-50/60 border-violet-200"
-                : dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-white border-black/[0.07]"
+                : dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-white border-black/[0.16]"
               }`}
             >
               <button
@@ -36,7 +36,7 @@ export function FAQ({ dark, t }: FAQProps) {
                 <motion.div
                   animate={{ rotate: openIdx === i ? 180 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className={`flex-shrink-0 ${dark ? "text-white/38" : "text-black/38"}`}
+                  className={`flex-shrink-0 ${dark ? "text-white/38" : "text-black/60"}`}
                 >
                   <ChevronDown size={15} />
                 </motion.div>
@@ -50,7 +50,7 @@ export function FAQ({ dark, t }: FAQProps) {
                     transition={{ duration: 0.22 }}
                     className="overflow-hidden"
                   >
-                    <div className={`px-6 pb-5 text-sm font-body ${dark ? "text-white/48" : "text-black/48"}`}>{item.a}</div>
+                    <div className={`px-6 pb-5 text-sm font-body ${dark ? "text-white/48" : "text-black/68"}`}>{item.a}</div>
                   </motion.div>
                 )}
               </AnimatePresence>
