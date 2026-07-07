@@ -165,7 +165,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
               <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${dark ? "border-white/[0.06]" : "border-black/[0.15]"}`}>
                 {["#FF5F57", "#FFBD2E", "#28C840"].map(c => <span key={c} className="w-3 h-3 rounded-full" style={{ background: c }} />)}
                 <span className={`ml-2 text-xs font-mono2 ${dark ? "text-white/25" : "text-black/50"}`}>developer.ts</span>
-                <span className="ml-auto flex items-center gap-1.5 text-[10px] font-mono2 text-emerald-400/70">
+                <span className={`ml-auto flex items-center gap-1.5 text-[10px] font-mono2 ${dark ? "text-emerald-400/70" : "text-emerald-600"}`}>
                   <span className="relative flex w-1.5 h-1.5">
                     <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                     <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-400" />
@@ -175,36 +175,44 @@ export function Hero({ dark, t, lang }: HeroProps) {
               </div>
               <div className="p-5 space-y-1.5">
                 {(() => {
+                  const kw = dark ? "text-violet-400/70" : "text-violet-600";
+                  const ident = dark ? "text-blue-400/70" : "text-blue-600";
+                  const punct = dark ? "text-white/25" : "text-black/45";
+                  const key = dark ? "text-white/30" : "text-black/55";
+                  const comma = dark ? "text-white/20" : "text-black/35";
+                  const str = dark ? "text-emerald-400/70" : "text-emerald-600";
+                  const num = dark ? "text-sky-400/70" : "text-sky-600";
+                  const kw2 = dark ? "text-amber-400/70" : "text-amber-600";
                   const lines = [
-                    { code: <><span className="text-violet-400/70">const </span><span className="text-blue-400/70">dev</span><span className="text-white/25"> = {"{"}</span></> },
-                    { indent: true, code: <><span className="text-white/30">name: </span><span className="text-emerald-400/70">&quot;Nicolas Santos&quot;</span><span className="text-white/20">,</span></> },
-                    { indent: true, code: <><span className="text-white/30">fullName: </span><span className="text-emerald-400/70">&quot;Nicolas Pichiteli dos Santos&quot;</span><span className="text-white/20">,</span></> },
-                    { indent: true, code: <><span className="text-white/30">age: </span><span className="text-sky-400/70">19</span><span className="text-white/20">,</span></> },
-                    { indent: true, code: <><span className="text-white/30">role: </span><span className="text-amber-400/70">&quot;Full Stack Developer&quot;</span><span className="text-white/20">,</span></> },
-                    { indent: true, code: <><span className="text-white/30">location: </span><span className="text-amber-400/70">&quot;Birigui, BR&quot;</span><span className="text-white/20">,</span></> },
-                    { indent: true, code: <><span className="text-white/30">xp: </span><span className="text-sky-400/70">&quot;3+ years&quot;</span><span className="text-white/20">,</span></> },
+                    { code: <><span className={kw}>const </span><span className={ident}>dev</span><span className={punct}> = {"{"}</span></> },
+                    { indent: true, code: <><span className={key}>name: </span><span className={str}>&quot;Nicolas Santos&quot;</span><span className={comma}>,</span></> },
+                    { indent: true, code: <><span className={key}>fullName: </span><span className={str}>&quot;Nicolas Pichiteli dos Santos&quot;</span><span className={comma}>,</span></> },
+                    { indent: true, code: <><span className={key}>age: </span><span className={num}>19</span><span className={comma}>,</span></> },
+                    { indent: true, code: <><span className={key}>role: </span><span className={kw2}>&quot;Full Stack Developer&quot;</span><span className={comma}>,</span></> },
+                    { indent: true, code: <><span className={key}>location: </span><span className={kw2}>&quot;Birigui, BR&quot;</span><span className={comma}>,</span></> },
+                    { indent: true, code: <><span className={key}>xp: </span><span className={num}>&quot;3+ years&quot;</span><span className={comma}>,</span></> },
                     {
                       indent: true,
                       wrap: true,
                       code: (
                         <>
-                          <span className="text-white/30">stack: </span>
-                          <span className="text-white/25">[</span>
+                          <span className={key}>stack: </span>
+                          <span className={punct}>[</span>
                           {["React", "TypeScript", "Node", "PHP", "Python"].map((s, idx, arr) => (
                             <span key={s}>
-                              <span className="text-sky-400/70">&quot;{s}&quot;</span>
-                              {idx < arr.length - 1 && <span className="text-white/20">, </span>}
+                              <span className={num}>&quot;{s}&quot;</span>
+                              {idx < arr.length - 1 && <span className={comma}>, </span>}
                             </span>
                           ))}
-                          <span className="text-white/25">],</span>
+                          <span className={punct}>],</span>
                         </>
                       ),
                     },
-                    { indent: true, code: <><span className="text-white/30">focus: </span><span className="text-emerald-400/70">&quot;clean code &amp; UX&quot;</span><span className="text-white/20">,</span></> },
-                    { indent: true, code: <><span className="text-white/30">open: </span><span className="text-emerald-400/70">true</span><span className="text-white/20">,</span></> },
-                    { code: <span className="text-white/25">{"}"}</span> },
+                    { indent: true, code: <><span className={key}>focus: </span><span className={str}>&quot;clean code &amp; UX&quot;</span><span className={comma}>,</span></> },
+                    { indent: true, code: <><span className={key}>open: </span><span className={str}>true</span><span className={comma}>,</span></> },
+                    { code: <span className={punct}>{"}"}</span> },
                     { blank: true },
-                    { code: <span className="text-white/25">{"// building the future, one commit at a time"}</span> },
+                    { code: <span className={punct}>{"// building the future, one commit at a time"}</span> },
                   ];
                   let elapsed = 0.7;
                   return lines.map((line, i) => {
@@ -226,7 +234,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
                   });
                 })()}
                 <motion.span
-                  className="inline-block w-[6px] h-[12px] bg-cyan-300/80 align-middle"
+                  className={`inline-block w-[6px] h-[12px] align-middle ${dark ? "bg-cyan-300/80" : "bg-cyan-600"}`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: [1, 0, 1] }}
                   transition={{ duration: 0.9, repeat: Infinity, delay: 3.4 }}

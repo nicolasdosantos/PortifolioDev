@@ -1,6 +1,7 @@
-import { Database, Monitor, Server, Wrench } from "lucide-react";
+import { Bot, Database, Monitor, Server, Sparkles, Wrench } from "lucide-react";
 import { FaJava } from "react-icons/fa";
 import {
+  SiClaude,
   SiFigma,
   SiFlask,
   SiGit,
@@ -9,6 +10,7 @@ import {
   SiLivewire,
   SiMysql,
   SiPhp,
+  SiPhpmyadmin,
   SiPython,
   SiReact,
   SiSupabase,
@@ -52,6 +54,7 @@ export const skillCategories: SkillCategory[] = [
     color: "#059669",
     skills: [
       { name: "MySQL", level: 80, desc: "Queries, Relations", icon: SiMysql, color: "#4479A1", href: "https://dev.mysql.com/doc" },
+      { name: "phpMyAdmin", level: 78, desc: "Admin, Queries visuais", icon: SiPhpmyadmin, color: "#6C78AF", href: "https://www.phpmyadmin.net/docs" },
       { name: "Supabase", level: 75, desc: "Postgres, Auth, Storage", icon: SiSupabase, color: "#3ECF8E", colors: ["#3ECF8E", "#249361"], href: "https://supabase.com/docs" },
     ],
   },
@@ -64,6 +67,16 @@ export const skillCategories: SkillCategory[] = [
       { name: "Git", level: 85, desc: "Versioning, GitHub", icon: SiGit, color: "#F05032", href: "https://git-scm.com/doc" },
       { name: "Figma", level: 60, desc: "Prototyping", icon: SiFigma, color: "#F24E1E", colors: ["#A259FF", "#F24E1E"], href: "https://help.figma.com" },
       { name: "Vercel", level: 82, desc: "Deploys, Hosting", icon: SiVercel, color: "#FFFFFF", lightColor: "#000000", href: "https://vercel.com/docs" },
+    ],
+  },
+  {
+    id: "ai",
+    label: { pt: "Inteligência Artificial", en: "Artificial Intelligence" },
+    icon: Sparkles,
+    color: "#D97757",
+    skills: [
+      { name: "ChatGPT", level: 85, desc: "Prompting, automações", icon: Bot, color: "#74AA9C", href: "https://help.openai.com" },
+      { name: "Claude", level: 88, desc: "Coding agent, prompting", icon: SiClaude, color: "#D97757", href: "https://docs.claude.com" },
     ],
   },
 ];
