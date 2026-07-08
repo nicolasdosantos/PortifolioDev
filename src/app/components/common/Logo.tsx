@@ -29,6 +29,7 @@ export function Logo({ size = 36, className = "" }: LogoProps) {
             top: "-60%",
             left: "-60%",
             background: "conic-gradient(from 0deg, #8B5CF6, #67E8F9, #8B5CF6)",
+            willChange: "transform",
           }}
           animate={{ rotate: 360 }}
           transition={{ duration: 6, repeat: Infinity, ease: "linear" }}

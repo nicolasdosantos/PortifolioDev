@@ -71,29 +71,38 @@ export function Intro({ onDone }: IntroProps) {
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
       >
-        <motion.div
-          className="absolute -inset-[20%]"
-          style={
-            isMobile
-              ? {
-                  background:
-                    "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(124,58,237,0.22) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 60%)",
-                }
-              : undefined
-          }
-          animate={
-            isMobile
-              ? undefined
-              : {
-                  background: [
-                    "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(124,58,237,0.22) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 60%)",
-                    "radial-gradient(ellipse 800px 600px at 75% 25%, rgba(236,72,153,0.16) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 25% 75%, rgba(124,58,237,0.22) 0%, transparent 60%)",
-                    "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(124,58,237,0.22) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 60%)",
-                  ],
-                }
-          }
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
+        {isMobile ? (
+          <div
+            className="absolute -inset-[20%]"
+            style={{
+              background:
+                "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(124,58,237,0.22) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 60%)",
+            }}
+          />
+        ) : (
+          <>
+            {/* Two static gradient layers cross-fade via opacity instead of animating
+                the `background` property directly, which forces a full-viewport repaint
+                every frame instead of a cheap GPU-composited opacity blend. */}
+            <div
+              className="absolute -inset-[20%]"
+              style={{
+                background:
+                  "radial-gradient(ellipse 800px 600px at 20% 30%, rgba(124,58,237,0.22) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 60%)",
+              }}
+            />
+            <motion.div
+              className="absolute -inset-[20%]"
+              style={{
+                background:
+                  "radial-gradient(ellipse 800px 600px at 75% 25%, rgba(236,72,153,0.16) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 25% 75%, rgba(124,58,237,0.22) 0%, transparent 60%)",
+                willChange: "opacity",
+              }}
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </>
+        )}
       </motion.div>
 
       {/* Grid overlay for depth */}
@@ -138,6 +147,7 @@ export function Intro({ onDone }: IntroProps) {
       {/* Rotating orbital rings */}
       <motion.div
         className="absolute rounded-full border border-violet-400/20 w-[200px] h-[200px] sm:w-[340px] sm:h-[340px]"
+        style={{ willChange: "transform" }}
         initial={{ opacity: 0, rotate: 0 }}
         animate={{ opacity: 1, rotate: 360 }}
         transition={{
@@ -152,6 +162,7 @@ export function Intro({ onDone }: IntroProps) {
       </motion.div>
       <motion.div
         className="absolute rounded-full border border-fuchsia-400/15 w-[260px] h-[260px] sm:w-[440px] sm:h-[440px]"
+        style={{ willChange: "transform" }}
         initial={{ opacity: 0, rotate: 0 }}
         animate={{ opacity: 1, rotate: -360 }}
         transition={{
@@ -188,6 +199,7 @@ export function Intro({ onDone }: IntroProps) {
               background:
                 "conic-gradient(from 0deg, #C4B5FD, #67E8F9, #F0ABFC, #C4B5FD)",
               filter: "blur(10px)",
+              willChange: "transform, opacity",
             }}
             animate={{ rotate: 360, opacity: [0.5, 0.9, 0.5] }}
             transition={{

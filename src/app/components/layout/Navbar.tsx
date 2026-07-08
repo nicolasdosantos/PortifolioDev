@@ -21,8 +21,16 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
   const clickLock = useRef<number | null>(null);
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", fn);
+    let ticking = false;
+    const fn = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 50);
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
@@ -88,7 +96,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
           >
             <motion.span
               className="absolute -inset-2 rounded-full blur-md -z-10"
-              style={{ background: "radial-gradient(circle, rgba(139,92,246,0.35), transparent 70%)" }}
+              style={{ background: "radial-gradient(circle, rgba(139,92,246,0.35), transparent 70%)", willChange: "transform, opacity" }}
               animate={{ opacity: [0.4, 0.85, 0.4], scale: [0.9, 1.08, 0.9] }}
               transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
             />

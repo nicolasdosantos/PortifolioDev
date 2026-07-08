@@ -137,7 +137,7 @@ export function Contact({ dark, t }: ContactProps) {
           >
             <motion.div
               className="absolute -inset-10 rounded-3xl -z-10 pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(124,58,237,0.22) 0%, transparent 70%)", filter: "blur(28px)" }}
+              style={{ background: "radial-gradient(circle, rgba(124,58,237,0.22) 0%, transparent 70%)", filter: "blur(28px)", willChange: "opacity" }}
               animate={{ opacity: [0.5, 0.9, 0.5] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />

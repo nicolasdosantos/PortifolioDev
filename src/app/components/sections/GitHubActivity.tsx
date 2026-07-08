@@ -42,6 +42,7 @@ const MONTHLY_ACTIVITY = [
   { label: "Jul", count: 21 },
 ];
 const RECENT_3M_TOTAL = 49;
+const MAX_MONTHLY_ACTIVITY = Math.max(...MONTHLY_ACTIVITY.map((x) => x.count));
 
 function StatCard({ stat, label, dark, index }: { stat: (typeof STATS)[number]; label: string; dark: boolean; index: number }) {
   const { count, ref } = useCounter(stat.value, 1400);
@@ -155,8 +156,7 @@ export function GitHubActivity({ dark, t }: GitHubActivityProps) {
 
           <div className="flex items-end gap-3 sm:gap-5 h-36 px-1">
             {MONTHLY_ACTIVITY.map((m, i) => {
-              const max = Math.max(...MONTHLY_ACTIVITY.map((x) => x.count));
-              const pct = m.count === 0 ? 4 : Math.max(10, (m.count / max) * 100);
+              const pct = m.count === 0 ? 4 : Math.max(10, (m.count / MAX_MONTHLY_ACTIVITY) * 100);
               const active = m.count > 0;
               const id = `month-${i}`;
               return (

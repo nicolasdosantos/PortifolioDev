@@ -34,7 +34,7 @@ export function Projects({ dark, t, lang }: SectionProps) {
               className={`group cursor-pointer h-full rounded-2xl border overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(124,58,237,0.15)] ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-white border-black/[0.16]"}`}
             >
               <div className="relative overflow-hidden">
-                <img src={featured.image} alt={featured.title} className="w-full h-52 object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src={featured.image} alt={featured.title} loading="lazy" decoding="async" className="w-full h-52 object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#08080A] via-[#08080A]/30 to-transparent" />
                 <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-violet-600 text-white text-xs font-mono2">★ Featured</span>
               </div>
@@ -69,7 +69,7 @@ export function Projects({ dark, t, lang }: SectionProps) {
                 className={`group cursor-pointer rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(124,58,237,0.1)] ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-white border-black/[0.16]"}`}
               >
                 <div className="relative overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <img src={p.image} alt={p.title} loading="lazy" decoding="async" className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#08080A]/50 to-transparent" />
                 </div>
                 <div className="p-4">
@@ -100,7 +100,7 @@ export function Projects({ dark, t, lang }: SectionProps) {
           >
             <div className="flex flex-col md:flex-row">
               <div className="relative overflow-hidden md:w-72 flex-shrink-0">
-                <img src={rest[2].image} alt={rest[2].title} className="w-full h-44 md:h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img src={rest[2].image} alt={rest[2].title} loading="lazy" decoding="async" className="w-full h-44 md:h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div className="p-6 flex flex-col justify-center">
                 <div className="flex items-center gap-3 mb-2">

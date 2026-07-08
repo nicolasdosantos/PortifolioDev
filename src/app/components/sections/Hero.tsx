@@ -149,7 +149,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
           >
             <motion.div
               className="absolute -inset-8 rounded-3xl -z-10"
-              style={{ background: "radial-gradient(circle, rgba(124,58,237,0.28) 0%, transparent 70%)", filter: "blur(24px)" }}
+              style={{ background: "radial-gradient(circle, rgba(124,58,237,0.28) 0%, transparent 70%)", filter: "blur(24px)", willChange: "opacity" }}
               animate={{ opacity: [0.5, 0.9, 0.5] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
