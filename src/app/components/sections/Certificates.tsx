@@ -18,7 +18,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="py-24 relative">
+    <section id="certificados" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader label={t.certs_label} title={t.certs_title} dark={dark} />
 

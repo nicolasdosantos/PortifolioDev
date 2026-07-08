@@ -23,7 +23,7 @@ export function GlobalStyles() {
       ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #C4B5FD, #67E8F9); border-radius: 3px; }
       ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #DDD6FE, #A5F3FC); }
 
-      .font-display { font-family: 'Bricolage Grotesque', sans-serif; }
+      .font-display { font-family: 'Sora', sans-serif; }
       .font-body    { font-family: 'Inter', sans-serif; }
       .font-mono2   { font-family: 'JetBrains Mono', monospace; }
     `}</style>

@@ -77,6 +77,8 @@ export interface Translation {
   github_stars: string;
   github_top_lang: string;
   github_tooltip: string;
+  github_activity_label: string;
+  github_recent_note: string;
   stats_label: string;
   stat_projects: string;
   stat_commits: string;

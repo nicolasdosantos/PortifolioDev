@@ -2,7 +2,7 @@ import type { Lang, Translation } from "../types";
 
 export const translations: Record<Lang, Translation> = {
   pt: {
-    nav: ["Home", "Sobre", "Projetos", "Skills", "Experiência", "Contato"],
+    nav: ["Home", "Sobre", "Skills", "Projetos", "Certificados", "Experiência", "Contato"],
     badge: "Disponível para oportunidades",
     name: "Nicolas Santos",
     fullName: "Nicolas Pichiteli dos Santos",
@@ -62,6 +62,8 @@ export const translations: Record<Lang, Translation> = {
     github_stars: "Estrelas recebidas",
     github_top_lang: "Linguagens mais usadas",
     github_tooltip: "contribuições",
+    github_activity_label: "Atividade mensal",
+    github_recent_note: "contribuições nos últimos 3 meses",
     stats_label: "Números",
     stat_projects: "Projetos em Destaque",
     stat_commits: "Repositórios",
@@ -91,7 +93,7 @@ export const translations: Record<Lang, Translation> = {
     ],
   },
   en: {
-    nav: ["Home", "About", "Projects", "Skills", "Experience", "Contact"],
+    nav: ["Home", "About", "Skills", "Projects", "Certificates", "Experience", "Contact"],
     badge: "Available for opportunities",
     name: "Nicolas Santos",
     fullName: "Nicolas Pichiteli dos Santos",
@@ -151,6 +153,8 @@ export const translations: Record<Lang, Translation> = {
     github_stars: "Stars received",
     github_top_lang: "Most used languages",
     github_tooltip: "contributions",
+    github_activity_label: "Monthly activity",
+    github_recent_note: "contributions in the last 3 months",
     stats_label: "Numbers",
     stat_projects: "Featured Projects",
     stat_commits: "Repositories",

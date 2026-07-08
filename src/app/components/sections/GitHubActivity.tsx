@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, Flame, GitFork, Github, Star } from "lucide-react";
+import { ArrowUpRight, Flame, GitFork, Github, Star, TrendingUp } from "lucide-react";
 import type { Translation } from "../../types";
 import { SectionHeader } from "../common";
 import { useCounter } from "../../hooks/useCounter";
@@ -11,22 +11,37 @@ interface GitHubActivityProps {
   t: Translation;
 }
 
+const GITHUB_USER = "nicolasdosantos";
+const GITHUB_URL = `https://github.com/${GITHUB_USER}`;
+
+/** Real values pulled from the GitHub REST API + public contribution calendar for nicolasdosantos. */
 const STATS = [
   { key: "repos", value: 41, icon: GitFork, color: "#8B5CF6" },
-  { key: "contributions", value: 860, icon: Github, color: "#67E8F9" },
-  { key: "streak", value: 12, icon: Flame, color: "#FB923C" },
-  { key: "stars", value: 27, icon: Star, color: "#F0ABFC" },
+  { key: "contributions", value: 67, icon: Github, color: "#67E8F9" },
+  { key: "streak", value: 2, icon: Flame, color: "#FB923C" },
+  { key: "stars", value: 5, icon: Star, color: "#F0ABFC" },
 ] as const;
 
 const TOP_LANGUAGES = [
-  { name: "TypeScript", pct: 38, color: "#3178C6" },
-  { name: "PHP", pct: 26, color: "#777BB4" },
-  { name: "JavaScript", pct: 18, color: "#F7DF1E" },
-  { name: "Python", pct: 12, color: "#3776AB" },
-  { name: "CSS", pct: 6, color: "#38BDF8" },
+  { name: "HTML", pct: 30, color: "#E34C26" },
+  { name: "JavaScript", pct: 24, color: "#F1E05A" },
+  { name: "C++", pct: 16, color: "#F34B7D" },
+  { name: "Python", pct: 14, color: "#3572A5" },
+  { name: "TypeScript", pct: 8, color: "#3178C6" },
+  { name: "CSS", pct: 5, color: "#563D7C" },
+  { name: "Blade", pct: 3, color: "#F7523F" },
 ];
 
-const MONTHS = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+/** Real monthly contribution totals (last 6 months) from github.com/users/nicolasdosantos/contributions. */
+const MONTHLY_ACTIVITY = [
+  { label: "Fev", count: 0 },
+  { label: "Mar", count: 0 },
+  { label: "Abr", count: 0 },
+  { label: "Mai", count: 5 },
+  { label: "Jun", count: 23 },
+  { label: "Jul", count: 21 },
+];
+const RECENT_3M_TOTAL = 49;
 
 function StatCard({ stat, label, dark, index }: { stat: (typeof STATS)[number]; label: string; dark: boolean; index: number }) {
   const { count, ref } = useCounter(stat.value, 1400);
@@ -72,25 +87,6 @@ export function GitHubActivity({ dark, t }: GitHubActivityProps) {
   const [hoveredCell, setHoveredCell] = useState<string | null>(null);
   const hasHover = useHasHover();
 
-  const grid = useMemo(() => {
-    const seeded = (i: number, j: number) => {
-      const x = Math.sin(i * 12.9898 + j * 78.233) * 43758.5453;
-      return x - Math.floor(x);
-    };
-    return Array.from({ length: 52 }, (_, wi) => {
-      const recentBoost = wi > 42 ? 0.18 : 0;
-      return Array.from({ length: 7 }, (_, di) => Math.min(1, seeded(wi, di) + recentBoost));
-    });
-  }, []);
-
-  const levelOf = (val: number) => (val < 0.35 ? 0 : val < 0.55 ? 1 : val < 0.72 ? 2 : val < 0.88 ? 3 : 4);
-  const countOf = (level: number) => [0, 1, 3, 6, 10][level];
-  const colorOf = (level: number, dark: boolean) => {
-    const darkScale = ["rgba(255,255,255,0.06)", "#4C1D95", "#6D28D9", "#8B5CF6", "#C4B5FD"];
-    const lightScale = ["rgba(0,0,0,0.06)", "#DDD6FE", "#A78BFA", "#7C3AED", "#5B21B6"];
-    return (dark ? darkScale : lightScale)[level];
-  };
-
   const statLabels: Record<string, string> = {
     repos: t.github_repos,
     contributions: t.github_contributions,
@@ -128,15 +124,15 @@ export function GitHubActivity({ dark, t }: GitHubActivityProps) {
           className={`p-6 sm:p-8 rounded-2xl border mb-6 ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-white border-black/[0.16]"}`}
         >
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-            <a href="https://github.com/nicolasdosantos" target="_blank" rel="noreferrer" className="group flex items-center gap-3">
+            <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="group flex items-center gap-3">
               <div className={`p-2 rounded-xl transition-colors duration-300 ${dark ? "bg-white/[0.06] group-hover:bg-white/[0.1]" : "bg-black/[0.06] group-hover:bg-black/[0.1]"}`}>
                 <Github size={16} className={dark ? "text-white/70" : "text-black/70"} />
               </div>
-              <span className={`text-sm font-mono2 ${dark ? "text-white/60" : "text-black/72"}`}>@nicolasdosantos</span>
+              <span className={`text-sm font-mono2 ${dark ? "text-white/60" : "text-black/72"}`}>@{GITHUB_USER}</span>
               <ArrowUpRight size={14} className={`transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${dark ? "text-white/40" : "text-black/45"}`} />
             </a>
             <a
-              href="https://github.com/nicolasdosantos"
+              href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
               className="px-4 py-2 rounded-xl text-xs font-body font-medium text-white transition-transform duration-200 hover:scale-[1.04]"
@@ -146,59 +142,57 @@ export function GitHubActivity({ dark, t }: GitHubActivityProps) {
             </a>
           </div>
 
-          <div className="overflow-x-auto pb-2">
-            <div className="min-w-max">
-              <div className={`flex gap-1 mb-1.5 text-[10px] font-mono2 ${dark ? "text-white/30" : "text-black/40"}`}>
-                {MONTHS.map((m) => (
-                  <span key={m} style={{ width: `${(52 / 12) * 16}px` }}>{m}</span>
-                ))}
-              </div>
-              <div className="flex gap-1">
-                {grid.map((week, wi) => (
-                  <div key={wi} className="flex flex-col gap-1">
-                    {week.map((val, di) => {
-                      const level = levelOf(val);
-                      const id = `${wi}-${di}`;
-                      return (
-                        <motion.div
-                          key={di}
-                          initial={{ opacity: 0, scale: 0.4 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.25, delay: wi * 0.012 }}
-                          whileHover={hasHover ? { scale: 1.35 } : undefined}
-                          onHoverStart={() => hasHover && setHoveredCell(id)}
-                          onHoverEnd={() => hasHover && setHoveredCell((c) => (c === id ? null : c))}
-                          onClick={() => !hasHover && setHoveredCell((c) => (c === id ? null : id))}
-                          className="relative w-3 h-3 rounded-sm cursor-default"
-                          style={{
-                            background: colorOf(level, dark),
-                            boxShadow: level > 2 ? `0 0 6px ${dark ? "rgba(196,181,253,0.5)" : "rgba(124,58,237,0.35)"}` : "none",
-                          }}
-                        >
-                          {hoveredCell === id && (
-                            <motion.div
-                              initial={{ opacity: 0, y: 4 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              className={`absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 rounded-md text-[10px] font-mono2 z-10 ${dark ? "bg-white text-black" : "bg-[#08080A] text-white"}`}
-                            >
-                              {countOf(level)} {t.github_tooltip}
-                            </motion.div>
-                          )}
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-              <div className={`flex items-center gap-1.5 mt-3 justify-end text-[10px] font-mono2 ${dark ? "text-white/30" : "text-black/40"}`}>
-                <span>{t.github_legend_less}</span>
-                {[0, 1, 2, 3, 4].map((lvl) => (
-                  <span key={lvl} className="w-2.5 h-2.5 rounded-sm" style={{ background: colorOf(lvl, dark) }} />
-                ))}
-                <span>{t.github_legend_more}</span>
-              </div>
+          <div className="flex items-center justify-between mb-5">
+            <h4 className={`text-xs font-mono2 uppercase tracking-[0.15em] ${dark ? "text-white/40" : "text-black/50"}`}>
+              {t.github_activity_label}
+            </h4>
+            <div className="flex items-center gap-1.5 text-xs font-mono2 text-emerald-400/90">
+              <TrendingUp size={13} />
+              <span className={dark ? "text-white/70" : "text-black/75"}>{RECENT_3M_TOTAL}</span>
+              <span className={dark ? "text-white/40" : "text-black/50"}>{t.github_recent_note}</span>
             </div>
+          </div>
+
+          <div className="flex items-end gap-3 sm:gap-5 h-36 px-1">
+            {MONTHLY_ACTIVITY.map((m, i) => {
+              const max = Math.max(...MONTHLY_ACTIVITY.map((x) => x.count));
+              const pct = m.count === 0 ? 4 : Math.max(10, (m.count / max) * 100);
+              const active = m.count > 0;
+              const id = `month-${i}`;
+              return (
+                <div key={m.label} className="relative flex-1 flex flex-col items-center h-full">
+                  <div className="relative flex-1 w-full flex items-end">
+                    <motion.div
+                      className="relative w-full rounded-t-md"
+                      initial={{ height: 0 }}
+                      whileInView={{ height: `${pct}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.7, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                      onHoverStart={() => hasHover && setHoveredCell(id)}
+                      onHoverEnd={() => hasHover && setHoveredCell((c) => (c === id ? null : c))}
+                      onClick={() => !hasHover && setHoveredCell((c) => (c === id ? null : id))}
+                      style={{
+                        background: active
+                          ? "linear-gradient(180deg, #67E8F9, #7C3AED)"
+                          : dark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
+                        boxShadow: active ? "0 0 16px -2px rgba(124,58,237,0.45)" : "none",
+                      }}
+                    >
+                      {hoveredCell === id && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className={`absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 rounded-md text-[10px] font-mono2 z-10 ${dark ? "bg-white text-black" : "bg-[#08080A] text-white"}`}
+                        >
+                          {m.count} {t.github_tooltip}
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  </div>
+                  <span className={`mt-2 text-[10px] font-mono2 ${dark ? "text-white/35" : "text-black/45"}`}>{m.label}</span>
+                </div>
+              );
+            })}
           </div>
         </motion.div>
 
