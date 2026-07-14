@@ -1,15 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { ExternalLink, X } from "lucide-react";
-import type { IconType } from "react-icons";
-import type { LucideIcon } from "lucide-react";
+import type { PendingLink } from "../../types";
 import { GradientIcon } from "./GradientIcon";
-
-interface PendingLink {
-  name: string;
-  href: string;
-  icon: IconType | LucideIcon;
-  colors: string[];
-}
 
 interface ConfirmNavigateDialogProps {
   pending: PendingLink | null;

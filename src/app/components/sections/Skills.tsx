@@ -1,22 +1,15 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import type { IconType } from "react-icons";
 import type { SectionProps } from "../../types";
 import { ConfirmNavigateDialog, GradientIcon, SectionHeader } from "../common";
 import { skillCategories } from "../../data";
 import { useHasHover } from "../../hooks/useHasHover";
-
-interface PendingLink {
-  name: string;
-  href: string;
-  icon: IconType;
-  colors: string[];
-}
+import { useConfirmNavigate } from "../../hooks/useConfirmNavigate";
 
 export function Skills({ dark, t, lang }: SectionProps) {
   const [active, setActive] = useState("frontend");
   const [hovered, setHovered] = useState<string | null>(null);
-  const [pending, setPending] = useState<PendingLink | null>(null);
+  const { pending, request, cancel, confirm } = useConfirmNavigate();
   const hasHover = useHasHover();
   const cat = skillCategories.find(c => c.id === active)!;
 
@@ -69,11 +62,11 @@ export function Skills({ dark, t, lang }: SectionProps) {
                 whileHover={hasHover ? { y: -5, scale: 1.03, transition: { duration: 0.25, ease: "easeOut" } } : undefined}
                 onHoverStart={() => hasHover && setHovered(skill.name)}
                 onHoverEnd={() => hasHover && setHovered(null)}
-                onClick={() => setPending({ name: skill.name, href: skill.href, icon: SkillIcon, colors: gradientColors })}
+                onClick={() => request({ name: skill.name, href: skill.href, icon: SkillIcon, colors: gradientColors })}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") setPending({ name: skill.name, href: skill.href, icon: SkillIcon, colors: gradientColors });
+                  if (e.key === "Enter" || e.key === " ") request({ name: skill.name, href: skill.href, icon: SkillIcon, colors: gradientColors });
                 }}
                 className="relative p-5 rounded-2xl cursor-pointer transition-shadow duration-300"
                 style={{
@@ -129,11 +122,8 @@ export function Skills({ dark, t, lang }: SectionProps) {
       <ConfirmNavigateDialog
         pending={pending}
         dark={dark}
-        onCancel={() => setPending(null)}
-        onConfirm={() => {
-          if (pending) window.open(pending.href, "_blank", "noopener,noreferrer");
-          setPending(null);
-        }}
+        onCancel={cancel}
+        onConfirm={confirm}
       />
     </section>
   );

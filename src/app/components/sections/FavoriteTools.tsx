@@ -1,17 +1,10 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import type { IconType } from "react-icons";
 import type { Translation } from "../../types";
 import { ConfirmNavigateDialog, GradientIcon, SectionHeader } from "../common";
 import { toolCategories } from "../../data";
 import { useHasHover } from "../../hooks/useHasHover";
-
-interface PendingLink {
-  name: string;
-  href: string;
-  icon: IconType;
-  colors: string[];
-}
+import { useConfirmNavigate } from "../../hooks/useConfirmNavigate";
 
 interface FavoriteToolsProps {
   dark: boolean;
@@ -21,7 +14,7 @@ interface FavoriteToolsProps {
 export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
   const [active, setActive] = useState(toolCategories[0].label);
   const [hovered, setHovered] = useState<string | null>(null);
-  const [pending, setPending] = useState<PendingLink | null>(null);
+  const { pending, request, cancel, confirm } = useConfirmNavigate();
   const hasHover = useHasHover();
   const cat = toolCategories.find(c => c.label === active)!;
 
@@ -70,7 +63,7 @@ export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
                 <motion.button
                   key={tool.name}
                   type="button"
-                  onClick={() => setPending({ name: tool.name, href: tool.href, icon: ToolIcon, colors: gradientColors })}
+                  onClick={() => request({ name: tool.name, href: tool.href, icon: ToolIcon, colors: gradientColors })}
                   aria-label={`Documentação de ${tool.name}`}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -129,11 +122,8 @@ export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
       <ConfirmNavigateDialog
         pending={pending}
         dark={dark}
-        onCancel={() => setPending(null)}
-        onConfirm={() => {
-          if (pending) window.open(pending.href, "_blank", "noopener,noreferrer");
-          setPending(null);
-        }}
+        onCancel={cancel}
+        onConfirm={confirm}
       />
     </section>
   );

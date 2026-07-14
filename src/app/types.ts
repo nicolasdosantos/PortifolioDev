@@ -183,3 +183,11 @@ export interface SectionProps {
   lang: Lang;
   t: Translation;
 }
+
+/** An external link awaiting user confirmation before navigating away, shown via ConfirmNavigateDialog. */
+export interface PendingLink {
+  name: string;
+  href: string;
+  icon: IconType | LucideIcon;
+  colors: string[];
+}

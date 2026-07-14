@@ -4,17 +4,11 @@ import { ArrowRight, CheckCircle2, Clock, Github, Linkedin, Mail, MessageSquare,
 import type { Translation } from "../../types";
 import { ConfirmNavigateDialog, SectionHeader } from "../common";
 import { useHasHover } from "../../hooks/useHasHover";
+import { useConfirmNavigate } from "../../hooks/useConfirmNavigate";
 
 interface ContactProps {
   dark: boolean;
   t: Translation;
-}
-
-interface PendingLink {
-  name: string;
-  href: string;
-  icon: typeof Github;
-  colors: string[];
 }
 
 const SOCIALS = [
@@ -28,7 +22,7 @@ export function Contact({ dark, t }: ContactProps) {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
-  const [pending, setPending] = useState<PendingLink | null>(null);
+  const { pending, request, cancel, confirm } = useConfirmNavigate();
   const hasHover = useHasHover();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -77,7 +71,7 @@ export function Contact({ dark, t }: ContactProps) {
                   <motion.button
                     key={label}
                     type="button"
-                    onClick={() => setPending({ name: label, href, icon: Icon, colors: [brand, brand] })}
+                    onClick={() => request({ name: label, href, icon: Icon, colors: [brand, brand] })}
                     initial={{ opacity: 0, x: -14 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -238,11 +232,8 @@ export function Contact({ dark, t }: ContactProps) {
         dark={dark}
         title="Abrir link externo?"
         description={pending ? `Você será redirecionado para ${pending.name}.` : undefined}
-        onCancel={() => setPending(null)}
-        onConfirm={() => {
-          if (pending) window.open(pending.href, "_blank", "noopener,noreferrer");
-          setPending(null);
-        }}
+        onCancel={cancel}
+        onConfirm={confirm}
       />
     </section>
   );
