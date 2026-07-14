@@ -214,13 +214,12 @@ export function Intro({ onDone }: IntroProps) {
               boxShadow: "0 0 40px rgba(124,58,237,0.55)",
             }}
           >
-            <div className="w-full h-full rounded-full bg-[#0B0B0F] border-2 border-[#08080A] flex items-center justify-center">
-              <span
-                className="font-display text-lg sm:text-2xl font-bold bg-gradient-to-br from-violet-200 via-violet-400 to-cyan-300 bg-clip-text text-transparent"
-                style={{ filter: "drop-shadow(0 0 10px rgba(124,58,237,0.6))" }}
-              >
-                NS
-              </span>
+            <div className="w-full h-full rounded-full bg-[#0B0B0F] border-2 border-[#08080A] overflow-hidden">
+              <img
+                src="/profile.jpg"
+                alt={NAME}
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>

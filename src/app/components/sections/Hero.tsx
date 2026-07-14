@@ -10,7 +10,7 @@ interface HeroProps {
 
 const SOCIALS = [
   { Icon: Github, href: "https://github.com/nicolasdosantos" },
-  { Icon: Linkedin, href: "https://linkedin.com/in/nicolas-pichiteli-dos-santos" },
+  { Icon: Linkedin, href: "https://www.linkedin.com/in/nicolas-pichiteli-dos-santos-942a0b269" },
   { Icon: Mail, href: "mailto:nicolaspichiteli245@gmail.com" },
 ];
 

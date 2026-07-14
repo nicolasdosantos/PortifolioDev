@@ -19,7 +19,7 @@ interface PendingLink {
 
 const SOCIALS = [
   { Icon: Github, label: "GitHub", val: "github.com/nicolasdosantos", href: "https://github.com/nicolasdosantos", color: "#FFFFFF", lightColor: "#181717" },
-  { Icon: Linkedin, label: "LinkedIn", val: "linkedin.com/in/nicolas-pichiteli-dos-santos", href: "https://linkedin.com/in/nicolas-pichiteli-dos-santos", color: "#0A66C2" },
+  { Icon: Linkedin, label: "LinkedIn", val: "linkedin.com/in/nicolas-pichiteli-dos-santos-942a0b269", href: "https://www.linkedin.com/in/nicolas-pichiteli-dos-santos-942a0b269", color: "#0A66C2" },
   { Icon: Mail, label: "Email", val: "nicolaspichiteli245@gmail.com", href: "mailto:nicolaspichiteli245@gmail.com", color: "#EA4335" },
   { Icon: Phone, label: "WhatsApp", val: "+55 (18) 99614-8839", href: "https://wa.me/5518996148839", color: "#25D366" },
 ];
