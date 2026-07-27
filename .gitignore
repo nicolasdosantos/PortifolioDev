@@ -52,3 +52,6 @@ coverage/
 .npm
 .yarn/
 .pnpm-store/
+
+# Documentos pessoais (dados de contato) — servidos pelo site, mas fora do repositorio
+public/*.pdf

@@ -65,6 +65,7 @@ export interface Translation {
   certs_stat_institutions: string;
   certs_stat_hours: string;
   certs_verified: string;
+  certs_verify_hint: string;
   github_label: string;
   github_title: string;
   github_subtitle: string;
@@ -158,6 +159,8 @@ export interface Certificate {
   color: string;
   icon: LucideIcon;
   hours?: string;
+  /** Public link to the issuer's validation document, when one exists. */
+  verifyUrl?: string;
 }
 
 export interface Tool {

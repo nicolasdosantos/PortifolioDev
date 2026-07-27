@@ -1,5 +1,6 @@
 import type { Translation } from "../../types";
 import { useCounter } from "../../hooks/useCounter";
+import { certificates } from "../../data";
 
 interface StatsProps {
   dark: boolean;
@@ -31,7 +32,7 @@ export function Stats({ dark, t }: StatsProps) {
     { v: 41, s: "", l: t.stat_commits },
     { v: 15, s: "+", l: t.stat_techs },
     { v: 3, s: "+", l: t.stat_years },
-    { v: 6, s: "", l: t.stat_certs },
+    { v: certificates.length, s: "", l: t.stat_certs },
   ];
   return (
     <section className="py-24 relative">

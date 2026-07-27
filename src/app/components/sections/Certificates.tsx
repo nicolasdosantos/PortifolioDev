@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { BadgeCheck } from "lucide-react";
+import { BadgeCheck, ExternalLink } from "lucide-react";
 import type { Translation } from "../../types";
 import { SectionHeader } from "../common";
 import { certificates } from "../../data";
@@ -119,10 +119,26 @@ export function Certificates({ dark, t }: CertificatesProps) {
                   />
 
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1.5">
-                      <BadgeCheck size={13} className="text-emerald-400" />
-                      <span className="text-[10px] font-mono2 text-emerald-400/80 uppercase tracking-wide">{t.certs_verified}</span>
-                    </div>
+                    {cert.verifyUrl ? (
+                      <a
+                        href={cert.verifyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={t.certs_verify_hint}
+                        className="flex items-center gap-1.5 group/verify"
+                      >
+                        <BadgeCheck size={13} className="text-emerald-400" />
+                        <span className="text-[10px] font-mono2 text-emerald-400/80 uppercase tracking-wide underline decoration-dotted decoration-emerald-400/40 underline-offset-2 transition-colors group-hover/verify:text-emerald-300">
+                          {t.certs_verified}
+                        </span>
+                        <ExternalLink size={9} className="text-emerald-400/50 transition-colors group-hover/verify:text-emerald-300" />
+                      </a>
+                    ) : (
+                      <div className="flex items-center gap-1.5">
+                        <BadgeCheck size={13} className="text-emerald-400" />
+                        <span className="text-[10px] font-mono2 text-emerald-400/80 uppercase tracking-wide">{t.certs_verified}</span>
+                      </div>
+                    )}
                     <div className="flex items-center gap-2">
                       {cert.hours && (
                         <span className={`text-[10px] font-mono2 px-1.5 py-0.5 rounded ${dark ? "bg-white/[0.06] text-white/45" : "bg-black/[0.06] text-black/50"}`}>
