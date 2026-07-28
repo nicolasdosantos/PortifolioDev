@@ -8,55 +8,38 @@ type Field = { key: keyof StackHeroConfig; label: string; min: number; max: numb
 
 const GROUPS: { title: string; fields: Field[] }[] = [
   {
-    title: "Câmera / mundo 3D",
+    title: "Cubo / câmera",
     fields: [
       { key: "perspective", label: "perspectiva (px)", min: 600, max: 3000, step: 50 },
-      { key: "rotY", label: "rotação Y inicial", min: -60, max: 20, step: 1 },
-      { key: "rotYEnd", label: "rotação Y final", min: -60, max: 20, step: 1 },
       { key: "rotX", label: "rotação X", min: -20, max: 25, step: 1 },
+      { key: "rotY", label: "rotação Y", min: -40, max: 40, step: 1 },
+      { key: "cubeSize", label: "tamanho do cubo", min: 0.2, max: 0.7, step: 0.01 },
     ],
   },
   {
-    title: "Cubo",
+    title: "Anel de cards",
     fields: [
-      { key: "cubeSize", label: "tamanho", min: 0.15, max: 0.7, step: 0.01 },
-      { key: "cubeX", label: "posição X", min: 0.2, max: 0.9, step: 0.01 },
-      { key: "cubeY", label: "posição Y", min: 0.2, max: 0.8, step: 0.01 },
-      { key: "cubeDriftX", label: "deriva X", min: -0.25, max: 0.25, step: 0.01 },
-      { key: "cubeShrink", label: "encolhe até", min: 0.5, max: 1, step: 0.01 },
-    ],
-  },
-  {
-    title: "Leque de painéis",
-    fields: [
-      { key: "panelW", label: "largura", min: 0.14, max: 0.5, step: 0.01 },
-      { key: "panelRatio", label: "proporção A/L", min: 0.7, max: 1.8, step: 0.02 },
-      { key: "fanGap", label: "folga do cubo", min: 0.1, max: 0.6, step: 0.01 },
-      { key: "fanX", label: "abertura X", min: 0, max: 0.3, step: 0.005 },
-      { key: "fanY", label: "abertura Y", min: -0.15, max: 0.15, step: 0.005 },
-      { key: "fanZ", label: "profundidade Z", min: -0.2, max: 0.2, step: 0.005 },
-      { key: "thickness", label: "espessura do vidro", min: 0, max: 30, step: 1 },
-      { key: "radius", label: "canto arredondado", min: 0, max: 40, step: 1 },
+      { key: "orbitRx", label: "raio X", min: 0.2, max: 0.55, step: 0.01 },
+      { key: "orbitRy", label: "raio Y", min: 0.2, max: 0.55, step: 0.01 },
+      { key: "cardW", label: "largura do card", min: 0.14, max: 0.34, step: 0.005 },
+      { key: "emerge", label: "avanço ao surgir", min: 0, max: 0.4, step: 0.01 },
     ],
   },
   {
     title: "Tempo (fração do scroll)",
     fields: [
-      { key: "pages", label: "altura (viewports)", min: 2, max: 7, step: 0.5 },
-      { key: "tStart", label: "início", min: 0, max: 0.4, step: 0.01 },
-      { key: "tStep", label: "intervalo", min: 0.04, max: 0.35, step: 0.01 },
-      { key: "tDur", label: "duração", min: 0.06, max: 0.5, step: 0.01 },
+      { key: "pages", label: "altura (viewports)", min: 2, max: 7, step: 0.2 },
+      { key: "tStart", label: "início", min: 0, max: 0.3, step: 0.01 },
+      { key: "tStep", label: "intervalo", min: 0.04, max: 0.3, step: 0.01 },
+      { key: "tDur", label: "duração", min: 0.05, max: 0.4, step: 0.01 },
     ],
   },
   {
-    title: "Vidro / luz",
+    title: "Luz",
     fields: [
-      { key: "glassTint", label: "opacidade do vidro", min: 0, max: 1, step: 0.02 },
-      { key: "fanScale", label: "reducao por camada", min: 0.8, max: 1, step: 0.01 },
-      { key: "glassBlur", label: "blur do vidro", min: 0, max: 24, step: 1 },
       { key: "rimGlow", label: "brilho das bordas", min: 0, max: 1.5, step: 0.05 },
       { key: "bgGlow", label: "brilho de fundo", min: 0, max: 1.5, step: 0.05 },
-      { key: "dimInactive", label: "escurecer inativos", min: 0.1, max: 1, step: 0.05 },
+      { key: "dimInactive", label: "escurecer inativos", min: 0.2, max: 1, step: 0.02 },
     ],
   },
 ];
@@ -124,11 +107,6 @@ export function TuningPanel({ cfg, setCfg, scrub, setScrub }: Props) {
         )}
       </div>
 
-      <div className="grid grid-cols-2 gap-2">
-        <Select label="cubo" value={cfg.cubeMode} options={["css", "image"]} onChange={v => set("cubeMode", v)} />
-        <Select label="labels" value={cfg.labelMode} options={["panel", "legend", "both"]} onChange={v => set("labelMode", v)} />
-      </div>
-
       {GROUPS.map(g => (
         <div key={g.title} className="space-y-2">
           <p className="font-mono2 text-[10px] tracking-widest uppercase text-white/30 pt-1">{g.title}</p>
@@ -167,34 +145,5 @@ export function TuningPanel({ cfg, setCfg, scrub, setScrub }: Props) {
         </button>
       </div>
     </div>
-  );
-}
-
-function Select({
-  label,
-  value,
-  options,
-  onChange,
-}: {
-  label: string;
-  value: string;
-  options: string[];
-  onChange: (v: string) => void;
-}) {
-  return (
-    <label className="block">
-      <span className="block text-[11px] text-white/50 mb-1">{label}</span>
-      <select
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        className="w-full bg-white/[0.06] border border-white/10 rounded-lg px-2 py-1.5 text-xs"
-      >
-        {options.map(o => (
-          <option key={o} value={o} className="bg-[#0C0C10]">
-            {o}
-          </option>
-        ))}
-      </select>
-    </label>
   );
 }
