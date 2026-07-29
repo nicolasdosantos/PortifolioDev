@@ -7,3 +7,5 @@ export { Intro } from "./Intro";
 export { Logo } from "./Logo";
 export { GradientIcon } from "./GradientIcon";
 export { ConfirmNavigateDialog } from "./ConfirmNavigateDialog";
+export { Reveal, revealChild, revealChildX, revealParent } from "./Reveal";
+export { ScrollTrail } from "./ScrollTrail";

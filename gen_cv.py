@@ -19,8 +19,8 @@ CONTACT = dict(
 )
 
 SKILLS = [
-    ("Frontend", ["React", "TypeScript", "JavaScript", "Tailwind CSS"]),
-    ("Backend", ["PHP", "Laravel", "Python", "Flask", "Java"]),
+    ("Frontend", ["React", "React Native", "TypeScript", "JavaScript", "Tailwind CSS"]),
+    ("Backend", ["Node.js", "PHP", "Laravel", "Python", "Flask", "Java"]),
     ("__DB__", ["MySQL", "phpMyAdmin", "Supabase"]),
     ("__TOOLS__", ["Git", "Figma", "Vercel", "ChatGPT", "Claude"]),
 ]

@@ -9,9 +9,9 @@ interface HeroProps {
 }
 
 const SOCIALS = [
-  { Icon: Github, href: "https://github.com/nicolasdosantos" },
-  { Icon: Linkedin, href: "https://www.linkedin.com/in/nicolas-pichiteli-dos-santos-942a0b269" },
-  { Icon: Mail, href: "mailto:nicolaspichiteli245@gmail.com" },
+  { Icon: Github, href: "https://github.com/nicolasdosantos", label: "GitHub" },
+  { Icon: Linkedin, href: "https://www.linkedin.com/in/nicolas-pichiteli-dos-santos-942a0b269", label: "LinkedIn" },
+  { Icon: Mail, href: "mailto:nicolaspichiteli245@gmail.com", label: "E-mail" },
 ];
 
 export function Hero({ dark, t, lang }: HeroProps) {
@@ -130,8 +130,18 @@ export function Hero({ dark, t, lang }: HeroProps) {
               </div>
               <div className={`w-px h-4 ${dark ? "bg-white/10" : "bg-black/[0.14]"}`} />
               <div className="flex items-center gap-2">
-                {SOCIALS.map(({ Icon, href }, i) => (
-                  <a key={i} href={href} className={`p-2 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 ${dark ? "border-white/10 text-white/45 hover:text-white hover:bg-white/[0.05] hover:border-white/20" : "border-black/[0.16] text-black/65 hover:text-black hover:bg-black/[0.07]"}`}>
+                {SOCIALS.map(({ Icon, href, label }, i) => (
+                  /* GitHub e LinkedIn abriam na MESMA aba, tirando o visitante do
+                     portfólio. mailto continua na aba atual, que é o certo para ele.
+                     aria-label porque o link só tem ícone. */
+                  <a
+                    key={i}
+                    href={href}
+                    aria-label={label}
+                    target={href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={href.startsWith("mailto:") ? undefined : "noreferrer noopener"}
+                    className={`p-2 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 ${dark ? "border-white/10 text-white/45 hover:text-white hover:bg-white/[0.05] hover:border-white/20" : "border-black/[0.16] text-black/65 hover:text-black hover:bg-black/[0.07]"}`}
+                  >
                     <Icon size={15} />
                   </a>
                 ))}

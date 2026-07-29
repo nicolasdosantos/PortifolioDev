@@ -1,4 +1,4 @@
-import { Bot, Cloud, Code2, Database, MonitorCog, Palette, Workflow } from "lucide-react";
+import { Bot, Clapperboard, Cloud, Code2, Database, MonitorCog, Palette, Workflow } from "lucide-react";
 import { FaWindows } from "react-icons/fa";
 import { VscVscode } from "react-icons/vsc";
 import {
@@ -6,6 +6,7 @@ import {
   SiDocker,
   SiFigma,
   SiGit,
+  SiGooglegemini,
   SiGithub,
   SiLinux,
   SiMysql,
@@ -42,6 +43,8 @@ export const toolCategories: ToolCategory[] = [
     tools: [
       { name: "ChatGPT", icon: Bot, color: "#74AA9C", href: "https://help.openai.com" },
       { name: "Claude", icon: SiClaude, color: "#D97757", href: "https://docs.claude.com" },
+      { name: "Gemini", icon: SiGooglegemini, color: "#4285F4", colors: ["#4796E3", "#9177C7"], href: "https://ai.google.dev/gemini-api/docs" },
+      { name: "Higgsfield", icon: Clapperboard, color: "#A78BFA", href: "https://higgsfield.ai" },
     ],
   },
   {

@@ -9,6 +9,9 @@ import { useHasHover } from "../../hooks/useHasHover";
 const ICONS = [Terminal, GraduationCap, Code2, Rocket, Briefcase];
 
 export function Journey({ dark, t, lang }: SectionProps) {
+  /* Âncora opcional: só a estrutura em avaliação no lab usa "trajetoria". Na landing o
+     Journey segue sem id, para o menu não ganhar um link "Trajetória" ao lado do
+     "Experiência" já existente — as duas seções são vizinhas e o par lia como redundante. */
   const hasHover = useHasHover();
   const [hovered, setHovered] = useState<number | null>(null);
   const isLast = journeyItems.length - 1;

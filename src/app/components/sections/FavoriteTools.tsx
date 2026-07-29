@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import type { Translation } from "../../types";
 import { ConfirmNavigateDialog, GradientIcon, SectionHeader } from "../common";
 import { toolCategories } from "../../data";
+
 import { useHasHover } from "../../hooks/useHasHover";
 import { useConfirmNavigate } from "../../hooks/useConfirmNavigate";
 

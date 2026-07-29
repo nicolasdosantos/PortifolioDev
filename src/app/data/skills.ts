@@ -1,14 +1,16 @@
-import { Bot, Database, Monitor, Server, Sparkles, Wrench } from "lucide-react";
+import { Bot, Clapperboard, Database, Monitor, Server, Sparkles, Wrench } from "lucide-react";
 import { FaJava } from "react-icons/fa";
 import {
   SiClaude,
   SiFigma,
   SiFlask,
   SiGit,
+  SiGooglegemini,
   SiJavascript,
   SiLaravel,
   SiLivewire,
   SiMysql,
+  SiNodedotjs,
   SiPhp,
   SiPhpmyadmin,
   SiPython,
@@ -31,6 +33,9 @@ export const skillCategories: SkillCategory[] = [
       { name: "TypeScript", level: 75, desc: "Types, Interfaces", icon: SiTypescript, color: "#3178C6", href: "https://www.typescriptlang.org/docs" },
       { name: "JavaScript", level: 88, desc: "ES6+, DOM, Async", icon: SiJavascript, color: "#F7DF1E", href: "https://developer.mozilla.org/docs/Web/JavaScript" },
       { name: "Tailwind CSS", level: 82, desc: "Utility-first, Responsive", icon: SiTailwindcss, color: "#38BDF8", href: "https://tailwindcss.com/docs" },
+      /* Vinha do currículo (gen_cv.py) e não existia aqui. Sem ícone próprio no
+         react-icons — React Native usa o mesmo logo do React. */
+      { name: "React Native", level: 60, desc: "Apps mobile multiplataforma", icon: SiReact, color: "#61DAFB", href: "https://reactnative.dev/docs/getting-started" },
     ],
   },
   {
@@ -39,6 +44,9 @@ export const skillCategories: SkillCategory[] = [
     icon: Server,
     color: "#2563EB",
     skills: [
+      /* Vinha do currículo (gen_cv.py) e do bloco de código do Hero, que já anunciava
+         "Node" — mas não existia nesta lista. */
+      { name: "Node.js", level: 70, desc: "Runtime JS, npm, APIs", icon: SiNodedotjs, color: "#5FA04E", href: "https://nodejs.org/docs/latest/api" },
       { name: "PHP", level: 78, desc: "APIs, Routing", icon: SiPhp, color: "#777BB4", href: "https://www.php.net/docs.php" },
       { name: "Laravel", level: 65, desc: "MVC, Eloquent", icon: SiLaravel, color: "#FF2D20", href: "https://laravel.com/docs" },
       { name: "Livewire", level: 60, desc: "Reactive components", icon: SiLivewire, color: "#4E56A6", href: "https://livewire.laravel.com/docs" },
@@ -77,6 +85,10 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "ChatGPT", level: 85, desc: "Prompting, automações", icon: Bot, color: "#74AA9C", href: "https://help.openai.com" },
       { name: "Claude", level: 88, desc: "Coding agent, prompting", icon: SiClaude, color: "#D97757", href: "https://docs.claude.com" },
+      { name: "Gemini", level: 80, desc: "Prompting, multimodal", icon: SiGooglegemini, color: "#4285F4", colors: ["#4796E3", "#9177C7"], href: "https://ai.google.dev/gemini-api/docs" },
+      /* Higgsfield não tem ícone de marca no react-icons; Clapperboard (lucide) traduz
+         geração de imagem e vídeo, que é o uso da plataforma. */
+      { name: "Higgsfield", level: 70, desc: "Geração de imagem e vídeo", icon: Clapperboard, color: "#A78BFA", href: "https://higgsfield.ai" },
     ],
   },
 ];
