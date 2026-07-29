@@ -55,3 +55,7 @@ coverage/
 
 # Documentos pessoais (dados de contato) — servidos pelo site, mas fora do repositorio
 public/*.pdf
+
+# Python (scripts de geração do CV)
+__pycache__/
+*.pyc

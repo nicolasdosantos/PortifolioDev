@@ -12,3 +12,4 @@ export { GitHubActivity } from "./GitHubActivity";
 export { Blog } from "./Blog";
 export { FAQ } from "./FAQ";
 export { Contact } from "./Contact";
+export { StackHero } from "./StackHero";

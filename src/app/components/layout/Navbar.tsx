@@ -12,7 +12,9 @@ interface NavbarProps {
   t: Translation;
 }
 
-const NAV_IDS = ["home", "sobre", "skills", "projetos", "certificados", "experiencia", "contato"];
+/* Âncoras da narrativa, pareadas por índice com t.nav. O menu filtra em runtime pelas que
+   EXISTEM na página, então nenhum item aponta para o vazio se uma seção sair. */
+const NAV_IDS = ["home", "sobre", "stack", "skills", "projetos", "certificados", "experiencia", "contato"];
 
 export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
@@ -32,6 +34,12 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
     };
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  /* índices de NAV_IDS cuja seção existe nesta página — é o que o menu renderiza */
+  const [present, setPresent] = useState<number[]>([]);
+  useEffect(() => {
+    setPresent(NAV_IDS.map((id, i) => (document.getElementById(id) ? i : -1)).filter(i => i >= 0));
   }, []);
 
   useEffect(() => {
@@ -104,7 +112,8 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
           </motion.button>
 
           <div className="hidden md:flex items-center gap-1 relative p-1 rounded-2xl">
-            {t.nav.map((label, i) => {
+            {present.map(i => {
+              const label = t.nav[i];
               const id = NAV_IDS[i];
               const isActive = active === id;
               return (
@@ -191,7 +200,8 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
             className={`fixed inset-x-0 top-[56px] z-40 p-6 border-b ${dark ? "bg-[#0F0F14]/95 backdrop-blur-xl border-white/[0.05]" : "bg-white/95 backdrop-blur-xl border-black/[0.14]"}`}
           >
             <div className="flex flex-col gap-1">
-              {t.nav.map((label, i) => {
+              {present.map(i => {
+                const label = t.nav[i];
                 const id = NAV_IDS[i];
                 const isActive = active === id;
                 return (

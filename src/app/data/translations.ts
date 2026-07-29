@@ -2,7 +2,7 @@ import type { Lang, Translation } from "../types";
 
 export const translations: Record<Lang, Translation> = {
   pt: {
-    nav: ["Home", "Sobre", "Skills", "Projetos", "Certificados", "Experiência", "Contato"],
+    nav: ["Home", "Sobre", "Stack", "Skills", "Projetos", "Certificados", "Experiência", "Contato"],
     badge: "Disponível para oportunidades",
     name: "Nicolas Santos",
     fullName: "Nicolas Pichiteli dos Santos",
@@ -94,7 +94,7 @@ export const translations: Record<Lang, Translation> = {
     ],
   },
   en: {
-    nav: ["Home", "About", "Skills", "Projects", "Certificates", "Experience", "Contact"],
+    nav: ["Home", "About", "Stack", "Skills", "Projects", "Certificates", "Experience", "Contact"],
     badge: "Available for opportunities",
     name: "Nicolas Santos",
     fullName: "Nicolas Pichiteli dos Santos",
