@@ -111,7 +111,11 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
             <Logo size={36} />
           </motion.button>
 
-          <div className="hidden md:flex items-center gap-1 relative p-1 rounded-2xl">
+          {/* Menu completo só a partir de `lg`. Em `md` (768–1023px) os 8 links, o logo e os
+              botões de idioma/tema não caíam na largura disponível: o par PT-BR + tema
+              transbordava para FORA da tela (medido em 768px: terminava em 829px de 765
+              úteis) e ficava inalcançável. Nessa faixa o menu hambúrguer é a navegação. */}
+          <div className="hidden lg:flex items-center gap-1 relative p-1 rounded-2xl">
             {present.map(i => {
               const label = t.nav[i];
               const id = NAV_IDS[i];
@@ -122,7 +126,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
                   onClick={() => go(id)}
                   className={`relative px-3.5 py-1.5 rounded-xl text-sm font-body transition-colors duration-200 ${isActive
                     ? dark ? "text-white" : "text-[#08080A]"
-                    : dark ? "text-white/50 hover:text-white" : "text-black/60 hover:text-black"
+                    : dark ? "text-white/68 hover:text-white" : "text-black/66 hover:text-black"
                   }`}
                 >
                   {isActive && (
@@ -139,12 +143,12 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
             })}
           </div>
 
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-2">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setLang(lang === "pt" ? "en" : "pt")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border transition-colors duration-200 ${dark ? "border-white/10 text-white/50 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/70 hover:text-black hover:bg-black/[0.08]"}`}
+              className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border transition-colors duration-200 ${dark ? "border-white/10 text-white/68 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/74 hover:text-black hover:bg-black/[0.08]"}`}
             >
               {lang === "pt" ? "PT-BR" : "EN"}
             </motion.button>
@@ -152,7 +156,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
               whileHover={{ scale: 1.05, rotate: 15 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setDark(!dark)}
-              className={`p-2 rounded-lg border transition-colors duration-200 ${dark ? "border-white/10 text-white/50 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/70 hover:text-black hover:bg-black/[0.08]"}`}
+              className={`p-2 rounded-lg border transition-colors duration-200 ${dark ? "border-white/10 text-white/68 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/74 hover:text-black hover:bg-black/[0.08]"}`}
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -171,7 +175,9 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
 
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className={`md:hidden p-2 rounded-lg ${dark ? "text-white/60" : "text-black/75"}`}
+            className={`lg:hidden p-2 rounded-lg ${dark ? "text-white/72" : "text-black/75"}`}
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={open}
             onClick={() => setOpen(!open)}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -214,7 +220,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
                     whileTap={{ scale: 0.97 }}
                     className={`text-left px-4 py-3 rounded-xl text-sm flex items-center gap-3 transition-colors ${isActive
                       ? dark ? "text-white bg-white/[0.07]" : "text-black bg-black/[0.06]"
-                      : dark ? "text-white/60 hover:text-white hover:bg-white/[0.05]" : "text-black/75 hover:text-black hover:bg-black/[0.08]"
+                      : dark ? "text-white/72 hover:text-white hover:bg-white/[0.05]" : "text-black/75 hover:text-black hover:bg-black/[0.08]"
                     }`}
                   >
                     <span
@@ -225,10 +231,10 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
                 );
               })}
               <div className={`flex gap-2 mt-4 pt-4 border-t ${dark ? "border-white/[0.05]" : "border-black/[0.14]"}`}>
-                <button onClick={() => setLang(lang === "pt" ? "en" : "pt")} className={`flex-1 py-2 rounded-xl text-xs font-mono2 border ${dark ? "border-white/10 text-white/50" : "border-black/[0.16] text-black/70"}`}>
+                <button onClick={() => setLang(lang === "pt" ? "en" : "pt")} className={`flex-1 py-2 rounded-xl text-xs font-mono2 border ${dark ? "border-white/10 text-white/68" : "border-black/[0.16] text-black/74"}`}>
                   {lang === "pt" ? "EN" : "PT-BR"}
                 </button>
-                <button onClick={() => setDark(!dark)} className={`flex-1 py-2 rounded-xl flex items-center justify-center gap-2 text-xs border ${dark ? "border-white/10 text-white/50" : "border-black/[0.16] text-black/70"}`}>
+                <button onClick={() => setDark(!dark)} className={`flex-1 py-2 rounded-xl flex items-center justify-center gap-2 text-xs border ${dark ? "border-white/10 text-white/68" : "border-black/[0.16] text-black/74"}`}>
                   {dark ? <><Sun size={13} />Light</> : <><Moon size={13} />Dark</>}
                 </button>
               </div>

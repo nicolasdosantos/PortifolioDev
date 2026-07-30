@@ -28,8 +28,8 @@ export function Skills({ dark, t, lang }: SectionProps) {
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-body font-medium border transition-all duration-300 ${active === c.id
                   ? "bg-violet-600 border-violet-600 text-white shadow-[0_0_20px_rgba(124,58,237,0.3)]"
                   : dark
-                    ? "border-white/10 text-white/50 hover:text-white hover:bg-white/[0.05]"
-                    : "border-black/[0.16] text-black/70 hover:text-black hover:bg-black/[0.08]"
+                    ? "border-white/10 text-white/68 hover:text-white hover:bg-white/[0.05]"
+                    : "border-black/[0.16] text-black/74 hover:text-black hover:bg-black/[0.08]"
                 }`}
               >
                 <Icon size={14} /> {c.label[lang]}
@@ -101,7 +101,7 @@ export function Skills({ dark, t, lang }: SectionProps) {
                 >
                   {skill.name}
                 </div>
-                <div className={`relative z-10 text-xs mb-3 font-body ${dark ? "text-white/38" : "text-black/62"}`}>{skill.desc}</div>
+                <div className={`relative z-10 text-xs mb-3 font-body ${dark ? "text-white/58" : "text-black/70"}`}>{skill.desc}</div>
                 <div className={`relative z-10 h-1 rounded-full overflow-hidden ${dark ? "bg-white/8" : "bg-black/[0.12]"}`}>
                   <motion.div
                     className="h-full rounded-full transition-colors duration-300"
@@ -112,7 +112,7 @@ export function Skills({ dark, t, lang }: SectionProps) {
                     transition={{ duration: 0.9, delay: i * 0.05 }}
                   />
                 </div>
-                <div className={`relative z-10 text-xs font-mono2 mt-1.5 ${dark ? "text-white/28" : "text-black/54"}`}>{skill.level}%</div>
+                <div className={`relative z-10 text-xs font-mono2 mt-1.5 ${dark ? "text-white/50" : "text-black/62"}`}>{skill.level}%</div>
               </motion.div>
               );
             })}

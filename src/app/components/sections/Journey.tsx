@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, Briefcase, Code2, GraduationCap, Rocket, Terminal } from "lucide-react";
+import { Briefcase, Code2, GraduationCap, Rocket, Terminal } from "lucide-react";
 import type { SectionProps } from "../../types";
 import { SectionHeader } from "../common";
 import { journeyItems } from "../../data";
@@ -61,7 +61,7 @@ export function Journey({ dark, t, lang }: SectionProps) {
                       animate={current ? { boxShadow: ["0 0 0 0 rgba(124,58,237,0.35)", "0 0 0 6px rgba(124,58,237,0)"] } : undefined}
                       transition={current ? { duration: 1.8, repeat: Infinity, ease: "easeOut" } : undefined}
                     >
-                      <Icon size={14} className={isHovered || current ? "text-violet-400" : dark ? "text-white/45" : "text-black/55"} />
+                      <Icon size={14} className={isHovered || current ? "text-violet-400" : dark ? "text-white/58" : "text-black/62"} />
                     </motion.div>
                   </div>
 
@@ -83,7 +83,7 @@ export function Journey({ dark, t, lang }: SectionProps) {
                     <div className={`font-display font-semibold mb-1.5 transition-colors duration-300 ${isHovered ? "text-violet-400" : dark ? "text-white" : "text-[#08080A]"}`}>
                       {item.title[lang]}
                     </div>
-                    <div className={`text-sm font-body leading-relaxed ${dark ? "text-white/45" : "text-black/65"}`}>{item.desc[lang]}</div>
+                    <div className={`text-sm font-body leading-relaxed ${dark ? "text-white/58" : "text-black/70"}`}>{item.desc[lang]}</div>
                   </div>
                 </motion.div>
               );

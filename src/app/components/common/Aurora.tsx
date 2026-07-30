@@ -1,4 +1,4 @@
-export function Aurora({ dark: _dark }: { dark: boolean }) {
+export function Aurora() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       <div

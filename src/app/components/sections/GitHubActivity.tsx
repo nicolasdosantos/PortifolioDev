@@ -78,7 +78,7 @@ function StatCard({ stat, label, dark, index }: { stat: (typeof STATS)[number]; 
           {count}
           {stat.key === "streak" ? "d" : "+"}
         </div>
-        <div className={`text-xs font-body mt-1.5 ${dark ? "text-white/45" : "text-black/60"}`}>{label}</div>
+        <div className={`text-xs font-body mt-1.5 ${dark ? "text-white/58" : "text-black/66"}`}>{label}</div>
       </div>
     </motion.div>
   );
@@ -104,7 +104,7 @@ export function GitHubActivity({ dark, t }: GitHubActivityProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={`max-w-xl -mt-10 mb-10 text-sm font-body leading-relaxed ${dark ? "text-white/45" : "text-black/60"}`}
+          className={`max-w-xl -mt-10 mb-10 text-sm font-body leading-relaxed ${dark ? "text-white/58" : "text-black/66"}`}
         >
           {t.github_subtitle}
         </motion.p>
@@ -122,15 +122,15 @@ export function GitHubActivity({ dark, t }: GitHubActivityProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className={`p-6 sm:p-8 rounded-2xl border mb-6 ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-white border-black/[0.16]"}`}
+          className={`p-6 sm:p-8 rounded-2xl border mb-6 ${dark ? "bg-[#0d0d12]/95 border-white/[0.09]" : "bg-white border-black/[0.16]"}`}
         >
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="group flex items-center gap-3">
               <div className={`p-2 rounded-xl transition-colors duration-300 ${dark ? "bg-white/[0.06] group-hover:bg-white/[0.1]" : "bg-black/[0.06] group-hover:bg-black/[0.1]"}`}>
-                <Github size={16} className={dark ? "text-white/70" : "text-black/70"} />
+                <Github size={16} className={dark ? "text-white/70" : "text-black/74"} />
               </div>
-              <span className={`text-sm font-mono2 ${dark ? "text-white/60" : "text-black/72"}`}>@{GITHUB_USER}</span>
-              <ArrowUpRight size={14} className={`transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${dark ? "text-white/40" : "text-black/45"}`} />
+              <span className={`text-sm font-mono2 ${dark ? "text-white/72" : "text-black/74"}`}>@{GITHUB_USER}</span>
+              <ArrowUpRight size={14} className={`transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${dark ? "text-white/58" : "text-black/62"}`} />
             </a>
             <a
               href={GITHUB_URL}
@@ -144,13 +144,13 @@ export function GitHubActivity({ dark, t }: GitHubActivityProps) {
           </div>
 
           <div className="flex items-center justify-between mb-5">
-            <h4 className={`text-xs font-mono2 uppercase tracking-[0.15em] ${dark ? "text-white/40" : "text-black/50"}`}>
+            <h4 className={`text-xs font-mono2 uppercase tracking-[0.15em] ${dark ? "text-white/58" : "text-black/62"}`}>
               {t.github_activity_label}
             </h4>
             <div className="flex items-center gap-1.5 text-xs font-mono2 text-emerald-400/90">
               <TrendingUp size={13} />
               <span className={dark ? "text-white/70" : "text-black/75"}>{RECENT_3M_TOTAL}</span>
-              <span className={dark ? "text-white/40" : "text-black/50"}>{t.github_recent_note}</span>
+              <span className={dark ? "text-white/58" : "text-black/62"}>{t.github_recent_note}</span>
             </div>
           </div>
 
@@ -189,7 +189,7 @@ export function GitHubActivity({ dark, t }: GitHubActivityProps) {
                       )}
                     </motion.div>
                   </div>
-                  <span className={`mt-2 text-[10px] font-mono2 ${dark ? "text-white/35" : "text-black/45"}`}>{m.label}</span>
+                  <span className={`mt-2 text-[10px] font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>{m.label}</span>
                 </div>
               );
             })}
@@ -202,9 +202,9 @@ export function GitHubActivity({ dark, t }: GitHubActivityProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className={`p-6 sm:p-8 rounded-2xl border ${dark ? "bg-white/[0.025] border-white/[0.07]" : "bg-white border-black/[0.16]"}`}
+          className={`p-6 sm:p-8 rounded-2xl border ${dark ? "bg-[#0d0d12]/95 border-white/[0.09]" : "bg-white border-black/[0.16]"}`}
         >
-          <h4 className={`text-xs font-mono2 uppercase tracking-[0.15em] mb-4 ${dark ? "text-white/40" : "text-black/50"}`}>
+          <h4 className={`text-xs font-mono2 uppercase tracking-[0.15em] mb-4 ${dark ? "text-white/58" : "text-black/62"}`}>
             {t.github_top_lang}
           </h4>
           <div className={`flex h-2.5 rounded-full overflow-hidden mb-4 ${dark ? "bg-white/[0.06]" : "bg-black/[0.08]"}`}>
@@ -223,8 +223,8 @@ export function GitHubActivity({ dark, t }: GitHubActivityProps) {
             {TOP_LANGUAGES.map((lang) => (
               <div key={lang.name} className="flex items-center gap-2 text-xs font-body">
                 <span className="w-2 h-2 rounded-full" style={{ background: lang.color }} />
-                <span className={dark ? "text-white/60" : "text-black/70"}>{lang.name}</span>
-                <span className={dark ? "text-white/30" : "text-black/40"}>{lang.pct}%</span>
+                <span className={dark ? "text-white/72" : "text-black/74"}>{lang.name}</span>
+                <span className={dark ? "text-white/50" : "text-black/62"}>{lang.pct}%</span>
               </div>
             ))}
           </div>
