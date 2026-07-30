@@ -60,7 +60,13 @@ export function Intro({ onDone }: IntroProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[200] bg-[#08080A] flex items-center justify-center overflow-hidden"
+      /* `pointer-events-none`: esta capa é fixed inset-0 em z-200 e só sai do DOM quando a
+         animação de saída termina. Se o visitante abrir o link numa ABA DE FUNDO, o
+         requestAnimationFrame fica pausado, o `onDone` (que é setTimeout) já disparou e a
+         capa continua montada por cima de tudo — engolindo todo clique da página até a aba
+         voltar a ficar visível. A intro não tem nada clicável, então ignorar ponteiro não
+         muda nada no visual e elimina esse risco. */
+      className="fixed inset-0 z-[200] bg-[#08080A] flex items-center justify-center overflow-hidden pointer-events-none"
       exit={{ opacity: 0, filter: "blur(20px)", scale: 1.05 }}
       transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
     >
@@ -271,7 +277,7 @@ export function Intro({ onDone }: IntroProps) {
             {["#FF5F57", "#FFBD2E", "#28C840"].map((c) => (
               <span key={c} className="w-2 h-2 rounded-full" style={{ background: c }} />
             ))}
-            <span className="ml-2 text-[10px] font-mono2 text-white/25">zsh</span>
+            <span className="ml-2 text-[10px] font-mono2 text-white/50">zsh</span>
           </div>
           <div className="px-3 py-2.5 space-y-1 font-mono2 text-[11px] leading-relaxed">
             {TERMINAL_LINES.map((line, i) => (
@@ -312,7 +318,7 @@ export function Intro({ onDone }: IntroProps) {
               }}
             />
           </div>
-          <div ref={labelRef} className="mt-1.5 text-center text-[10px] font-mono2 text-white/30">
+          <div ref={labelRef} className="mt-1.5 text-center text-[10px] font-mono2 text-white/50">
             compiling... 0%
           </div>
         </motion.div>

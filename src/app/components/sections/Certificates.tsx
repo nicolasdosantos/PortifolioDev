@@ -37,7 +37,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
           ].map((s, i) => (
             <div key={i} className="flex items-center gap-2">
               <span className={`font-display text-xl font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{s.value}</span>
-              <span className={`text-xs font-mono2 ${dark ? "text-white/35" : "text-black/50"}`}>{s.label}</span>
+              <span className={`text-xs font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>{s.label}</span>
             </div>
           ))}
         </motion.div>
@@ -106,7 +106,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
                       <div className={`font-body font-semibold text-sm leading-snug mb-1 ${dark ? "text-white" : "text-[#08080A]"}`}>
                         {cert.title}
                       </div>
-                      <div className={`text-xs font-body ${dark ? "text-white/40" : "text-black/60"}`}>{cert.issuer}</div>
+                      <div className={`text-xs font-body ${dark ? "text-white/58" : "text-black/66"}`}>{cert.issuer}</div>
                     </div>
                   </div>
 
@@ -125,7 +125,9 @@ export function Certificates({ dark, t }: CertificatesProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         title={t.certs_verify_hint}
-                        className="flex items-center gap-1.5 group/verify"
+                        /* `py-1.5 -my-1.5`: sem isso o alvo do link tinha 15px de altura, abaixo
+                           do mínimo confortável para o toque, sem mudar nada no visual. */
+                        className="flex items-center gap-1.5 py-1.5 -my-1.5 group/verify"
                       >
                         <BadgeCheck size={13} className="text-emerald-400" />
                         <span className="text-[10px] font-mono2 text-emerald-400/80 uppercase tracking-wide underline decoration-dotted decoration-emerald-400/40 underline-offset-2 transition-colors group-hover/verify:text-emerald-300">
@@ -141,14 +143,14 @@ export function Certificates({ dark, t }: CertificatesProps) {
                     )}
                     <div className="flex items-center gap-2">
                       {cert.hours && (
-                        <span className={`text-[10px] font-mono2 px-1.5 py-0.5 rounded ${dark ? "bg-white/[0.06] text-white/45" : "bg-black/[0.06] text-black/50"}`}>
+                        <span className={`text-[10px] font-mono2 px-1.5 py-0.5 rounded ${dark ? "bg-white/[0.06] text-white/58" : "bg-black/[0.06] text-black/62"}`}>
                           {cert.hours}
                         </span>
                       )}
                       <span className="text-xs font-mono2" style={{ color: cert.color }}>{cert.year}</span>
                     </div>
                   </div>
-                  <div className={`mt-2 text-[9px] font-mono2 tracking-[0.1em] ${dark ? "text-white/[0.15]" : "text-black/[0.22]"}`}>
+                  <div className={`mt-2 text-[9px] font-mono2 tracking-[0.1em] ${dark ? "text-white/[0.30]" : "text-black/[0.34]"}`}>
                     CERT-{String(i + 1).padStart(3, "0")}
                   </div>
                 </div>

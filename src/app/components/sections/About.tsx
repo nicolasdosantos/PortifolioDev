@@ -121,13 +121,13 @@ export function About({ dark, t, lang }: SectionProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <div className={`inline-flex items-center gap-1.5 mb-4 text-xs font-mono2 ${dark ? "text-white/35" : "text-black/55"}`}>
+            <div className={`inline-flex items-center gap-1.5 mb-4 text-xs font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>
               <MapPin size={12} /> {t.location}
             </div>
-            <p className={`font-body text-lg leading-relaxed mb-8 ${dark ? "text-white/55" : "text-black/72"}`}>{t.about_bio}</p>
+            <p className={`font-body text-lg leading-relaxed mb-8 ${dark ? "text-white/68" : "text-black/74"}`}>{t.about_bio}</p>
             <div className="flex items-center gap-1.5 mb-3">
               <Sparkles size={13} className="text-violet-400" />
-              <span className={`text-[11px] font-mono2 uppercase tracking-[0.18em] ${dark ? "text-white/35" : "text-black/50"}`}>Stack</span>
+              <span className={`text-[11px] font-mono2 uppercase tracking-[0.18em] ${dark ? "text-white/50" : "text-black/62"}`}>Stack</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {STACK.map((tech, i) => (
@@ -138,7 +138,7 @@ export function About({ dark, t, lang }: SectionProps) {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
                   whileHover={{ y: -2 }}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border transition-colors duration-300 cursor-default ${dark ? "border-white/10 bg-white/[0.04] text-white/55 hover:border-violet-500/40 hover:text-white" : "border-black/[0.16] bg-black/[0.07] text-black/72 hover:border-violet-400 hover:text-black"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border transition-colors duration-300 cursor-default ${dark ? "border-white/10 bg-white/[0.04] text-white/68 hover:border-violet-500/40 hover:text-white" : "border-black/[0.16] bg-black/[0.07] text-black/74 hover:border-violet-400 hover:text-black"}`}
                 >
                   {tech}
                 </motion.span>
@@ -157,13 +157,13 @@ export function About({ dark, t, lang }: SectionProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-              className={`group p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-white/[0.025] border-white/[0.07] hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.12)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_30px_rgba(124,58,237,0.08)]"}`}
+              className={`group p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[#0d0d12]/95 border-white/[0.09] hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.12)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_30px_rgba(124,58,237,0.08)]"}`}
             >
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 ${bg}`}>
                 <Icon size={18} className={clr} />
               </div>
               <div className={`font-display text-4xl font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{val}</div>
-              <div className={`text-xs mt-1 font-body ${dark ? "text-white/40" : "text-black/62"}`}>{lbl[lang]}</div>
+              <div className={`text-xs mt-1 font-body ${dark ? "text-white/58" : "text-black/70"}`}>{lbl[lang]}</div>
             </motion.div>
           ))}
         </div>

@@ -13,7 +13,9 @@ interface ContactProps {
 
 const SOCIALS = [
   { Icon: Github, label: "GitHub", val: "github.com/nicolasdosantos", href: "https://github.com/nicolasdosantos", color: "#FFFFFF", lightColor: "#181717" },
-  { Icon: Linkedin, label: "LinkedIn", val: "linkedin.com/in/nicolas-pichiteli-dos-santos-942a0b269", href: "https://www.linkedin.com/in/nicolas-pichiteli-dos-santos-942a0b269", color: "#0A66C2" },
+  /* `val` mostra a forma curta do perfil: a URL completa tem 54 caracteres e era cortada
+     pelo `truncate` já em telas de 390px, sobrando "linkedin.com/in/nicolas-pi…". */
+  { Icon: Linkedin, label: "LinkedIn", val: "in/nicolas-pichiteli-dos-santos", href: "https://www.linkedin.com/in/nicolas-pichiteli-dos-santos-942a0b269", color: "#0A66C2" },
   { Icon: Mail, label: "Email", val: "nicolaspichiteli245@gmail.com", href: "mailto:nicolaspichiteli245@gmail.com", color: "#EA4335" },
   { Icon: Phone, label: "WhatsApp", val: "+55 (18) 99614-8839", href: "https://wa.me/5518996148839", color: "#25D366" },
 ];
@@ -25,13 +27,23 @@ export function Contact({ dark, t }: ContactProps) {
   const { pending, request, cancel, confirm } = useConfirmNavigate();
   const hasHover = useHasHover();
 
+  /* O formulário não tem backend. Antes ele apenas mostrava "Mensagem enviada!" e descartava
+     o conteúdo — quem escrevesse daqui acreditaria ter feito contato e nunca receberia
+     resposta. Agora ele abre o cliente de e-mail com assunto e corpo prontos, então a
+     mensagem realmente chega. Trocar por um endpoint (Formspree, Resend, rota própria) é só
+     substituir o `window.location.href` abaixo. */
+  const MAIL_TO = "nicolaspichiteli245@gmail.com";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = `Contato pelo portfólio — ${form.name}`;
+    const body = `${form.message}\n\n—\n${form.name}\n${form.email}`;
+    window.location.href = `mailto:${MAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSent(true);
     setTimeout(() => setSent(false), 3500);
   };
 
-  const inputBase = `w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-body outline-none transition-all duration-200 focus:border-violet-500 focus:shadow-[0_0_0_3px_rgba(124,58,237,0.14)] ${dark ? "bg-white/[0.04] border-white/10 text-white placeholder:text-white/22" : "bg-black/[0.045] border-black/[0.16] text-[#08080A] placeholder:text-black/52"}`;
+  const inputBase = `w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-body outline-none transition-all duration-200 focus:border-violet-500 focus:shadow-[0_0_0_3px_rgba(124,58,237,0.14)] ${dark ? "bg-[#101016]/95 border-white/[0.12] text-white placeholder:text-white/48" : "bg-black/[0.045] border-black/[0.16] text-[#08080A] placeholder:text-black/62"}`;
 
   return (
     <section id="contato" className="py-32 relative overflow-hidden">
@@ -44,7 +56,7 @@ export function Contact({ dark, t }: ContactProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className={`text-sm font-body leading-relaxed mb-5 ${dark ? "text-white/48" : "text-black/68"}`}
+              className={`text-sm font-body leading-relaxed mb-5 ${dark ? "text-white/68" : "text-black/74"}`}
             >
               {t.contact_subtitle}
             </motion.p>
@@ -105,7 +117,7 @@ export function Contact({ dark, t }: ContactProps) {
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <div className={`text-[10px] font-mono2 uppercase tracking-wide ${dark ? "text-white/35" : "text-black/50"}`}>{label}</div>
+                      <div className={`text-[10px] font-mono2 uppercase tracking-wide ${dark ? "text-white/50" : "text-black/62"}`}>{label}</div>
                       <div className={`text-sm font-body truncate ${dark ? "text-white/80" : "text-black/82"}`}>{val}</div>
                     </div>
 
@@ -143,7 +155,7 @@ export function Contact({ dark, t }: ContactProps) {
                 transition={{ duration: 0.4, delay: 0.1 }}
                 className="relative"
               >
-                <User size={15} className={`absolute left-4 top-1/2 -translate-y-1/2 ${dark ? "text-white/30" : "text-black/40"}`} />
+                <User size={15} className={`absolute left-4 top-1/2 -translate-y-1/2 ${dark ? "text-white/50" : "text-black/62"}`} />
                 <input type="text" placeholder={t.form_name} required value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} className={inputBase} />
               </motion.div>
               <motion.div
@@ -153,7 +165,7 @@ export function Contact({ dark, t }: ContactProps) {
                 transition={{ duration: 0.4, delay: 0.18 }}
                 className="relative"
               >
-                <Mail size={15} className={`absolute left-4 top-1/2 -translate-y-1/2 ${dark ? "text-white/30" : "text-black/40"}`} />
+                <Mail size={15} className={`absolute left-4 top-1/2 -translate-y-1/2 ${dark ? "text-white/50" : "text-black/62"}`} />
                 <input type="email" placeholder={t.form_email} required value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} className={inputBase} />
               </motion.div>
               <motion.div
@@ -163,7 +175,7 @@ export function Contact({ dark, t }: ContactProps) {
                 transition={{ duration: 0.4, delay: 0.26 }}
                 className="relative"
               >
-                <MessageSquare size={15} className={`absolute left-4 top-4 ${dark ? "text-white/30" : "text-black/40"}`} />
+                <MessageSquare size={15} className={`absolute left-4 top-4 ${dark ? "text-white/50" : "text-black/62"}`} />
                 <textarea placeholder={t.form_message} required rows={5} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} className={`${inputBase} resize-none`} />
               </motion.div>
 

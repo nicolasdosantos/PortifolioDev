@@ -33,8 +33,8 @@ export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-body font-medium border transition-all duration-300 ${active === c.label
                   ? "bg-violet-600 border-violet-600 text-white shadow-[0_0_20px_rgba(124,58,237,0.3)]"
                   : dark
-                    ? "border-white/10 text-white/50 hover:text-white hover:bg-white/[0.05]"
-                    : "border-black/[0.16] text-black/70 hover:text-black hover:bg-black/[0.08]"
+                    ? "border-white/10 text-white/68 hover:text-white hover:bg-white/[0.05]"
+                    : "border-black/[0.16] text-black/74 hover:text-black hover:bg-black/[0.08]"
                 }`}
               >
                 <CatIcon size={14} /> {c.label}
@@ -99,7 +99,7 @@ export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
                       <ToolIcon
                         size={20}
                         className="transition-colors duration-300"
-                        style={{ color: dark ? "rgba(255,255,255,0.8)" : "rgba(0,0,0,0.7)" }}
+                        style={{ color: dark ? "rgba(255,255,255,0.86)" : "rgba(0,0,0,0.74)" }}
                       />
                     )}
                   </div>
@@ -108,7 +108,7 @@ export function FavoriteTools({ dark, t }: FavoriteToolsProps) {
                     style={
                       isHovered
                         ? { backgroundImage: gradientCss, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }
-                        : { color: dark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)" }
+                        : { color: dark ? "rgba(255,255,255,0.82)" : "rgba(0,0,0,0.74)" }
                     }
                   >
                     {tool.name}

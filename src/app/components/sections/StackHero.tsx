@@ -474,7 +474,7 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
   const pt = lang === "pt";
   return (
     <div className="relative z-10 pointer-events-auto">
-      <p className={`font-mono2 text-[11px] tracking-[0.24em] uppercase mb-5 ${dark ? "text-white/35" : "text-black/45"}`}>
+      <p className={`font-mono2 text-[11px] tracking-[0.24em] uppercase mb-5 ${dark ? "text-white/50" : "text-black/62"}`}>
         {pt ? "Como eu construo" : "How I build"}
       </p>
 
@@ -515,7 +515,7 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
         <span className="w-1 h-1 rounded-full" style={{ background: rgba(CORE_CYAN, 0.4) }} />
       </div>
 
-      <p className={`font-body text-[15px] leading-relaxed max-w-sm ${dark ? "text-white/55" : "text-black/60"}`}>
+      <p className={`font-body text-[15px] leading-relaxed max-w-sm ${dark ? "text-white/68" : "text-black/66"}`}>
         {pt
           ? "Desenvolvo aplicações completas, com foco em performance, escalabilidade e experiência de uso."
           : "I build complete applications, focused on performance, scalability and user experience."}
@@ -527,7 +527,7 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
           return (
             <li key={f.pt} className="flex items-center gap-3">
               <Icon size={15} className="shrink-0" style={{ color: CORE_CYAN }} aria-hidden />
-              <span className={`font-body text-sm ${dark ? "text-white/70" : "text-black/70"}`}>{pt ? f.pt : f.en}</span>
+              <span className={`font-body text-sm ${dark ? "text-white/70" : "text-black/74"}`}>{pt ? f.pt : f.en}</span>
             </li>
           );
         })}
@@ -557,13 +557,13 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
             className="rounded-xl px-3 py-2.5"
             style={{
               border: `1px solid ${dark ? "rgba(255,255,255,.09)" : "rgba(0,0,0,.09)"}`,
-              background: dark ? "rgba(255,255,255,.025)" : "rgba(255,255,255,.6)",
+              background: dark ? "rgba(13,13,18,.95)" : "rgba(255,255,255,.9)",
             }}
           >
             <p className="font-display font-bold text-lg leading-none" style={{ color: s.color }}>
               {s.value}
             </p>
-            <p className={`font-mono2 text-[10px] leading-tight mt-1.5 ${dark ? "text-white/45" : "text-black/50"}`}>{pt ? s.pt : s.en}</p>
+            <p className={`font-mono2 text-[10px] leading-tight mt-1.5 ${dark ? "text-white/58" : "text-black/62"}`}>{pt ? s.pt : s.en}</p>
           </div>
         ))}
       </div>
@@ -576,7 +576,7 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
             target={href.startsWith("mailto") ? undefined : "_blank"}
             rel="noreferrer noopener"
             aria-label={label}
-            className={`grid place-items-center w-9 h-9 rounded-lg border ${dark ? "border-white/10 text-white/55" : "border-black/10 text-black/55"}`}
+            className={`grid place-items-center w-9 h-9 rounded-lg border ${dark ? "border-white/10 text-white/68" : "border-black/10 text-black/62"}`}
             whileHover={{ y: -2, color: CORE_CYAN, borderColor: rgba(CORE_CYAN, 0.5) }}
             whileTap={{ scale: 0.94 }}
             transition={{ type: "spring", stiffness: 400, damping: 26 }}
@@ -985,7 +985,7 @@ function OrbitCard({
                 >
                   <div className="flex items-center" style={{ gap: w * 0.045 }}>
                     <ItemIcon size={w * 0.055} className="shrink-0" style={{ color: dark ? c : mix(c, 0.5) }} aria-hidden />
-                    <span className="font-body" style={{ fontSize: w * 0.058, color: dark ? "rgba(255,255,255,.82)" : "rgba(0,0,0,.68)" }}>
+                    <span className="font-body" style={{ fontSize: w * 0.058, color: dark ? "rgba(255,255,255,.86)" : "rgba(0,0,0,.74)" }}>
                       {it.name}
                     </span>
                     {isOpen && (
@@ -1023,7 +1023,7 @@ function OrbitCard({
                       </div>
                       <p
                         className="font-body"
-                        style={{ fontSize: w * 0.05, marginTop: w * 0.028, color: dark ? "rgba(255,255,255,.5)" : "rgba(0,0,0,.5)" }}
+                        style={{ fontSize: w * 0.05, marginTop: w * 0.028, color: dark ? "rgba(255,255,255,.62)" : "rgba(0,0,0,.62)" }}
                       >
                         {it.desc}
                       </p>
@@ -1229,7 +1229,7 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
   const pt = lang === "pt";
   return (
     <div className="px-6 py-24 max-w-xl mx-auto">
-      <p className={`font-mono2 text-[11px] tracking-[0.24em] uppercase mb-4 ${dark ? "text-white/35" : "text-black/45"}`}>
+      <p className={`font-mono2 text-[11px] tracking-[0.24em] uppercase mb-4 ${dark ? "text-white/50" : "text-black/62"}`}>
         {pt ? "Como eu construo" : "How I build"}
       </p>
       <h2 className="font-display font-bold leading-[1.06] tracking-tight text-[2rem] mb-5">
@@ -1238,7 +1238,7 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
           {pt ? "do front-end ao banco de dados." : "from the front-end to the database."}
         </span>
       </h2>
-      <p className={`font-body text-[15px] leading-relaxed mb-10 ${dark ? "text-white/55" : "text-black/60"}`}>
+      <p className={`font-body text-[15px] leading-relaxed mb-10 ${dark ? "text-white/68" : "text-black/66"}`}>
         {pt
           ? "Desenvolvo aplicações completas, com foco em performance, escalabilidade e experiência de uso."
           : "I build complete applications, focused on performance, scalability and user experience."}
@@ -1313,7 +1313,7 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
                   return (
                     <li key={it.name} className="flex items-center gap-2.5">
                       <ItemIcon size={13} className="shrink-0" style={{ color: dark ? c : mix(c, 0.5) }} aria-hidden />
-                      <span className="font-body text-sm" style={{ color: dark ? "rgba(255,255,255,.78)" : "rgba(0,0,0,.66)" }}>
+                      <span className="font-body text-sm" style={{ color: dark ? "rgba(255,255,255,.86)" : "rgba(0,0,0,.74)" }}>
                         {it.name}
                       </span>
                     </li>

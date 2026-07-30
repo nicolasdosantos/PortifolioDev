@@ -38,7 +38,7 @@ export default function App() {
       <GlobalStyles />
       <AnimatePresence>{!done && <Intro onDone={() => setDone(true)} />}</AnimatePresence>
 
-      <Aurora dark={dark} />
+      <Aurora />
       <Cursor />
       <ScrollBar />
 
