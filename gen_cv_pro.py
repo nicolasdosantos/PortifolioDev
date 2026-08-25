@@ -55,9 +55,9 @@ CERTS = [
 
 EDUCATION = [
     ("Tecnologia em Análise e Desenvolvimento de Sistemas",
-     "Systems Analysis and Development Technology", "Unisalesiano · 2025—2027"),
+     "Systems Analysis and Development Technology", "Unisalesiano · 2025-2027"),
     ("Técnico em Análise e Desenvolvimento de Sistemas",
-     "Technical Course in Systems Analysis and Development", "SENAI Avak Bedouian · 2023—2024"),
+     "Technical Course in Systems Analysis and Development", "SENAI Avak Bedouian · 2023-2024"),
 ]
 
 CSS = """
@@ -123,14 +123,15 @@ li:before{content:"";position:absolute;left:0;top:4.8px;width:3.5px;height:3.5px
 CAT = {"__DB__": "BANCO DE DADOS", "__TOOLS__": "FERRAMENTAS & IA"}
 
 SUMMARY = (
-    "Desenvolvedor Full Stack em início de carreira, cursando Análise e Desenvolvimento de Sistemas "
-    "e atuando como estagiário de desenvolvimento na Agência VoêFly. Constrói produtos completos, do "
-    "modelo de dados à interface: já levou para produção um SaaS financeiro multiempresa (B4 Charge), "
-    "hoje utilizado por empresas reais para controlar vendas parceladas, cobranças e caixa, com "
-    "isolamento de dados por empresa garantido no backend. Experiência prática com React, TypeScript, "
-    "Node.js, PHP, Laravel e Python, incluindo modelagem de banco de dados (MySQL/PostgreSQL) e "
-    "integração de APIs. Prioriza código limpo, segurança e boa experiência de uso, com histórico de "
-    "liderança de equipe e de aprendizado rápido aplicado a entregas reais."
+    "Sou desenvolvedor Full Stack em início de carreira, curso Análise e Desenvolvimento de Sistemas "
+    "e trabalho como estagiário de desenvolvimento na Agência VoêFly. Gosto de construir produtos "
+    "completos, do modelo de dados até a interface, e já levei para produção um SaaS financeiro "
+    "multiempresa, o B4 Charge, hoje usado por empresas reais para controlar vendas parceladas, "
+    "cobranças e caixa, com isolamento de dados garantido no backend. Tenho experiência prática com "
+    "React, TypeScript, Node.js, PHP, Laravel e Python, incluindo modelagem de banco de dados "
+    "(MySQL e PostgreSQL) e integração de APIs. Dou valor a código limpo, segurança e boa experiência "
+    "de uso, e já tive a oportunidade de liderar equipe, o que me ajudou a aprender rápido e a aplicar "
+    "isso em entregas reais."
 )
 
 EDU_DESC = {
@@ -147,38 +148,39 @@ EDU_STATUS = {
 }
 
 EXPERIENCE = [
-    ("Estagiário de Desenvolvimento", "Agência VoêFly", "2026 — Presente", "Estágio · Presencial",
-     ["Desenvolve e mantém o site institucional multimarcas do grupo (ViajaFlux, VoêFly e eventos), "
-      "com foco em consistência visual e responsividade entre as marcas.",
-      "Colabora na construção do portal de participantes do Viajaflux Summit, sistema com múltiplos "
-      "perfis de acesso — participante, patrocinador, organização e prestador de serviço — incluindo "
-      "dashboards, gestão de convidados e conteúdo do evento.",
-      "Atua em fluxos de entrega web ponta a ponta, estruturando telas em React e colaborando com o "
-      "time em stacks adicionais como PHP/Laravel conforme a necessidade do projeto.",
-      "Mantém foco em usabilidade, performance e consistência de design em produtos usados por "
+    ("Estagiário de Desenvolvimento", "Agência VoêFly", "2026-Presente", "Estágio · Presencial",
+     ["Desenvolvo e mantenho o site institucional multimarcas do grupo (ViajaFlux, VoêFly e eventos), "
+      "cuidando da consistência visual e da responsividade entre as marcas.",
+      "Colaboro na construção do portal de participantes do Viajaflux Summit, um sistema com "
+      "múltiplos perfis de acesso (participante, patrocinador, organização e prestador de serviço), "
+      "com dashboards, gestão de convidados e conteúdo do evento.",
+      "Atuo em fluxos de entrega web ponta a ponta, estruturando telas em React e colaborando com o "
+      "time em stacks adicionais, como PHP e Laravel, conforme a necessidade do projeto.",
+      "Mantenho o foco em usabilidade, performance e consistência de design em produtos usados por "
       "clientes reais de diferentes segmentos."]),
-    ("Jovem Aprendiz e Líder de Grupo", "SENAI Avak Bedouian", "2023 — 2024", "Jovem Aprendiz · Presencial",
-     ["Liderou grupo em projetos de aprendizagem técnica, organizando atividades e a divisão de "
+    ("Jovem Aprendiz e Líder de Grupo", "SENAI Avak Bedouian", "2023-2024", "Jovem Aprendiz · Presencial",
+     ["Liderei um grupo em projetos de aprendizagem técnica, organizando atividades e dividindo "
       "tarefas entre os integrantes.",
-      "Construiu base técnica sólida em programação, lógica, sistemas e boas práticas de "
+      "Construí uma base técnica sólida em programação, lógica, sistemas e boas práticas de "
       "desenvolvimento, com foco em Python e bancos relacionais."]),
 ]
 
 PROJECTS = [
-    dict(title="B4 Charge — Sistema Financeiro Multiempresa", year="2025 — Presente", featured=True,
-         desc=("SaaS de gestão financeira multiempresa em produção, usado por empresas reais para "
-               "vendas parceladas, mensalidades, cobrança e caixa. Arquitetura multi-tenant com "
-               "isolamento de dados no backend, geração automática de parcelas, recibo permanente e "
-               "lançamento automático no caixa, além de um Painel Master para a plataforma."),
+    dict(title="B4 Charge", meta="Sistema financeiro multiempresa", year="2025-Presente", featured=True,
+         desc=("Desenvolvi um SaaS de gestão financeira multiempresa que hoje está em produção e é "
+               "usado por empresas reais para vendas parceladas, mensalidades, cobrança e caixa. "
+               "Construí a arquitetura multi-tenant com isolamento de dados no backend, a geração "
+               "automática de parcelas, o recibo permanente e o lançamento automático no caixa, além "
+               "de um Painel Master para administrar a plataforma."),
          tags=["React", "Node.js", "Express", "MySQL", "Multi-tenant"]),
-    dict(title="Nexo — Controle Financeiro", year="2026", featured=False,
-         desc=("Plataforma pessoal de controle financeiro com dashboards, metas de economia, "
-               "orçamento por categoria e carteira de investimentos; dados isolados por usuário via "
-               "Row Level Security no Supabase."),
+    dict(title="Nexo", meta="Controle financeiro pessoal", year="2026", featured=False,
+         desc=("Criei uma plataforma pessoal de controle financeiro com dashboards, metas de economia, "
+               "orçamento por categoria e carteira de investimentos. Os dados de cada usuário ficam "
+               "isolados por Row Level Security no Supabase."),
          tags=["React", "TypeScript", "Supabase"]),
-    dict(title="Obsidian Auto Detailing", year="2026", featured=False,
-         desc=("Landing page premium para estética automotiva de alta performance, construída com "
-               "TanStack Start, React 19 e Tailwind CSS v4."),
+    dict(title="Obsidian Auto Detailing", meta="Landing page institucional", year="2026", featured=False,
+         desc=("Desenvolvi uma landing page premium para uma estética automotiva de alta performance, "
+               "usando TanStack Start, React 19 e Tailwind CSS v4."),
          tags=["React 19", "TypeScript", "TanStack Start", "Motion"]),
 ]
 
@@ -200,7 +202,7 @@ for pt, _, sub in EDUCATION:
                 f'<p>{desc}</p></div>')
 left.append('</div><div class="sec"><h2>EXPERIÊNCIA PROFISSIONAL</h2>')
 for role, comp, dt, mode, bullets in EXPERIENCE:
-    left.append(f'<div class="row"><div class="ttl">{role} <em>— {comp}</em></div>'
+    left.append(f'<div class="row"><div class="ttl">{role} <em>na {comp}</em></div>'
                 f'<div class="dt">{dt}</div></div><div class="meta">{mode}</div><ul>'
                 + "".join(f"<li>{b}</li>" for b in bullets) + "</ul>")
 left.append('</div><div class="sec"><h2>CERTIFICAÇÕES</h2><div class="cgrid">')
@@ -225,7 +227,8 @@ for p in PROJECTS:
     cls = "pj feat" if p["featured"] else "pj"
     star = ' <span class="tag-star">DESTAQUE</span>' if p["featured"] else ""
     right.append(f'<div class="{cls}"><div class="row"><div class="ttl">{p["title"]}{star}</div>'
-                f'<div class="dt">{p["year"]}</div></div><div class="pd">{p["desc"]}</div>'
+                f'<div class="dt">{p["year"]}</div></div><div class="meta">{p["meta"]}</div>'
+                f'<div class="pd">{p["desc"]}</div>'
                 '<div class="tags">' + "".join(f'<span class="tag">{g}</span>' for g in p["tags"])
                 + "</div></div>")
 right.append("</div>")
