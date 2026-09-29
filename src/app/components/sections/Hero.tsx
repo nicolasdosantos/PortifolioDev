@@ -200,7 +200,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
                     { indent: true, code: <><span className={key}>age: </span><span className={num}>19</span><span className={comma}>,</span></> },
                     { indent: true, code: <><span className={key}>role: </span><span className={kw2}>&quot;Full Stack Developer&quot;</span><span className={comma}>,</span></> },
                     { indent: true, code: <><span className={key}>location: </span><span className={kw2}>&quot;Birigui, BR&quot;</span><span className={comma}>,</span></> },
-                    { indent: true, code: <><span className={key}>xp: </span><span className={num}>&quot;3+ years&quot;</span><span className={comma}>,</span></> },
+                    { indent: true, code: <><span className={key}>studyingSince: </span><span className={num}>2022</span><span className={comma}>,</span></> },
                     {
                       indent: true,
                       wrap: true,

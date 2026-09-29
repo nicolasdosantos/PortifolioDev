@@ -2,13 +2,14 @@ import { motion } from "motion/react";
 import { Award, Briefcase, Code2, Coffee, MapPin, Sparkles } from "lucide-react";
 import type { SectionProps } from "../../types";
 import { SectionHeader } from "../common";
+import { completedCertificates } from "../../data";
 
-const STACK = ["React", "TypeScript", "JavaScript", "Tailwind CSS", "PHP", "Python", "MySQL", "Supabase"];
+const STACK = ["PHP", "Laravel", "MariaDB", "Python", "React", "TypeScript", "Tailwind CSS", "MySQL", "Supabase"];
 
 const CARDS = [
-  { icon: Code2, val: "3+", lbl: { pt: "Anos", en: "Years" }, clr: "text-violet-400", bg: "bg-violet-500/10" },
+  { icon: Code2, val: "2022", lbl: { pt: "Estudando desde", en: "Studying since" }, clr: "text-violet-400", bg: "bg-violet-500/10" },
   { icon: Briefcase, val: "41", lbl: { pt: "Repositórios", en: "Repositories" }, clr: "text-blue-400", bg: "bg-blue-500/10" },
-  { icon: Award, val: "6", lbl: { pt: "Certificados", en: "Certificates" }, clr: "text-amber-400", bg: "bg-amber-500/10" },
+  { icon: Award, val: `${completedCertificates.length}`, lbl: { pt: "Certificados", en: "Certificates" }, clr: "text-amber-400", bg: "bg-amber-500/10" },
   { icon: Coffee, val: "∞", lbl: { pt: "Cafés", en: "Coffees" }, clr: "text-emerald-400", bg: "bg-emerald-500/10" },
 ];
 

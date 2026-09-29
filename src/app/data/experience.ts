@@ -6,15 +6,39 @@ export const experience: ExperienceItem[] = [
     company: "Agência VoêFly",
     period: { pt: "2026 — Presente", en: "2026 — Present" },
     type: { pt: "Estágio · Presencial", en: "Internship · On-site" },
-    desc: { pt: "Desenvolvimento de interfaces de alta performance para clientes de e-commerce e fintech. Construção de telas responsivas com atenção a usabilidade, performance e consistência visual. Colaboração em fluxos de entrega web, ajustes de frontend e integração com tecnologias modernas.", en: "Development of high-performance interfaces for e-commerce and fintech clients. Building responsive screens with attention to usability, performance and visual consistency. Collaborating on web delivery workflows, frontend adjustments and integration with modern technologies." },
-    tags: ["React", "TypeScript", "Tailwind CSS"],
+    highlights: {
+      pt: [
+        "Desenvolvo e mantenho o site institucional multimarcas do grupo (ViajaFlux, VoêFly e eventos), com entregas e manutenções recorrentes e cuidado com a consistência visual e a responsividade entre as marcas.",
+        "Colaboro na construção do portal de participantes do Viajaflux Summit, com múltiplos perfis de acesso (participante, patrocinador, organização e prestador de serviço), dimensionado para cerca de 2.000 participantes.",
+        "Desenvolvi o segundo template padrão do recurso de criação de sites da ViajaFlux, em que o cliente monta o próprio site na plataforma, atuando no banco de dados e nas telas.",
+        "Crio automações em Python para processos que antes eram feitos manualmente pela equipe.",
+        "Corrijo bugs como formulários que não carregavam ou não enviavam os dados corretamente, buscando a causa raiz do problema.",
+      ],
+      en: [
+        "I build and maintain the group's multi-brand corporate website (ViajaFlux, VoêFly and events), shipping recurring features and fixes while keeping visuals and responsiveness consistent across brands.",
+        "I help build the Viajaflux Summit attendee portal, with multiple access roles (attendee, sponsor, organizer and service provider), sized for around 2,000 attendees.",
+        "I built the second default template for ViajaFlux's site builder, where customers assemble their own site inside the platform, working on both the database and the screens.",
+        "I build Python automations for processes the team used to handle manually.",
+        "I fix bugs such as forms that failed to load or submit data correctly, tracking down the root cause.",
+      ],
+    },
+    tags: ["PHP", "Laravel", "MariaDB", "Tailwind CSS", "DaisyUI", "Python"],
   },
   {
     role: { pt: "Jovem Aprendiz e Líder de Grupo", en: "Young Apprentice & Group Leader" },
     company: "SENAI Avak Bedouian",
     period: { pt: "2023 — 2024", en: "2023 — 2024" },
     type: { pt: "Jovem Aprendiz · Presencial", en: "Apprenticeship · On-site" },
-    desc: { pt: "Atuação em projetos de aprendizado técnico, com liderança de grupo e organização de atividades. Apoio na divisão de tarefas, comunicação entre integrantes e acompanhamento de entregas. Desenvolvimento de base técnica em programação, lógica, sistemas e boas práticas.", en: "Worked on technical learning projects, leading a group and organizing activities. Supported task division, communication between team members and delivery tracking. Built a technical foundation in programming, logic, systems and best practices." },
-    tags: ["Python", "Lógica de Programação", "Trabalho em Equipe"],
+    highlights: {
+      pt: [
+        "Liderei um grupo de 5 pessoas no desenvolvimento de um sistema de gerenciamento da biblioteca e do estoque da escola.",
+        "Construí sozinho todo o backend do sistema, incluindo os CRUDs e a camada de segurança, com Python e banco de dados relacional.",
+      ],
+      en: [
+        "Led a group of 5 people building a management system for the school's library and inventory.",
+        "Built the system's entire backend on my own, including the CRUDs and the security layer, with Python and a relational database.",
+      ],
+    },
+    tags: ["Python", "SQL", "CRUD"],
   },
 ];

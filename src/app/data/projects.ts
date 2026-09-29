@@ -83,7 +83,6 @@ export const projects: Project[] = [
     year: "2026",
     featured: false,
     github: "https://github.com/nicolasdosantos/PokeIntegrado",
-    demo: "https://github.com/nicolasdosantos/PokeIntegrado",
     problem: {
       pt: "Consultar e organizar informações de Pokémon de forma estruturada, unindo uma API externa a um banco próprio.",
       en: "Query and organize Pokémon data in a structured way, combining an external API with a custom database.",
@@ -115,7 +114,6 @@ export const projects: Project[] = [
     year: "2024",
     featured: false,
     github: "https://github.com/nicolasdosantos/Biblioteca-web",
-    demo: "https://github.com/nicolasdosantos/Biblioteca-web",
     problem: {
       pt: "Bibliotecas sem um sistema simples para cadastrar, consultar e controlar o acervo de livros.",
       en: "Libraries without a simple system to register, search and control their book collection.",

@@ -66,6 +66,8 @@ export interface Translation {
   certs_stat_hours: string;
   certs_verified: string;
   certs_verify_hint: string;
+  certs_completed: string;
+  certs_in_progress: string;
   github_label: string;
   github_title: string;
   github_subtitle: string;
@@ -131,7 +133,8 @@ export interface Project {
   year: string;
   featured: boolean;
   github: string;
-  demo: string;
+  /** Link de demonstração online. Omitir quando não há demo: o modal mostra só o código. */
+  demo?: string;
   problem: LocalizedText;
   solution: LocalizedText;
   results: LocalizedText;
@@ -148,7 +151,8 @@ export interface ExperienceItem {
   company: string;
   period: LocalizedText;
   type: LocalizedText;
-  desc: LocalizedText;
+  /** Entregas concretas, uma por item: viram a lista do card. */
+  highlights: { pt: string[]; en: string[] };
   tags: string[];
 }
 
@@ -159,6 +163,8 @@ export interface Certificate {
   color: string;
   icon: LucideIcon;
   hours?: string;
+  /** Formação ainda em curso: exibe "Em andamento" e não entra na contagem de certificados. */
+  inProgress?: boolean;
   /** Public link to the issuer's validation document, when one exists. */
   verifyUrl?: string;
 }

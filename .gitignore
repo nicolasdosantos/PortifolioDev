@@ -53,8 +53,12 @@ coverage/
 .yarn/
 .pnpm-store/
 
-# Documentos pessoais (dados de contato) — servidos pelo site, mas fora do repositorio
+# PDFs ficam fora do repositório, exceto os que o site serve: a Vercel publica a partir
+# do GitHub, então o que não está versionado não chega ao ar (o link cai na home).
 public/*.pdf
+!public/nicolas-pichiteli-cv.pdf
+!public/nicolas-pichiteli-cv-en.pdf
+!public/certificado-*.pdf
 
 # Python (scripts de geração do CV)
 __pycache__/

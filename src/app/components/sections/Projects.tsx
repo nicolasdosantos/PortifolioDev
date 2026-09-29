@@ -158,8 +158,30 @@ export function Projects({ dark, t, lang }: SectionProps) {
                     <span className={`text-sm font-mono2 ${dark ? "text-white/58" : "text-black/66"}`}>{sel.category} · {sel.year}</span>
                   </div>
                   <div className="flex gap-2">
-                    <a href={sel.github} className={`p-2.5 rounded-xl border transition-colors ${dark ? "border-white/10 text-white/68 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/74 hover:text-black hover:bg-black/[0.07]"}`}><Github size={16} /></a>
-                    <a href={sel.demo} className="p-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white transition-colors"><ExternalLink size={16} /></a>
+                    <a
+                      href={sel.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={lang === "pt" ? "Ver código no GitHub" : "View code on GitHub"}
+                      title={lang === "pt" ? "Código" : "Code"}
+                      className={`p-2.5 rounded-xl border transition-colors ${dark ? "border-white/10 text-white/68 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/74 hover:text-black hover:bg-black/[0.07]"}`}
+                    >
+                      <Github size={16} />
+                    </a>
+                    {/* Só aparece quando há demo de verdade: antes, projetos sem demo repetiam o
+                        link do repositório aqui e o ícone parecia prometer um site no ar. */}
+                    {sel.demo && (
+                      <a
+                        href={sel.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={lang === "pt" ? "Abrir demonstração online" : "Open live demo"}
+                        title="Demo"
+                        className="p-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white transition-colors"
+                      >
+                        <ExternalLink size={16} />
+                      </a>
+                    )}
                   </div>
                 </div>
                 <p className={`text-sm font-body leading-relaxed mb-7 ${dark ? "text-white/68" : "text-black/74"}`}>{sel.fullDesc[lang]}</p>

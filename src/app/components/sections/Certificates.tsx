@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { BadgeCheck, ExternalLink } from "lucide-react";
+import { BadgeCheck, CircleCheck, Clock, ExternalLink } from "lucide-react";
 import type { Translation } from "../../types";
 import { SectionHeader } from "../common";
-import { certificates } from "../../data";
+import { certificates, completedCertificates } from "../../data";
 import { useHasHover } from "../../hooks/useHasHover";
 
 interface CertificatesProps {
@@ -31,7 +31,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
           className="flex flex-wrap items-center gap-x-8 gap-y-2 mb-10 -mt-8"
         >
           {[
-            { value: certificates.length, label: t.certs_stat_certs },
+            { value: completedCertificates.length, label: t.certs_stat_certs },
             { value: institutions, label: t.certs_stat_institutions },
             { value: `${totalHours}h+`, label: t.certs_stat_hours },
           ].map((s, i) => (
@@ -129,16 +129,23 @@ export function Certificates({ dark, t }: CertificatesProps) {
                            do mínimo confortável para o toque, sem mudar nada no visual. */
                         className="flex items-center gap-1.5 py-1.5 -my-1.5 group/verify"
                       >
-                        <BadgeCheck size={13} className="text-emerald-400" />
-                        <span className="text-[10px] font-mono2 text-emerald-400/80 uppercase tracking-wide underline decoration-dotted decoration-emerald-400/40 underline-offset-2 transition-colors group-hover/verify:text-emerald-300">
+                        <BadgeCheck size={13} className={dark ? "text-emerald-400" : "text-emerald-600"} />
+                        <span className={`text-[10px] font-mono2 uppercase tracking-wide underline decoration-dotted underline-offset-2 transition-colors ${dark ? "text-emerald-400/80 decoration-emerald-400/40 group-hover/verify:text-emerald-300" : "text-emerald-700 decoration-emerald-700/40 group-hover/verify:text-emerald-800"}`}>
                           {t.certs_verified}
                         </span>
-                        <ExternalLink size={9} className="text-emerald-400/50 transition-colors group-hover/verify:text-emerald-300" />
+                        <ExternalLink size={9} className={`transition-colors ${dark ? "text-emerald-400/50 group-hover/verify:text-emerald-300" : "text-emerald-700/60 group-hover/verify:text-emerald-800"}`} />
                       </a>
-                    ) : (
+                    ) : cert.inProgress ? (
                       <div className="flex items-center gap-1.5">
-                        <BadgeCheck size={13} className="text-emerald-400" />
-                        <span className="text-[10px] font-mono2 text-emerald-400/80 uppercase tracking-wide">{t.certs_verified}</span>
+                        <Clock size={13} className={dark ? "text-amber-400" : "text-amber-600"} />
+                        <span className={`text-[10px] font-mono2 uppercase tracking-wide ${dark ? "text-amber-400/85" : "text-amber-700"}`}>{t.certs_in_progress}</span>
+                      </div>
+                    ) : (
+                      /* Sem comprovante público: mostra só que foi concluído, sem o selo de
+                         verificação, que sugeriria uma validação externa que não existe aqui. */
+                      <div className="flex items-center gap-1.5">
+                        <CircleCheck size={13} className={dark ? "text-white/45" : "text-black/50"} />
+                        <span className={`text-[10px] font-mono2 uppercase tracking-wide ${dark ? "text-white/55" : "text-black/62"}`}>{t.certs_completed}</span>
                       </div>
                     )}
                     <div className="flex items-center gap-2">
