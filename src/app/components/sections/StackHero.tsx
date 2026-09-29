@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useMotionValue, useMotionValueEvent, useReduce
 import type { ComponentType, CSSProperties } from "react";
 import { ArrowRight, ChevronRight, Database, Github, Linkedin, Mail, Monitor, Rocket, Server, ShieldCheck } from "lucide-react";
 import type { Lang, SkillItem } from "../../types";
-import { certificates, skillCategories } from "../../data";
+import { completedCertificates, skillCategories } from "../../data";
 
 /* react-icons e lucide-react têm tipos diferentes mas a mesma superfície útil aqui —
    este alias deixa as duas famílias conviverem na mesma lista de techs. */
@@ -79,8 +79,8 @@ const TECH_COUNT = skillCategories.reduce((n, c) => n + c.skills.length, 0);
 const STATS: { value: string; pt: string; en: string; color: string }[] = [
   { value: `${TECH_COUNT}`, pt: "Tecnologias", en: "Technologies", color: "#67E8F9" },
   { value: `${skillCategories.length}`, pt: "Frentes da stack", en: "Stack areas", color: "#A78BFA" },
-  { value: `${certificates.length}`, pt: "Certificados", en: "Certificates", color: "#34D399" },
-  { value: "3+", pt: "Anos estudando", en: "Years studying", color: "#FFB454" },
+  { value: `${completedCertificates.length}`, pt: "Certificados", en: "Certificates", color: "#34D399" },
+  { value: "2022", pt: "Estudando desde", en: "Studying since", color: "#FFB454" },
 ];
 
 const SOCIALS = [
@@ -95,7 +95,7 @@ const FEATURES: { icon: AnyIcon; pt: string; en: string }[] = [
   { icon: Server, pt: "APIs e regras de negócio", en: "APIs and business rules" },
   { icon: Database, pt: "Banco de dados modelado", en: "Properly modeled databases" },
   { icon: ShieldCheck, pt: "Código limpo e escalável", en: "Clean, scalable code" },
-  { icon: Rocket, pt: "Deploy e acompanhamento", en: "Deploy and monitoring" },
+  { icon: Rocket, pt: "Deploy e acompanhamento", en: "Deploy and follow-up" },
 ];
 
 export interface StackHeroConfig {
@@ -548,7 +548,7 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
       </motion.a>
 
       {/* Números e sociais: existiam na referência e eu havia omitido. Os valores vêm dos
-          mesmos dados do Stats.tsx (e certificates.length), não dos números do mockup
+          mesmos dados do Stats.tsx (e completedCertificates.length), não dos números do mockup
           (4+/10+/20+/100%), que não correspondem ao projeto. */}
       <div className="grid grid-cols-2 gap-2.5 mt-9">
         {STATS.map(s => (

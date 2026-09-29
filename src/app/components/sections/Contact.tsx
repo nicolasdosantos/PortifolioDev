@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, CheckCircle2, Clock, Github, Linkedin, Mail, MessageSquare, Phone, Send, User } from "lucide-react";
+import { ArrowRight, Briefcase, CheckCircle2, Github, Linkedin, Mail, MessageSquare, Phone, Send, User } from "lucide-react";
 import type { Translation } from "../../types";
 import { ConfirmNavigateDialog, SectionHeader } from "../common";
 import { useHasHover } from "../../hooks/useHasHover";
@@ -72,7 +72,7 @@ export function Contact({ dark, t }: ContactProps) {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-400" />
               </span>
-              <Clock size={12} /> {t.contact_response_badge}
+              <Briefcase size={12} /> {t.contact_response_badge}
             </motion.div>
 
             <div className="space-y-2">

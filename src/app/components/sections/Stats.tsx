@@ -1,6 +1,8 @@
 import type { Translation } from "../../types";
 import { useCounter } from "../../hooks/useCounter";
-import { certificates } from "../../data";
+import { completedCertificates, projects, skillCategories } from "../../data";
+
+const TECH_COUNT = skillCategories.reduce((n, c) => n + c.skills.length, 0);
 
 interface StatsProps {
   dark: boolean;
@@ -28,11 +30,11 @@ function StatItem({ value, suffix, label, dark }: StatItemProps) {
 
 export function Stats({ dark, t }: StatsProps) {
   const items = [
-    { v: 4, s: "", l: t.stat_projects },
+    { v: projects.length, s: "", l: t.stat_projects },
     { v: 41, s: "", l: t.stat_commits },
-    { v: 15, s: "+", l: t.stat_techs },
+    { v: TECH_COUNT, s: "", l: t.stat_techs },
     { v: 3, s: "+", l: t.stat_years },
-    { v: certificates.length, s: "", l: t.stat_certs },
+    { v: completedCertificates.length, s: "", l: t.stat_certs },
   ];
   return (
     <section className="py-24 relative">

@@ -29,7 +29,14 @@ export function Experience({ dark, t, lang }: SectionProps) {
                   {exp.period[lang]}
                 </span>
               </div>
-              <p className={`text-sm font-body leading-relaxed mb-4 ${dark ? "text-white/68" : "text-black/74"}`}>{exp.desc[lang]}</p>
+              <ul className={`space-y-2 text-sm font-body leading-relaxed mb-5 ${dark ? "text-white/68" : "text-black/74"}`}>
+                {exp.highlights[lang].map(item => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-[0.55em] w-1.5 h-1.5 rounded-full bg-violet-500/70 flex-shrink-0" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
               <div className="flex flex-wrap gap-2">
                 {exp.tags.map(tag => (
                   <span key={tag} className={`px-2 py-1 rounded-md text-xs font-mono2 border ${dark ? "border-white/10 bg-white/[0.04] text-white/58" : "border-black/[0.16] bg-black/[0.07] text-black/70"}`}>{tag}</span>
