@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { useIsMobile } from "../ui/use-mobile";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 interface IntroProps {
   onDone: () => void;
