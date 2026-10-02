@@ -7,7 +7,7 @@ import { skillCategories } from "../../data";
 
 /* react-icons e lucide-react têm tipos diferentes mas a mesma superfície útil aqui —
    este alias deixa as duas famílias conviverem na mesma lista de techs. */
-type AnyIcon = ComponentType<{ size?: number; className?: string; style?: CSSProperties }>;
+type AnyIcon = ComponentType<{ size?: number | string; className?: string; style?: CSSProperties }>;
 
 /* Cubo, plataforma e cards são DOM (perspective + preserve-3d) e SVG, não imagens.
    O render de referência (public/hero/image.png, hoje só no histórico do git) definiu layout e estilo; o conteúdo

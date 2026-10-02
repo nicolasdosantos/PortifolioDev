@@ -126,7 +126,8 @@ export interface Certificate {
   issuer: string;
   year: string;
   color: string;
-  icon: LucideIcon;
+  /** lucide ou react-icons (ex.: o logo do Python vem do react-icons) */
+  icon: LucideIcon | IconType;
   hours?: string;
   /** Formação ainda em curso: exibe "Em andamento" e não entra na contagem de certificados. */
   inProgress?: boolean;
