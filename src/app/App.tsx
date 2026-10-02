@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { Lang } from "./types";
 import { translations } from "./data";
@@ -6,8 +6,30 @@ import { Aurora, Cursor, GlobalStyles, Intro, ScrollBar, ScrollTrail } from "./c
 import { Footer, Navbar } from "./components/layout";
 import { About, Certificates, Contact, DevProcess, Experience, Hero, Projects, StackHero } from "./components/sections";
 
+const INTRO_SEEN_KEY = "intro-seen";
+
+/* A intro aparece uma vez por sessão: recarregar a página ou voltar ao site na mesma aba
+   vai direto ao conteúdo. Com movimento reduzido no sistema, ela não aparece. O storage
+   pode estar bloqueado (aba anônima, cookies desligados): aí a intro só aparece. */
+function introAlreadyHandled() {
+  try {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return true;
+    return sessionStorage.getItem(INTRO_SEEN_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 export default function App() {
-  const [done, setDone] = useState(false);
+  const [done, setDone] = useState(introAlreadyHandled);
+  const finishIntro = useCallback(() => {
+    setDone(true);
+    try {
+      sessionStorage.setItem(INTRO_SEEN_KEY, "1");
+    } catch {
+      /* sem storage a intro volta na próxima visita, o que é aceitável */
+    }
+  }, []);
   const [dark, setDark] = useState(true);
   const [lang, setLang] = useState<Lang>("pt");
 
@@ -20,7 +42,7 @@ export default function App() {
   return (
     <div className={`min-h-screen relative transition-colors duration-500 ${dark ? "bg-[#08080A]" : "bg-[#E9E9F0]"}`}>
       <GlobalStyles />
-      <AnimatePresence>{!done && <Intro onDone={() => setDone(true)} />}</AnimatePresence>
+      <AnimatePresence>{!done && <Intro onDone={finishIntro} />}</AnimatePresence>
 
       <Aurora />
       <Cursor />
