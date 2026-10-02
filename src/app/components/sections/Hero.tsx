@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, ChevronDown, Download, Github, Linkedin, Mail, MapPin, MessageSquare } from "lucide-react";
 import type { Lang, Translation } from "../../types";
+import { goToSection } from "../../utils/sections";
 
 interface HeroProps {
   dark: boolean;
@@ -98,8 +99,9 @@ export function Hero({ dark, t, lang }: HeroProps) {
               transition={{ duration: 0.6, delay: 0.65 }}
               className="flex flex-wrap gap-3 mb-10"
             >
-              <button
-                onClick={() => document.querySelector("#projetos")?.scrollIntoView({ behavior: "smooth" })}
+              <a
+                href="#projetos"
+                onClick={e => { e.preventDefault(); goToSection("projetos"); }}
                 className="group relative flex items-center gap-2 px-6 py-3 rounded-xl text-white text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(124,58,237,0.45)] overflow-hidden"
                 style={{ background: "linear-gradient(135deg, #7C3AED, #6D28D9)" }}
               >
@@ -108,15 +110,16 @@ export function Hero({ dark, t, lang }: HeroProps) {
                   style={{ background: "linear-gradient(135deg, #8B5CF6, #06B6D4)" }}
                 />
                 <span className="relative flex items-center gap-2">
-                  {t.cta_projects} <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  {t.cta_projects} <ArrowRight size={15} aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-              </button>
-              <button
-                onClick={() => document.querySelector("#contato")?.scrollIntoView({ behavior: "smooth" })}
+              </a>
+              <a
+                href="#contato"
+                onClick={e => { e.preventDefault(); goToSection("contato"); }}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/75 hover:bg-white/[0.05] hover:border-white/22" : "border-black/[0.18] text-black/80 hover:bg-black/[0.07]"}`}
               >
-                {t.cta_contact} <MessageSquare size={15} />
-              </button>
+                {t.cta_contact} <MessageSquare size={15} aria-hidden />
+              </a>
               <a
                 href={cvHref}
                 download={cvFilename}

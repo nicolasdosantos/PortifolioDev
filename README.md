@@ -26,6 +26,7 @@ O layout inicial saiu do **Figma Make**. A partir dele reescrevi a estrutura e f
 - **Confirmação antes de sair do site** — `useConfirmNavigate` + `ConfirmNavigateDialog` nos links de contato.
 - **Rotas desconhecidas voltam para a home** — `vercel.json` em produção e um middleware no `vite.config.ts` no ambiente de desenvolvimento.
 - **Currículo gerado por script** — `gen_cv.py` monta o PDF do currículo (PT e EN).
+- **Acessibilidade** — `<main>` e link "Pular para o conteúdo", menu com links de verdade (`/#projetos` pode ser compartilhado e abre direto na seção), foco preso nos modais (`useFocusTrap`) e devolvido a quem abriu, labels no formulário, `lang` do HTML acompanhando o idioma e animações respeitando "reduzir movimento". Auditado com axe (WCAG 2.1 AA) nos dois temas, no desktop e no celular.
 
 <br/>
 
@@ -33,7 +34,7 @@ O layout inicial saiu do **Figma Make**. A partir dele reescrevi a estrutura e f
 
 | Camada | Tecnologias |
 |---|---|
-| **Core** | React 18, TypeScript, Vite 6 |
+| **Core** | React 18, TypeScript (strict), Vite 6 |
 | **Estilo** | Tailwind CSS v4, tokens de tema em `src/styles/theme.css` |
 | **Animação** | Motion |
 | **Ícones** | lucide-react, react-icons |
@@ -49,7 +50,8 @@ src/
 │   ├── App.tsx            # composição das seções e estado de tema/idioma
 │   ├── types.ts           # tipos do conteúdo (Translation, Project, SkillCategory...)
 │   ├── data/              # conteúdo do site
-│   ├── hooks/             # useHasHover, useIsMobile, useConfirmNavigate
+│   ├── hooks/             # useHasHover, useIsMobile, useConfirmNavigate, useFocusTrap
+│   ├── utils/             # goToSection (rolagem + âncora na URL)
 │   └── components/
 │       ├── layout/        # Navbar, Footer
 │       ├── sections/      # Hero, About, Projects, Experience, Contact...
@@ -66,9 +68,10 @@ src/
 
 ```bash
 npm install
-npm run dev       # ambiente de desenvolvimento
-npm run build     # build de produção em dist/
-npm run preview   # serve o build localmente
+npm run dev        # ambiente de desenvolvimento
+npm run typecheck  # checagem de tipos (tsc, modo strict)
+npm run build      # checagem de tipos + build de produção em dist/
+npm run preview    # serve o build localmente
 ```
 
 Requer Node 18+.
@@ -77,9 +80,7 @@ Requer Node 18+.
 
 ## Próximos passos
 
-- Checagem de tipos (`tsc --noEmit`) no build — hoje o Vite só remove os tipos, sem validar.
-- Testes automatizados e CI rodando build em cada PR.
-- Intro que pode ser pulada e aparece uma vez por sessão.
+- Testes automatizados (hoje a validação é a checagem de tipos no build, que a Vercel roda em cada PR).
 
 <br/>
 

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Github, Lock, Pause, Play, RotateCcw, Volume2, VolumeX, X } from "lucide-react";
 import type { Lang, Project, Translation } from "../../types";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 
 interface ProjectModalProps {
   project: Project;
@@ -48,6 +49,8 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
   const videoRef = useRef<HTMLVideoElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(dialogRef, true);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [ended, setEnded] = useState(false);
@@ -124,6 +127,7 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
       <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
 
       <motion.div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-modal-title"

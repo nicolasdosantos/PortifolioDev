@@ -43,6 +43,8 @@ export function Contact({ dark, t }: ContactProps) {
     setTimeout(() => setSent(false), 3500);
   };
 
+  const labelBase = `block mb-1.5 text-xs font-body font-medium ${dark ? "text-white/75" : "text-black/75"}`;
+  const iconBase = `absolute left-4 ${dark ? "text-white/50" : "text-black/62"}`;
   const inputBase = `w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-body outline-none transition-all duration-200 focus:border-violet-500 focus:shadow-[0_0_0_3px_rgba(124,58,237,0.14)] ${dark ? "bg-[#101016]/95 border-white/[0.12] text-white placeholder:text-white/48" : "bg-black/[0.045] border-black/[0.16] text-[#08080A] placeholder:text-black/62"}`;
 
   return (
@@ -153,30 +155,37 @@ export function Contact({ dark, t }: ContactProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="relative"
               >
-                <User size={15} className={`absolute left-4 top-1/2 -translate-y-1/2 ${dark ? "text-white/50" : "text-black/62"}`} />
-                <input type="text" placeholder={t.form_name} required value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} className={inputBase} />
+                {/* Label visível: o placeholder some ao digitar e não serve de rótulo. */}
+                <label htmlFor="contato-nome" className={labelBase}>{t.form_name}</label>
+                <div className="relative">
+                  <User size={15} aria-hidden className={`${iconBase} top-1/2 -translate-y-1/2`} />
+                  <input id="contato-nome" name="name" type="text" autoComplete="name" placeholder={t.form_name_ph} required value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} className={inputBase} />
+                </div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.18 }}
-                className="relative"
               >
-                <Mail size={15} className={`absolute left-4 top-1/2 -translate-y-1/2 ${dark ? "text-white/50" : "text-black/62"}`} />
-                <input type="email" placeholder={t.form_email} required value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} className={inputBase} />
+                <label htmlFor="contato-email" className={labelBase}>{t.form_email}</label>
+                <div className="relative">
+                  <Mail size={15} aria-hidden className={`${iconBase} top-1/2 -translate-y-1/2`} />
+                  <input id="contato-email" name="email" type="email" autoComplete="email" placeholder={t.form_email_ph} required value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} className={inputBase} />
+                </div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.26 }}
-                className="relative"
               >
-                <MessageSquare size={15} className={`absolute left-4 top-4 ${dark ? "text-white/50" : "text-black/62"}`} />
-                <textarea placeholder={t.form_message} required rows={5} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} className={`${inputBase} resize-none`} />
+                <label htmlFor="contato-mensagem" className={labelBase}>{t.form_message}</label>
+                <div className="relative">
+                  <MessageSquare size={15} aria-hidden className={`${iconBase} top-4`} />
+                  <textarea id="contato-mensagem" name="message" placeholder={t.form_message_ph} required rows={5} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} className={`${inputBase} resize-none`} />
+                </div>
               </motion.div>
 
               <motion.button
@@ -234,6 +243,9 @@ export function Contact({ dark, t }: ContactProps) {
                   )}
                 </AnimatePresence>
               </motion.button>
+              <p className={`text-xs font-body text-center ${dark ? "text-white/55" : "text-black/62"}`}>{t.form_hint}</p>
+              {/* anuncia para leitor de tela o que o botão animado mostra visualmente */}
+              <p role="status" aria-live="polite" className="sr-only">{sent ? t.form_sent : ""}</p>
             </form>
           </motion.div>
         </div>

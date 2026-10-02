@@ -99,7 +99,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
                       animate={isHovered ? { y: [0, -3, 0] } : { y: 0 }}
                       transition={isHovered ? { duration: 1.1, ease: "easeInOut", repeat: hasHover ? Infinity : 0 } : { duration: 0.3 }}
                     >
-                      <CertIcon size={19} style={{ color: cert.color }} />
+                      <CertIcon size={19} style={{ color: cert.color }} aria-hidden />
                     </motion.div>
 
                     <div className="flex-1 min-w-0 pt-0.5">
@@ -122,6 +122,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
                     {cert.verifyUrl ? (
                       <a
                         href={cert.verifyUrl}
+                        aria-label={`${t.certs_verified}: ${cert.title} (PDF)`}
                         target="_blank"
                         rel="noopener noreferrer"
                         title={t.certs_verify_hint}
@@ -156,9 +157,6 @@ export function Certificates({ dark, t }: CertificatesProps) {
                       )}
                       <span className="text-xs font-mono2" style={{ color: cert.color }}>{cert.year}</span>
                     </div>
-                  </div>
-                  <div className={`mt-2 text-[9px] font-mono2 tracking-[0.1em] ${dark ? "text-white/[0.30]" : "text-black/[0.34]"}`}>
-                    CERT-{String(i + 1).padStart(3, "0")}
                   </div>
                 </div>
               </motion.div>

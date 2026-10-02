@@ -6,9 +6,17 @@ import { SectionHeader } from "../common";
 import { projects } from "../../data";
 import { ProjectModal } from "./ProjectModal";
 
-const STATUS_STYLE: Record<ProjectStatus, string> = {
-  completed: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
-  in_progress: "text-amber-400 bg-amber-400/10 border-amber-400/20",
+/* Por tema: no claro, o verde e o âmbar 400 sobre fundo quase branco davam 1,6–1,8:1 de
+   contraste. Os tons 700 passam de 4,5:1. */
+const STATUS_STYLE: Record<"dark" | "light", Record<ProjectStatus, string>> = {
+  dark: {
+    completed: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
+    in_progress: "text-amber-400 bg-amber-400/10 border-amber-400/20",
+  },
+  light: {
+    completed: "text-emerald-700 bg-emerald-50 border-emerald-200",
+    in_progress: "text-amber-700 bg-amber-50 border-amber-200",
+  },
 };
 
 /* Os cards eram <div onClick> sem foco: quem navega pelo teclado não abria nenhum projeto.
@@ -135,7 +143,7 @@ export function Projects({ dark, t, lang }: SectionProps) {
                     <h3 className={`font-display text-xl font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{p.title}</h3>
                     <span className={`text-xs font-mono2 ${dark ? "text-white/50" : "text-black/66"}`}>{p.category[lang]} · {p.year}</span>
                   </div>
-                  <span className={`shrink-0 px-2 py-1 rounded-lg text-xs border ${STATUS_STYLE[p.status]}`}>{t[p.status]}</span>
+                  <span className={`shrink-0 px-2 py-1 rounded-lg text-xs border ${STATUS_STYLE[dark ? "dark" : "light"][p.status]}`}>{t[p.status]}</span>
                 </div>
                 <p className={`text-sm font-body mb-5 ${dark ? "text-white/68" : "text-black/74"}`}>{p.description[lang]}</p>
                 <div className="mt-auto"><Tags tags={p.tags} dark={dark} /></div>
@@ -163,7 +171,7 @@ export function Projects({ dark, t, lang }: SectionProps) {
               <div className="p-5 flex flex-col flex-1">
                 <div className="flex items-start justify-between gap-3 mb-1.5">
                   <h3 className={`font-display font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{p.title}</h3>
-                  <span className={`shrink-0 px-2 py-0.5 rounded text-xs border ${STATUS_STYLE[p.status]}`}>{t[p.status]}</span>
+                  <span className={`shrink-0 px-2 py-0.5 rounded text-xs border ${STATUS_STYLE[dark ? "dark" : "light"][p.status]}`}>{t[p.status]}</span>
                 </div>
                 <span className={`text-xs font-mono2 mb-3 ${dark ? "text-white/50" : "text-black/66"}`}>{p.category[lang]} · {p.year}</span>
                 <p className={`text-sm font-body mb-4 ${dark ? "text-white/62" : "text-black/70"}`}>{p.description[lang]}</p>
