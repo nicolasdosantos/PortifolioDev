@@ -63,3 +63,9 @@ public/*.pdf
 # Python (scripts de geração do CV)
 __pycache__/
 *.pyc
+
+# Vídeos originais em 1080p (24 MB e 14 MB). O site usa versões geradas a partir deles
+# com ffmpeg: *.mp4 em 720p com áudio (modal) e *-preview.mp4 sem áudio, só as telas
+# do produto (card).
+public/videos/B4Charge.mp4
+public/videos/Nexo.mp4
