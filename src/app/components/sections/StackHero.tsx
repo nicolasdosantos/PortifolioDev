@@ -10,7 +10,7 @@ import { completedCertificates, skillCategories } from "../../data";
 type AnyIcon = ComponentType<{ size?: number; className?: string; style?: CSSProperties }>;
 
 /* Cubo, plataforma e cards são DOM (perspective + preserve-3d) e SVG, não imagens.
-   O render de referência (public/hero/image.png) definiu layout e estilo; o conteúdo
+   O render de referência (public/hero/image.png, hoje só no histórico do git) definiu layout e estilo; o conteúdo
    vem do stack declarado em data/skills.ts, não do mockup. */
 
 /* Paleta fixa do cubo — não segue a cor do card ativo.
@@ -39,7 +39,7 @@ export interface StackCard {
   depth: number;
 }
 
-/* Posição na órbita e cor por categoria. As cores vêm da referência (public/hero/image.png),
+/* Posição na órbita e cor por categoria. As cores vêm do mesmo render de referência,
    não das cores de `skillCategories`, que são outra paleta. */
 const ORBIT: Record<string, { color: string; angle: number; radius: number; depth: number; short: { pt: string; en: string } }> = {
   /* topo. Raio menor: na referência a folga vertical é apertada (23px) e a generosa é a
