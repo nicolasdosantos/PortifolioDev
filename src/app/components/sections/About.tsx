@@ -4,7 +4,8 @@ import type { SectionProps } from "../../types";
 import { SectionHeader } from "../common";
 import { projects } from "../../data";
 
-const STACK = ["PHP", "Laravel", "MariaDB", "Python", "React", "TypeScript", "Tailwind CSS", "MySQL", "Supabase"];
+/* Na ordem do posicionamento: o principal (estágio e projetos) primeiro, depois dados e apoio. */
+const STACK = ["PHP", "Laravel", "React", "TypeScript", "MariaDB", "MySQL", "Supabase", "Tailwind CSS", "Python"];
 
 const WITH_VIDEO = projects.filter(p => p.video).length;
 

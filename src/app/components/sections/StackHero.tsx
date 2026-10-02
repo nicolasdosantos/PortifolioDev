@@ -72,13 +72,13 @@ const NAV_SAFE = 96;
 /** quantas techs o card mostra fechado — o resto aparece ao expandir */
 const COLLAPSED_ITEMS = 4;
 
-/** itens da lista da coluna de texto */
+/** itens da lista da coluna de texto: o que eu faço em cada camada, com a tecnologia de verdade */
 const FEATURES: { icon: AnyIcon; pt: string; en: string }[] = [
-  { icon: Monitor, pt: "Interfaces modernas e responsivas", en: "Modern, responsive interfaces" },
-  { icon: Server, pt: "APIs e regras de negócio", en: "APIs and business rules" },
-  { icon: Database, pt: "Banco de dados modelado", en: "Properly modeled databases" },
-  { icon: ShieldCheck, pt: "Código limpo e escalável", en: "Clean, scalable code" },
-  { icon: Rocket, pt: "Deploy e acompanhamento", en: "Deploy and follow-up" },
+  { icon: Monitor, pt: "Telas em React e Laravel, com Tailwind", en: "Screens in React and Laravel, with Tailwind" },
+  { icon: Server, pt: "APIs e regras de negócio em Laravel e Node.js", en: "APIs and business rules in Laravel and Node.js" },
+  { icon: Database, pt: "Modelagem em MySQL, MariaDB e Postgres com RLS", en: "Data modeling in MySQL, MariaDB and Postgres with RLS" },
+  { icon: ShieldCheck, pt: "Testes nas regras críticas, com Vitest", en: "Tests on critical rules, with Vitest" },
+  { icon: Rocket, pt: "Deploy na Vercel e automações em Python", en: "Vercel deploys and Python automations" },
 ];
 
 export interface StackHeroConfig {
@@ -502,8 +502,8 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
 
       <p className={`font-body text-[15px] leading-relaxed max-w-sm ${dark ? "text-white/68" : "text-black/66"}`}>
         {pt
-          ? "Desenvolvo aplicações completas, com foco em performance, escalabilidade e experiência de uso."
-          : "I build complete applications, focused on performance, scalability and user experience."}
+          ? "Do banco de dados à interface: modelo as tabelas, escrevo as regras de negócio e construo as telas."
+          : "From the database to the interface: I model the tables, write the business rules and build the screens."}
       </p>
 
       <ul className="mt-7 space-y-3">
@@ -1151,8 +1151,8 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
       </h2>
       <p className={`font-body text-[15px] leading-relaxed mb-10 ${dark ? "text-white/68" : "text-black/66"}`}>
         {pt
-          ? "Desenvolvo aplicações completas, com foco em performance, escalabilidade e experiência de uso."
-          : "I build complete applications, focused on performance, scalability and user experience."}
+          ? "Do banco de dados à interface: modelo as tabelas, escrevo as regras de negócio e construo as telas."
+          : "From the database to the interface: I model the tables, write the business rules and build the screens."}
       </p>
 
       {/* o núcleo, achatado: mesma textura de PCB do cubo */}
