@@ -1,6 +1,8 @@
+import { useEffect, useId, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ExternalLink, X } from "lucide-react";
 import type { PendingLink } from "../../types";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 import { GradientIcon } from "./GradientIcon";
 
 interface ConfirmNavigateDialogProps {
@@ -13,6 +15,27 @@ interface ConfirmNavigateDialogProps {
 }
 
 export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, title, description }: ConfirmNavigateDialogProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const cancelRef = useRef<HTMLButtonElement>(null);
+  const titleId = useId();
+  const open = !!pending;
+  useFocusTrap(dialogRef, open);
+
+  /* Ao abrir: foco em "Cancelar" (a opção segura, já que "Abrir" tira a pessoa do site) e
+     Esc fecha. Ao fechar: o foco volta para o link que abriu o diálogo. */
+  useEffect(() => {
+    if (!open) return;
+    const trigger = document.activeElement as HTMLElement | null;
+    const raf = requestAnimationFrame(() => cancelRef.current?.focus());
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onCancel();
+    window.addEventListener("keydown", onKey);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("keydown", onKey);
+      trigger?.focus();
+    };
+  }, [open, onCancel]);
+
   const gradientCss = pending ? `linear-gradient(135deg, ${pending.colors.join(", ")})` : undefined;
   let host = "";
   try {
@@ -51,8 +74,10 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
           />
 
           <motion.div
+            ref={dialogRef}
             role="dialog"
             aria-modal="true"
+            aria-labelledby={titleId}
             className={`relative w-full max-w-sm rounded-2xl overflow-hidden ${dark ? "bg-[#0d0d12]" : "bg-white"}`}
             initial={{ opacity: 0, scale: 0.92, y: 14 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -85,7 +110,7 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
                 <GradientIcon icon={pending.icon} colors={pending.colors} size={26} />
               </div>
 
-              <h3 className={`font-display text-lg font-bold mb-1.5 ${dark ? "text-white" : "text-[#08080A]"}`}>
+              <h3 id={titleId} className={`font-display text-lg font-bold mb-1.5 ${dark ? "text-white" : "text-[#08080A]"}`}>
                 {title ?? "Ir para a documentação?"}
               </h3>
               <p className={`text-sm font-body leading-relaxed mb-1 ${dark ? "text-white/68" : "text-black/66"}`}>
@@ -103,6 +128,7 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
 
               <div className="flex items-center gap-3 w-full">
                 <button
+                  ref={cancelRef}
                   onClick={onCancel}
                   className={`flex-1 px-4 py-2.5 rounded-xl text-sm font-body font-medium border transition-colors duration-200 ${dark ? "border-white/10 text-white/70 hover:bg-white/[0.06]" : "border-black/[0.16] text-black/74 hover:bg-black/[0.06]"}`}
                 >

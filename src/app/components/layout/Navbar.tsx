@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import type { Lang, Translation } from "../../types";
 import { Logo } from "../common";
+import { goToSection } from "../../utils/sections";
 
 interface NavbarProps {
   dark: boolean;
@@ -66,7 +67,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
     setActive(id);
     if (clickLock.current) window.clearTimeout(clickLock.current);
     clickLock.current = window.setTimeout(() => { clickLock.current = null; }, 900);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    goToSection(id);
     setOpen(false);
   };
 
@@ -96,9 +97,13 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
         />
 
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <motion.button
-            onClick={() => go("home")}
-            className="relative flex items-center"
+          {/* Links de verdade (href com âncora): abrem em nova aba, podem ser copiados e
+              funcionam sem JavaScript. O onClick só troca o salto seco pela rolagem suave. */}
+          <motion.a
+            href="#home"
+            aria-label={t.go_home}
+            onClick={e => { e.preventDefault(); go("home"); }}
+            className="relative flex items-center rounded-full"
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.94 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
@@ -110,7 +115,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
               transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
             />
             <Logo size={36} />
-          </motion.button>
+          </motion.a>
 
           {/* Menu completo só a partir de `lg`. Em `md` (768–1023px) os links, o logo e os
               botões de idioma/tema não caíam na largura disponível: o par PT-BR + tema
@@ -122,9 +127,11 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
               const id = NAV_IDS[i];
               const isActive = active === id;
               return (
-                <button
+                <a
                   key={label}
-                  onClick={() => go(id)}
+                  href={`#${id}`}
+                  aria-current={isActive ? "location" : undefined}
+                  onClick={e => { e.preventDefault(); go(id); }}
                   className={`relative px-3.5 py-1.5 rounded-xl text-sm font-body transition-colors duration-200 ${isActive
                     ? dark ? "text-white" : "text-[#08080A]"
                     : dark ? "text-white/68 hover:text-white" : "text-black/66 hover:text-black"
@@ -139,7 +146,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
                     />
                   )}
                   <span className="relative z-10">{label}</span>
-                </button>
+                </a>
               );
             })}
           </div>
@@ -149,6 +156,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setLang(lang === "pt" ? "en" : "pt")}
+              aria-label={`${lang === "pt" ? "PT-BR" : "EN"}: ${t.lang_switch}`}
               className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border transition-colors duration-200 ${dark ? "border-white/10 text-white/68 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/74 hover:text-black hover:bg-black/[0.08]"}`}
             >
               {lang === "pt" ? "PT-BR" : "EN"}
@@ -157,6 +165,8 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
               whileHover={{ scale: 1.05, rotate: 15 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setDark(!dark)}
+              aria-label={dark ? t.theme_to_light : t.theme_to_dark}
+              title={dark ? t.theme_to_light : t.theme_to_dark}
               className={`p-2 rounded-lg border transition-colors duration-200 ${dark ? "border-white/10 text-white/68 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/74 hover:text-black hover:bg-black/[0.08]"}`}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -212,9 +222,11 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
                 const id = NAV_IDS[i];
                 const isActive = active === id;
                 return (
-                  <motion.button
+                  <motion.a
                     key={label}
-                    onClick={() => go(id)}
+                    href={`#${id}`}
+                    aria-current={isActive ? "location" : undefined}
+                    onClick={e => { e.preventDefault(); go(id); }}
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.25, delay: i * 0.04 }}
@@ -228,15 +240,15 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
                       className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${isActive ? "bg-violet-500 scale-100" : "bg-transparent scale-0"}`}
                     />
                     {label}
-                  </motion.button>
+                  </motion.a>
                 );
               })}
               <div className={`flex gap-2 mt-4 pt-4 border-t ${dark ? "border-white/[0.05]" : "border-black/[0.14]"}`}>
-                <button onClick={() => setLang(lang === "pt" ? "en" : "pt")} className={`flex-1 py-2 rounded-xl text-xs font-mono2 border ${dark ? "border-white/10 text-white/68" : "border-black/[0.16] text-black/74"}`}>
+                <button onClick={() => setLang(lang === "pt" ? "en" : "pt")} aria-label={`${lang === "pt" ? "EN" : "PT-BR"}: ${t.lang_switch}`} className={`flex-1 py-2 rounded-xl text-xs font-mono2 border ${dark ? "border-white/10 text-white/68" : "border-black/[0.16] text-black/74"}`}>
                   {lang === "pt" ? "EN" : "PT-BR"}
                 </button>
-                <button onClick={() => setDark(!dark)} className={`flex-1 py-2 rounded-xl flex items-center justify-center gap-2 text-xs border ${dark ? "border-white/10 text-white/68" : "border-black/[0.16] text-black/74"}`}>
-                  {dark ? <><Sun size={13} />Light</> : <><Moon size={13} />Dark</>}
+                <button onClick={() => setDark(!dark)} aria-label={dark ? t.theme_to_light : t.theme_to_dark} className={`flex-1 py-2 rounded-xl flex items-center justify-center gap-2 text-xs border ${dark ? "border-white/10 text-white/68" : "border-black/[0.16] text-black/74"}`}>
+                  {dark ? <><Sun size={13} aria-hidden />{t.theme_light}</> : <><Moon size={13} aria-hidden />{t.theme_dark}</>}
                 </button>
               </div>
             </div>

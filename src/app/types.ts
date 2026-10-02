@@ -37,9 +37,23 @@ export interface Translation {
   contact_title: string;
   contact_subtitle: string;
   contact_response_badge: string;
+  /** Labels visíveis do formulário; os *_ph são os exemplos dentro dos campos. */
   form_name: string;
   form_email: string;
   form_message: string;
+  form_name_ph: string;
+  form_email_ph: string;
+  form_message_ph: string;
+  /** Explica que o envio abre o app de e-mail (não há backend). */
+  form_hint: string;
+  /** Acessibilidade: link de pular, nomes dos botões só com ícone. */
+  skip_to_content: string;
+  go_home: string;
+  theme_to_light: string;
+  theme_to_dark: string;
+  theme_light: string;
+  theme_dark: string;
+  lang_switch: string;
   form_send: string;
   form_sent: string;
   process_label: string;
@@ -126,7 +140,8 @@ export interface Certificate {
   issuer: string;
   year: string;
   color: string;
-  icon: LucideIcon;
+  /** lucide ou react-icons (ex.: o logo do Python vem do react-icons) */
+  icon: LucideIcon | IconType;
   hours?: string;
   /** Formação ainda em curso: exibe "Em andamento" e não entra na contagem de certificados. */
   inProgress?: boolean;

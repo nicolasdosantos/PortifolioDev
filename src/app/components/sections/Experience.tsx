@@ -22,7 +22,7 @@ export function Experience({ dark, t, lang }: SectionProps) {
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
                 <div>
                   <div className={`font-display font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{exp.role[lang]}</div>
-                  <div className="text-violet-500 font-body text-sm font-medium">{exp.company}</div>
+                  <div className={`font-body text-sm font-medium ${dark ? "text-violet-400" : "text-violet-700"}`}>{exp.company}</div>
                   <div className={`text-xs font-mono2 mt-0.5 ${dark ? "text-white/50" : "text-black/66"}`}>{exp.type[lang]}</div>
                 </div>
                 <span className={`text-xs font-mono2 px-3 py-1.5 rounded-xl flex-shrink-0 ${dark ? "bg-white/[0.05] text-white/58" : "bg-black/[0.07] text-black/70"}`}>
