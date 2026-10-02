@@ -4,23 +4,7 @@ import type { Lang } from "./types";
 import { translations } from "./data";
 import { Aurora, Cursor, GlobalStyles, Intro, ScrollBar, ScrollTrail } from "./components/common";
 import { Footer, Navbar } from "./components/layout";
-import {
-  About,
-  Blog,
-  Certificates,
-  Contact,
-  DevProcess,
-  Experience,
-  FAQ,
-  FavoriteTools,
-  GitHubActivity,
-  Hero,
-  Journey,
-  Projects,
-  Skills,
-  StackHero,
-  Stats,
-} from "./components/sections";
+import { About, Certificates, Contact, DevProcess, Experience, Hero, Projects, StackHero } from "./components/sections";
 
 export default function App() {
   const [done, setDone] = useState(false);
@@ -56,20 +40,15 @@ export default function App() {
           <Navbar dark={dark} setDark={setDark} lang={lang} setLang={setLang} t={t} />
           <Hero dark={dark} t={t} lang={lang} />
           <About dark={dark} t={t} lang={lang} />
-          <Journey dark={dark} t={t} lang={lang} />
-          {/* Seção do cubo, entre a Jornada e o Processo. Traz a âncora #stack, que o
-              Navbar detecta em runtime e passa a exibir no menu. */}
+          {/* Projetos logo depois do Sobre: são a prova principal e antes ficavam a ~8 telas
+              do topo, atrás de Jornada, cubo, Processo e Skills. */}
+          <Projects dark={dark} t={t} lang={lang} />
+          <Experience dark={dark} t={t} lang={lang} />
+          {/* Seção do cubo: é a única vitrine da stack (a seção Skills, com percentuais, saiu).
+              Traz a âncora #stack, que o Navbar detecta em runtime e passa a exibir no menu. */}
           <StackHero dark={dark} lang={lang} />
           <DevProcess dark={dark} t={t} />
-          <Skills dark={dark} t={t} lang={lang} />
-          <Projects dark={dark} t={t} lang={lang} />
-          <Stats dark={dark} t={t} />
           <Certificates dark={dark} t={t} />
-          <Experience dark={dark} t={t} lang={lang} />
-          <FavoriteTools dark={dark} t={t} />
-          <GitHubActivity dark={dark} t={t} />
-          <Blog dark={dark} t={t} lang={lang} />
-          <FAQ dark={dark} t={t} />
           <Contact dark={dark} t={t} />
           <Footer dark={dark} t={t} />
         </motion.div>

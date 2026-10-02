@@ -1,9 +1,9 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useMotionValueEvent, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 import type { ComponentType, CSSProperties } from "react";
-import { ArrowRight, ChevronRight, Database, Github, Linkedin, Mail, Monitor, Rocket, Server, ShieldCheck } from "lucide-react";
+import { ChevronRight, Database, Monitor, Rocket, Server, ShieldCheck } from "lucide-react";
 import type { Lang, SkillItem } from "../../types";
-import { completedCertificates, skillCategories } from "../../data";
+import { skillCategories } from "../../data";
 
 /* react-icons e lucide-react têm tipos diferentes mas a mesma superfície útil aqui —
    este alias deixa as duas famílias conviverem na mesma lista de techs. */
@@ -72,23 +72,6 @@ const NAV_SAFE = 96;
 /** quantas techs o card mostra fechado — o resto aparece ao expandir */
 const COLLAPSED_ITEMS = 4;
 
-/* Números da coluna esquerda. Contagens derivadas dos dados reais, para não descolarem
-   do resto do site: techs = soma das skills das categorias, certificados = certificates. */
-const TECH_COUNT = skillCategories.reduce((n, c) => n + c.skills.length, 0);
-
-const STATS: { value: string; pt: string; en: string; color: string }[] = [
-  { value: `${TECH_COUNT}`, pt: "Tecnologias", en: "Technologies", color: "#67E8F9" },
-  { value: `${skillCategories.length}`, pt: "Frentes da stack", en: "Stack areas", color: "#A78BFA" },
-  { value: `${completedCertificates.length}`, pt: "Certificados", en: "Certificates", color: "#34D399" },
-  { value: "2022", pt: "Estudando desde", en: "Studying since", color: "#FFB454" },
-];
-
-const SOCIALS = [
-  { Icon: Github, href: "https://github.com/nicolasdosantos", label: "GitHub" },
-  { Icon: Linkedin, href: "https://www.linkedin.com/in/nicolas-pichiteli-dos-santos-942a0b269", label: "LinkedIn" },
-  { Icon: Mail, href: "mailto:nicolaspichiteli245@gmail.com", label: "E-mail" },
-];
-
 /** itens da lista da coluna de texto */
 const FEATURES: { icon: AnyIcon; pt: string; en: string }[] = [
   { icon: Monitor, pt: "Interfaces modernas e responsivas", en: "Modern, responsive interfaces" },
@@ -124,7 +107,9 @@ export interface StackHeroConfig {
 }
 
 export const STACK_HERO_DEFAULTS: StackHeroConfig = {
-  pages: 3.2,
+  /* Era 3.2: a seção sozinha somava ~2.900px de scroll no desktop. Com 2 a sequência
+     inteira dos cards ainda cabe (o tempo é em fração do progresso, não em pixels). */
+  pages: 2,
   perspective: 1500,
   rotX: 8,
   /* quase frontal, como na referência: o cubo é lido de frente, com a face de cima
@@ -533,58 +518,7 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
         })}
       </ul>
 
-      <motion.a
-        href="#projetos"
-        className={`inline-flex items-center gap-2 mt-8 px-5 py-2.5 rounded-xl font-body text-sm font-medium border ${
-          dark ? "border-white/15 text-white" : "border-black/15 text-[#08080A]"
-        }`}
-        style={{ boxShadow: `0 0 22px ${rgba(CORE_CYAN, dark ? 0.16 : 0.1)}` }}
-        whileHover={{ y: -2, boxShadow: `0 0 34px ${rgba(CORE_CYAN, dark ? 0.3 : 0.18)}` }}
-        whileTap={{ scale: 0.97 }}
-        transition={{ type: "spring", stiffness: 400, damping: 26 }}
-      >
-        {pt ? "Ver Projetos" : "View Projects"}
-        <ArrowRight size={15} aria-hidden />
-      </motion.a>
 
-      {/* Números e sociais: existiam na referência e eu havia omitido. Os valores vêm dos
-          mesmos dados do Stats.tsx (e completedCertificates.length), não dos números do mockup
-          (4+/10+/20+/100%), que não correspondem ao projeto. */}
-      <div className="grid grid-cols-2 gap-2.5 mt-9">
-        {STATS.map(s => (
-          <div
-            key={s.pt}
-            className="rounded-xl px-3 py-2.5"
-            style={{
-              border: `1px solid ${dark ? "rgba(255,255,255,.09)" : "rgba(0,0,0,.09)"}`,
-              background: dark ? "rgba(13,13,18,.95)" : "rgba(255,255,255,.9)",
-            }}
-          >
-            <p className="font-display font-bold text-lg leading-none" style={{ color: s.color }}>
-              {s.value}
-            </p>
-            <p className={`font-mono2 text-[10px] leading-tight mt-1.5 ${dark ? "text-white/58" : "text-black/62"}`}>{pt ? s.pt : s.en}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex items-center gap-2 mt-6">
-        {SOCIALS.map(({ Icon, href, label }) => (
-          <motion.a
-            key={label}
-            href={href}
-            target={href.startsWith("mailto") ? undefined : "_blank"}
-            rel="noreferrer noopener"
-            aria-label={label}
-            className={`grid place-items-center w-9 h-9 rounded-lg border ${dark ? "border-white/10 text-white/68" : "border-black/10 text-black/62"}`}
-            whileHover={{ y: -2, color: CORE_CYAN, borderColor: rgba(CORE_CYAN, 0.5) }}
-            whileTap={{ scale: 0.94 }}
-            transition={{ type: "spring", stiffness: 400, damping: 26 }}
-          >
-            <Icon size={15} aria-hidden />
-          </motion.a>
-        ))}
-      </div>
     </div>
   );
 }
@@ -957,7 +891,7 @@ function OrbitCard({
         </div>
 
         {/* A lista é sempre montada (as techs são conteúdo, não decoração), e ao abrir cada
-            item entra em stagger com a barra de proficiência e a descrição — dados reais de
+            item entra em stagger com a descrição — dados reais de
             data/skills.ts, que é justamente o que o clique tem de revelar. */}
         {/* Aberto vira DUAS COLUNAS: o card ficou mais largo, então o dobro de itens cabe na
             mesma altura. É isso que evita o crescimento vertical que batia no navbar. */}
@@ -988,17 +922,6 @@ function OrbitCard({
                     <span className="font-body" style={{ fontSize: w * 0.058, color: dark ? "rgba(255,255,255,.86)" : "rgba(0,0,0,.74)" }}>
                       {it.name}
                     </span>
-                    {isOpen && (
-                      <motion.span
-                        className="ml-auto font-mono2 tabular-nums"
-                        style={{ fontSize: w * 0.048, color: rgba(c, 0.9) }}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.12 + k * 0.05 }}
-                      >
-                        {it.level}%
-                      </motion.span>
-                    )}
                   </div>
 
                   {isOpen && (
@@ -1009,18 +932,6 @@ function OrbitCard({
                       transition={{ duration: 0.3, delay: 0.1 + k * 0.05 }}
                       style={{ overflow: "hidden", paddingLeft: w * 0.1 }}
                     >
-                      <div
-                        className="rounded-full overflow-hidden"
-                        style={{ height: 3, marginTop: w * 0.028, background: dark ? "rgba(255,255,255,.09)" : "rgba(0,0,0,.09)" }}
-                      >
-                        <motion.div
-                          className="h-full rounded-full"
-                          style={{ background: `linear-gradient(90deg, ${rgba(c, 0.5)}, ${c})` }}
-                          initial={{ width: 0 }}
-                          animate={{ width: `${it.level}%` }}
-                          transition={{ duration: 0.7, delay: 0.18 + k * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                        />
-                      </div>
                       <p
                         className="font-body"
                         style={{ fontSize: w * 0.05, marginTop: w * 0.028, color: dark ? "rgba(255,255,255,.62)" : "rgba(0,0,0,.62)" }}
@@ -1307,9 +1218,9 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
                   {card.label[lang]}
                 </span>
               </div>
-              <ul className="relative mt-4 grid gap-2">
+              <ul className="relative mt-4 flex flex-wrap gap-x-4 gap-y-2">
                 {card.items.map(it => {
-                  const ItemIcon = it.icon;
+                  const ItemIcon = it.icon as AnyIcon;
                   return (
                     <li key={it.name} className="flex items-center gap-2.5">
                       <ItemIcon size={13} className="shrink-0" style={{ color: dark ? c : mix(c, 0.5) }} aria-hidden />
@@ -1325,15 +1236,6 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
         })}
       </ol>
 
-      <a
-        href="#projetos"
-        className={`inline-flex items-center gap-2 mt-8 px-5 py-2.5 rounded-xl font-body text-sm font-medium border ${
-          dark ? "border-white/15 text-white" : "border-black/15 text-[#08080A]"
-        }`}
-      >
-        {pt ? "Ver Projetos" : "View Projects"}
-        <ArrowRight size={15} aria-hidden />
-      </a>
     </div>
   );
 }

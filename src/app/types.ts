@@ -13,11 +13,6 @@ export interface ProcessStep {
   desc: string;
 }
 
-export interface FaqItem {
-  q: string;
-  a: string;
-}
-
 export interface Translation {
   nav: string[];
   badge: string;
@@ -33,8 +28,6 @@ export interface Translation {
   about_label: string;
   about_title: string;
   about_bio: string;
-  skills_label: string;
-  skills_title: string;
   projects_label: string;
   projects_title: string;
   experience_label: string;
@@ -48,17 +41,8 @@ export interface Translation {
   form_message: string;
   form_send: string;
   form_sent: string;
-  journey_label: string;
-  journey_title: string;
   process_label: string;
   process_title: string;
-  tools_label: string;
-  tools_title: string;
-  blog_label: string;
-  blog_title: string;
-  blog_coming: string;
-  faq_label: string;
-  faq_title: string;
   certs_label: string;
   certs_title: string;
   certs_stat_certs: string;
@@ -68,39 +52,16 @@ export interface Translation {
   certs_verify_hint: string;
   certs_completed: string;
   certs_in_progress: string;
-  github_label: string;
-  github_title: string;
-  github_subtitle: string;
-  github_cta: string;
-  github_legend_less: string;
-  github_legend_more: string;
-  github_repos: string;
-  github_contributions: string;
-  github_streak: string;
-  github_stars: string;
-  github_top_lang: string;
-  github_tooltip: string;
-  github_activity_label: string;
-  github_recent_note: string;
-  stats_label: string;
-  stat_projects: string;
-  stat_commits: string;
-  stat_techs: string;
-  stat_years: string;
-  stat_certs: string;
   completed: string;
   in_progress: string;
   all_rights: string;
   footer_tagline: string;
-  read_more: string;
   back_top: string;
   process_steps: ProcessStep[];
-  faq_items: FaqItem[];
 }
 
 export interface SkillItem {
   name: string;
-  level: number;
   desc: string;
   icon: IconType;
   color: string;
@@ -108,7 +69,6 @@ export interface SkillItem {
   lightColor?: string;
   /** When the brand logo is multi-color, the full gradient stop sequence. */
   colors?: string[];
-  href: string;
 }
 
 export interface SkillCategory {
@@ -150,12 +110,6 @@ export interface Project {
   results: LocalizedText;
 }
 
-export interface JourneyItem {
-  year: string;
-  title: LocalizedText;
-  desc: LocalizedText;
-}
-
 export interface ExperienceItem {
   role: LocalizedText;
   company: string;
@@ -177,23 +131,6 @@ export interface Certificate {
   inProgress?: boolean;
   /** Public link to the issuer's validation document, when one exists. */
   verifyUrl?: string;
-}
-
-export interface Tool {
-  name: string;
-  icon: IconType;
-  color: string;
-  /** Alternate brand color used on light backgrounds when `color` is too light to read. */
-  lightColor?: string;
-  /** When the brand logo is multi-color, the full gradient stop sequence. */
-  colors?: string[];
-  href: string;
-}
-
-export interface ToolCategory {
-  icon: LucideIcon;
-  label: string;
-  tools: Tool[];
 }
 
 /** Shared props for full sections that need theme, language and copy. */

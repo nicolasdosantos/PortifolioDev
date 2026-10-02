@@ -131,7 +131,7 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={reduced ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.98 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        onClick={e => e.stopPropagation()}
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}
         className={`relative z-10 w-full md:max-w-4xl max-h-[94vh] md:max-h-[90vh] overflow-y-auto overscroll-contain rounded-t-[28px] md:rounded-[28px] border ${hairline}`}
         style={{
           background: surface,

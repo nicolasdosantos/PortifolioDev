@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { PendingLink } from "../types";
 
-/** Manages the "confirm before opening an external link" flow shared by Contact, Skills and FavoriteTools. */
+/** Manages the "confirm before opening an external link" flow used by the Contact section. */
 export function useConfirmNavigate() {
   const [pending, setPending] = useState<PendingLink | null>(null);
 
