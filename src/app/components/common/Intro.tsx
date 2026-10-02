@@ -56,6 +56,23 @@ export function Intro({ onDone }: IntroProps) {
     };
   }, [onDone]);
 
+  /* Pular: clique, tecla, rolagem ou toque encerram a intro na hora. Os eventos ficam na
+     janela, não na capa, para ela continuar `pointer-events-none` (ver o comentário abaixo). */
+  useEffect(() => {
+    const skip = () => onDone();
+    const passive = { passive: true } as const;
+    window.addEventListener("pointerdown", skip);
+    window.addEventListener("keydown", skip);
+    window.addEventListener("wheel", skip, passive);
+    window.addEventListener("touchstart", skip, passive);
+    return () => {
+      window.removeEventListener("pointerdown", skip);
+      window.removeEventListener("keydown", skip);
+      window.removeEventListener("wheel", skip);
+      window.removeEventListener("touchstart", skip);
+    };
+  }, [onDone]);
+
   const letters = useMemo(() => NAME.split(""), []);
 
   return (
@@ -323,6 +340,16 @@ export function Intro({ onDone }: IntroProps) {
           </div>
         </motion.div>
       </motion.div>
+
+      {/* Aviso de que dá para pular. Aparece depois do nome, para não competir com ele. */}
+      <motion.p
+        className="absolute bottom-8 inset-x-0 text-center text-[11px] font-mono2 text-white/45"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1.2 }}
+      >
+        {isMobile ? "Toque para pular" : "Clique ou pressione qualquer tecla para pular"}
+      </motion.p>
 
       {/* Flash sweep on exit-ready */}
       <AnimatePresence>
