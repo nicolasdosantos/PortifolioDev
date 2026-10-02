@@ -4,7 +4,7 @@ export const experience: ExperienceItem[] = [
   {
     role: { pt: "Estagiário de Desenvolvimento", en: "Development Intern" },
     company: "Agência VoêFly",
-    period: { pt: "2026 — Presente", en: "2026 — Present" },
+    period: { pt: "Abr 2026 — Presente", en: "Apr 2026 — Present" },
     type: { pt: "Estágio · Presencial", en: "Internship · On-site" },
     highlights: {
       pt: [

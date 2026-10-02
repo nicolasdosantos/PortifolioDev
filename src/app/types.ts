@@ -125,16 +125,26 @@ export interface Project {
   id: number;
   title: string;
   description: LocalizedText;
+  /** Texto do modal. Parágrafos separados por linha em branco (\n\n). */
   fullDesc: LocalizedText;
   image: string;
   tags: string[];
-  category: string;
+  category: LocalizedText;
   status: ProjectStatus;
   year: string;
   featured: boolean;
-  github: string;
+  /** Cor de destaque do projeto (brilho e botões do modal). Tirada do vídeo ou da imagem. */
+  accent?: string;
+  /** Repositório público. Omitir quando o código é privado: o modal avisa em vez de linkar. */
+  github?: string;
   /** Link de demonstração online. Omitir quando não há demo: o modal mostra só o código. */
   demo?: string;
+  /** Rótulo do botão de demo quando o link não é o app em si (ex.: site institucional). */
+  demoLabel?: LocalizedText;
+  /** Vídeo completo em public/videos, tocado com controles e som no modal. */
+  video?: string;
+  /** Recorte curto e sem áudio só com as telas do produto, em loop no card. Sem ele, o card usa `video`. */
+  videoPreview?: string;
   problem: LocalizedText;
   solution: LocalizedText;
   results: LocalizedText;
