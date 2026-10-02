@@ -46,15 +46,16 @@ export const skillCategories: SkillCategory[] = [
     icon: Server,
     color: "#2563EB",
     skills: [
-      /* Vinha do currículo (gen_cv.py) e do bloco de código do Hero, que já anunciava
-         "Node" — mas não existia nesta lista. */
-      { name: "Node.js", desc: "Runtime JS, npm, APIs", icon: SiNodedotjs, color: "#5FA04E" },
+      /* Ordem do posicionamento: PHP e Laravel (estágio) primeiro. O card fechado mostra
+         os 4 primeiros; Node.js é o backend do B4 Charge e Python vem pelas automações. */
       { name: "PHP", desc: "APIs, Routing", icon: SiPhp, color: "#777BB4" },
       { name: "Laravel", desc: "MVC, Eloquent", icon: SiLaravel, color: "#FF2D20" },
+      { name: "Node.js", desc: "Express, APIs", icon: SiNodedotjs, color: "#5FA04E" },
+      { name: "Python", desc: "Automações e scripts", icon: SiPython, color: "#3776AB", colors: ["#3776AB", "#FFD43B"] },
       { name: "Livewire", desc: "Reactive components", icon: SiLivewire, color: "#4E56A6" },
-      { name: "Python", desc: "Scripts, Automations", icon: SiPython, color: "#3776AB", colors: ["#3776AB", "#FFD43B"] },
       { name: "Flask", desc: "REST APIs, CRUD", icon: SiFlask, color: "#FFFFFF", lightColor: "#000000" },
-      { name: "Java", desc: "OOP fundamentals", icon: FaJava, color: "#E76F00", colors: ["#E76F00", "#5382A1"] },
+      /* "estudando" no próprio nome: no celular e no card fechado só o nome aparece */
+      { name: "Java (estudando)", desc: "Orientação a objetos", icon: FaJava, color: "#E76F00", colors: ["#E76F00", "#5382A1"] },
     ],
   },
   {

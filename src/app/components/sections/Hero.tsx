@@ -15,6 +15,10 @@ const SOCIALS = [
 ];
 
 export function Hero({ dark, t, lang }: HeroProps) {
+  /* Nome completo, como no currículo, no LinkedIn e na busca: "Nicolas Pichiteli" em
+     cima e "dos Santos" com o degradê. Cada linha quebra nos espaços em telas estreitas. */
+  const words = t.fullName.split(" ");
+  const nameLines = [words.slice(0, 2).join(" "), words.slice(2).join(" ")];
   const cvHref = lang === "en" ? "/nicolas-pichiteli-cv-en.pdf" : "/nicolas-pichiteli-cv.pdf";
   const cvFilename = lang === "en" ? "Nicolas-Pichiteli-CV-EN.pdf" : "Nicolas-Pichiteli-CV.pdf";
 
@@ -48,9 +52,9 @@ export function Hero({ dark, t, lang }: HeroProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.25 }}
-              className={`font-display text-[clamp(3.5rem,10vw,7rem)] font-bold leading-[0.92] tracking-tight mb-5 ${dark ? "text-white" : "text-[#08080A]"}`}
+              className={`font-display text-[clamp(2.75rem,7vw,5.25rem)] font-bold leading-[0.95] tracking-tight mb-6 ${dark ? "text-white" : "text-[#08080A]"}`}
             >
-              {t.name.split(" ").map((w, i) => (
+              {nameLines.map((w, i) => (
                 <span key={i} className="block">
                   {i === 1 ? (
                     <span
@@ -70,10 +74,13 @@ export function Hero({ dark, t, lang }: HeroProps) {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="flex items-center gap-3 mb-6"
+              className="flex items-start gap-3 mb-6"
             >
               <span className={`text-xl font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>—</span>
-              <span className={`text-lg font-body font-medium ${dark ? "text-white/72" : "text-black/75"}`}>{t.role}</span>
+              <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className={`text-lg font-body font-medium ${dark ? "text-white/85" : "text-black/80"}`}>{t.role}</span>
+                <span className={`text-sm font-mono2 ${dark ? "text-violet-300/90" : "text-violet-700"}`}>{t.role_stack}</span>
+              </span>
             </motion.div>
 
             <motion.p
@@ -208,7 +215,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
                         <>
                           <span className={key}>stack: </span>
                           <span className={punct}>[</span>
-                          {["React", "TypeScript", "Node", "PHP", "Python"].map((s, idx, arr) => (
+                          {["PHP", "Laravel", "React", "TypeScript"].map((s, idx, arr) => (
                             <span key={s}>
                               <span className={num}>&quot;{s}&quot;</span>
                               {idx < arr.length - 1 && <span className={comma}>, </span>}
@@ -218,14 +225,15 @@ export function Hero({ dark, t, lang }: HeroProps) {
                         </>
                       ),
                     },
-                    { indent: true, code: <><span className={key}>focus: </span><span className={str}>&quot;clean code &amp; UX&quot;</span><span className={comma}>,</span></> },
+                    { indent: true, code: <><span className={key}>automation: </span><span className={num}>&quot;Python&quot;</span><span className={comma}>,</span></> },
+                    { indent: true, code: <><span className={key}>learning: </span><span className={num}>&quot;Java&quot;</span><span className={comma}>,</span></> },
                     { indent: true, code: <><span className={key}>open: </span><span className={str}>true</span><span className={comma}>,</span></> },
                     { code: <span className={punct}>{"}"}</span> },
                     { blank: true },
-                    { code: <span className={punct}>{"// building the future, one commit at a time"}</span> },
+                    { code: <span className={punct}>{"// now: B4 Charge + Laravel at work"}</span> },
                   ];
                   let elapsed = 0.7;
-                  return lines.map((line, i) => {
+                  const rendered = lines.map((line, i) => {
                     const delay = elapsed;
                     const duration = line.blank ? 0.1 : 0.45;
                     elapsed += line.blank ? 0.08 : duration * 0.55;
@@ -242,13 +250,21 @@ export function Hero({ dark, t, lang }: HeroProps) {
                       </div>
                     );
                   });
+                  /* o cursor começa a piscar quando a última linha termina de "digitar":
+                     antes era um 3.4s fixo, que descompassava ao mudar o número de linhas */
+                  const typingEnd = elapsed + 0.45;
+                  return (
+                    <>
+                      {rendered}
+                      <motion.span
+                        className={`inline-block w-[6px] h-[12px] align-middle ${dark ? "bg-cyan-300/80" : "bg-cyan-600"}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [1, 0, 1] }}
+                        transition={{ duration: 0.9, repeat: Infinity, delay: typingEnd }}
+                      />
+                    </>
+                  );
                 })()}
-                <motion.span
-                  className={`inline-block w-[6px] h-[12px] align-middle ${dark ? "bg-cyan-300/80" : "bg-cyan-600"}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 0.9, repeat: Infinity, delay: 3.4 }}
-                />
               </div>
             </div>
           </motion.div>

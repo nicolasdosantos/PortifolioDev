@@ -4,11 +4,11 @@ export const translations: Record<Lang, Translation> = {
   pt: {
     nav: ["Sobre", "Projetos", "Experiência", "Stack", "Formação", "Contato"],
     badge: "Disponível para oportunidades",
-    name: "Nicolas Santos",
     fullName: "Nicolas Pichiteli dos Santos",
     role: "Desenvolvedor Full Stack",
+    role_stack: "PHP, Laravel, React e TypeScript",
     description:
-      "Transformando ideias em aplicações modernas, escaláveis e com excelente experiência para o usuário.",
+      "Estagiário de desenvolvimento na Agência VoêFly, onde trabalho com PHP e Laravel. Fora do estágio, construo o B4 Charge e outros projetos em React e TypeScript.",
     cta_projects: "Ver Projetos",
     cta_contact: "Contato",
     cta_cv: "Download CV",
@@ -17,7 +17,7 @@ export const translations: Record<Lang, Translation> = {
     about_label: "Sobre Mim",
     about_title: "Em início de carreira, construindo soluções reais",
     about_bio:
-      "Sou Desenvolvedor Full Stack, atualmente estagiário na Agência VoêFly e estudante de Análise e Desenvolvimento de Sistemas na Unisalesiano. No estágio trabalho com PHP, Laravel e MariaDB, com Tailwind e DaisyUI nas telas, e uso Python para automatizar processos manuais. Nos projetos pessoais uso React e TypeScript, do frontend à modelagem de banco de dados e integração de APIs. Gosto de ambientes colaborativos que valorizam boas práticas de engenharia, e busco contribuir com soluções escaláveis que gerem impacto real para o negócio.",
+      "Sou desenvolvedor full stack em início de carreira. Desde abril de 2026 estagio na Agência VoêFly, onde trabalho com PHP, Laravel e MariaDB, com Tailwind e DaisyUI nas telas, e uso Python para automatizar processos que a equipe fazia à mão. Fora do estágio, sou fundador da Base4 Systems e construo o B4 Charge, um SaaS de cobrança multiempresa, além de projetos pessoais em React, TypeScript e Supabase, como o Nexo. Curso Análise e Desenvolvimento de Sistemas na Unisalesiano e, no momento, estudo Java.",
     projects_label: "Projetos",
     projects_title: "Trabalhos Selecionados",
     experience_label: "Experiência",
@@ -59,11 +59,11 @@ export const translations: Record<Lang, Translation> = {
   en: {
     nav: ["About", "Projects", "Experience", "Stack", "Education", "Contact"],
     badge: "Available for opportunities",
-    name: "Nicolas Santos",
     fullName: "Nicolas Pichiteli dos Santos",
     role: "Full Stack Developer",
+    role_stack: "PHP, Laravel, React & TypeScript",
     description:
-      "Turning ideas into modern, scalable applications with excellent user experiences.",
+      "Development intern at Agência VoêFly, working with PHP and Laravel. Outside work, I'm building B4 Charge and other projects with React and TypeScript.",
     cta_projects: "View Projects",
     cta_contact: "Contact",
     cta_cv: "Download CV",
@@ -72,7 +72,7 @@ export const translations: Record<Lang, Translation> = {
     about_label: "About Me",
     about_title: "Early in my career, building real solutions",
     about_bio:
-      "I'm a Full Stack Developer, currently interning at Agência VoêFly and studying Systems Analysis and Development at Unisalesiano. At my internship I work with PHP, Laravel and MariaDB, using Tailwind and DaisyUI for the UI, and I use Python to automate manual processes. In personal projects I use React and TypeScript, from frontend to database design and API integration. I thrive in collaborative environments that value strong engineering practices, and I'm looking to contribute to scalable solutions that create real business impact.",
+      "I'm an early-career full stack developer. Since April 2026 I've been interning at Agência VoêFly, where I work with PHP, Laravel and MariaDB, using Tailwind and DaisyUI for the UI, and I use Python to automate processes the team used to do by hand. Outside work, I founded Base4 Systems and I'm building B4 Charge, a multi-tenant billing SaaS, plus personal projects with React, TypeScript and Supabase, such as Nexo. I'm studying Systems Analysis and Development at Unisalesiano and currently learning Java.",
     projects_label: "Projects",
     projects_title: "Selected Work",
     experience_label: "Experience",

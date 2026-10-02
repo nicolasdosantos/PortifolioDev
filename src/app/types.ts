@@ -16,9 +16,10 @@ export interface ProcessStep {
 export interface Translation {
   nav: string[];
   badge: string;
-  name: string;
   fullName: string;
   role: string;
+  /** Stack principal ao lado do cargo, no hero. */
+  role_stack: string;
   description: string;
   cta_projects: string;
   cta_contact: string;
