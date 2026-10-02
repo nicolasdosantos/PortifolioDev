@@ -23,7 +23,7 @@ O layout inicial saiu do **Figma Make**. A partir dele reescrevi a estrutura e f
 - **PT/EN sem biblioteca** — um objeto `Translation` tipado (`src/app/types.ts`) com as duas línguas; o idioma é estado do `App` passado às seções.
 - **Seção do cubo (`StackHero.tsx`)** — cubo e órbita da stack animados pelo scroll, respeitando `prefers-reduced-motion`.
 - **Linha de scroll (`ScrollTrail.tsx`)** — um único caminho SVG gerado a partir da altura real da página e desenhado com `stroke-dashoffset` conforme a rolagem.
-- **Confirmação antes de sair do site** — `useConfirmNavigate` + `ConfirmNavigateDialog` nos links de skills, ferramentas e contato.
+- **Confirmação antes de sair do site** — `useConfirmNavigate` + `ConfirmNavigateDialog` nos links de contato.
 - **Rotas desconhecidas voltam para a home** — `vercel.json` em produção e um middleware no `vite.config.ts` no ambiente de desenvolvimento.
 - **Currículo gerado por script** — `gen_cv.py` monta o PDF do currículo (PT e EN).
 
@@ -49,7 +49,7 @@ src/
 │   ├── App.tsx            # composição das seções e estado de tema/idioma
 │   ├── types.ts           # tipos do conteúdo (Translation, Project, SkillCategory...)
 │   ├── data/              # conteúdo do site
-│   ├── hooks/             # useCounter, useHasHover, useConfirmNavigate
+│   ├── hooks/             # useHasHover, useIsMobile, useConfirmNavigate
 │   └── components/
 │       ├── layout/        # Navbar, Footer
 │       ├── sections/      # Hero, About, Projects, Experience, Contact...

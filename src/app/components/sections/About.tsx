@@ -1,16 +1,19 @@
 import { motion } from "motion/react";
-import { Award, Briefcase, Code2, Coffee, MapPin, Sparkles } from "lucide-react";
+import { Briefcase, Code2, FolderGit2, MapPin, Sparkles } from "lucide-react";
 import type { SectionProps } from "../../types";
 import { SectionHeader } from "../common";
-import { completedCertificates } from "../../data";
+import { projects } from "../../data";
 
 const STACK = ["PHP", "Laravel", "MariaDB", "Python", "React", "TypeScript", "Tailwind CSS", "MySQL", "Supabase"];
 
+const WITH_VIDEO = projects.filter(p => p.video).length;
+
+/* Números que só aparecem aqui. Antes eram "41 repositórios" (fixo e já desatualizado),
+   certificados (repetido na seção de Formação) e "∞ cafés". */
 const CARDS = [
-  { icon: Code2, val: "2022", lbl: { pt: "Estudando desde", en: "Studying since" }, clr: "text-violet-400", bg: "bg-violet-500/10" },
-  { icon: Briefcase, val: "41", lbl: { pt: "Repositórios", en: "Repositories" }, clr: "text-blue-400", bg: "bg-blue-500/10" },
-  { icon: Award, val: `${completedCertificates.length}`, lbl: { pt: "Certificados", en: "Certificates" }, clr: "text-amber-400", bg: "bg-amber-500/10" },
-  { icon: Coffee, val: "∞", lbl: { pt: "Cafés", en: "Coffees" }, clr: "text-emerald-400", bg: "bg-emerald-500/10" },
+  { icon: Code2, val: "2022", lbl: { pt: "Estudando programação desde", en: "Studying programming since" }, clr: "text-violet-400", bg: "bg-violet-500/10" },
+  { icon: Briefcase, val: "2026", lbl: { pt: "Estagiando em desenvolvimento desde abril", en: "Development intern since April" }, clr: "text-blue-400", bg: "bg-blue-500/10" },
+  { icon: FolderGit2, val: `${projects.length}`, lbl: { pt: `Projetos no portfólio, ${WITH_VIDEO} com vídeo`, en: `Portfolio projects, ${WITH_VIDEO} with video` }, clr: "text-emerald-400", bg: "bg-emerald-500/10" },
 ];
 
 export function About({ dark, t, lang }: SectionProps) {
@@ -149,7 +152,7 @@ export function About({ dark, t, lang }: SectionProps) {
         </div>
 
         {/* Stats strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           {CARDS.map(({ icon: Icon, val, lbl, clr, bg }, i) => (
             <motion.div
               key={val}
@@ -158,13 +161,16 @@ export function About({ dark, t, lang }: SectionProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-              className={`group p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[#0d0d12]/95 border-white/[0.09] hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.12)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_30px_rgba(124,58,237,0.08)]"}`}
+              className={`group flex items-center gap-4 p-4 sm:block sm:p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[#0d0d12]/95 border-white/[0.09] hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.12)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_30px_rgba(124,58,237,0.08)]"}`}
             >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 ${bg}`}>
+              {/* no celular vira uma linha (ícone ao lado do número); a partir de `sm`, card */}
+              <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center sm:mb-4 transition-transform duration-300 group-hover:scale-110 ${bg}`}>
                 <Icon size={18} className={clr} />
               </div>
-              <div className={`font-display text-4xl font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{val}</div>
-              <div className={`text-xs mt-1 font-body ${dark ? "text-white/58" : "text-black/70"}`}>{lbl[lang]}</div>
+              <div>
+                <div className={`font-display text-3xl sm:text-4xl font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{val}</div>
+                <div className={`text-xs mt-1 font-body ${dark ? "text-white/58" : "text-black/70"}`}>{lbl[lang]}</div>
+              </div>
             </motion.div>
           ))}
         </div>

@@ -14,12 +14,13 @@ interface NavbarProps {
 
 /* Âncoras da narrativa, pareadas por índice com t.nav. O menu filtra em runtime pelas que
    EXISTEM na página, então nenhum item aponta para o vazio se uma seção sair. */
-const NAV_IDS = ["home", "sobre", "stack", "skills", "projetos", "certificados", "experiencia", "contato"];
+const NAV_IDS = ["sobre", "projetos", "experiencia", "stack", "certificados", "contato"];
 
 export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState(NAV_IDS[0]);
+  /* vazio no topo da página: a logo é que leva de volta ao início */
+  const [active, setActive] = useState("");
   const clickLock = useRef<number | null>(null);
 
   useEffect(() => {
@@ -111,7 +112,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
             <Logo size={36} />
           </motion.button>
 
-          {/* Menu completo só a partir de `lg`. Em `md` (768–1023px) os 8 links, o logo e os
+          {/* Menu completo só a partir de `lg`. Em `md` (768–1023px) os links, o logo e os
               botões de idioma/tema não caíam na largura disponível: o par PT-BR + tema
               transbordava para FORA da tela (medido em 768px: terminava em 829px de 765
               úteis) e ficava inalcançável. Nessa faixa o menu hambúrguer é a navegação. */}
