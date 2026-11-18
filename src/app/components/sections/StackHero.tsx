@@ -146,7 +146,7 @@ export const STACK_HERO_DEFAULTS: StackHeroConfig = {
      ~275px (1.65×). É esse achatamento que faz o conjunto orbitar em vez de formar um
      círculo rígido. O valor é limitado em runtime para o card do topo não ser cortado. */
   orbitRy: 0.4,
-  cardW: 0.165,
+  cardW: 0.205,
   emerge: 0.16,
   tStart: 0.06,
   tStep: 0.17,
@@ -414,7 +414,9 @@ export function StackHero({ dark = true, lang = "pt", config, cards = STACK_CARD
             ele ficava em 52% — não havia espaço físico para os cards se afastarem do
             cubo sem sair da tela. A coluna de texto também encolheu (33% → 26%) e o gap
             dobrou, que é o espaço negativo que faltava entre texto, cubo e cards. */}
-        <div className="relative h-full max-w-[1560px] mx-auto px-6 grid items-center gap-12 lg:grid-cols-[minmax(0,30%)_minmax(0,1fr)]">
+        {/* A coluna de texto começa na mesma borda esquerda do resto do site (max-w-6xl
+            centralizado + px-6), e o palco do cubo usa todo o espaço à direita. */}
+        <div className="relative h-full pl-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))] pr-6 grid items-center gap-12 lg:grid-cols-[minmax(0,30%)_minmax(0,1fr)]">
           <TextColumn lang={lang} dark={dark} />
 
           {/* palco: cubo ao centro, cards no anel */}
@@ -895,12 +897,12 @@ function OrbitCard({
           />
         )}
 
-        <div className="relative flex items-center" style={{ gap: w * 0.055 }}>
+        <div className="relative flex items-center" style={{ gap: w * 0.04 }}>
           <motion.span
             className="shrink-0 grid place-items-center rounded-lg"
             style={{
-              width: w * 0.19,
-              height: w * 0.19,
+              width: w * 0.17,
+              height: w * 0.17,
               border: `1px solid ${rgba(c, 0.4)}`,
               background: rgba(c, dark ? 0.12 : 0.16),
             }}
@@ -911,8 +913,10 @@ function OrbitCard({
           </motion.span>
           <span
             id={labelId}
-            className="font-body uppercase whitespace-nowrap"
-            style={{ fontSize: Math.max(13, w * 0.058), letterSpacing: "0.16em", color: dark ? "rgba(255,255,255,.9)" : mix(c, 0.35) }}
+            /* Sem caixa alta espaçada: com o mínimo de 13px, "FERRAMENTAS" e "BACK-END" passavam
+               da largura do card e eram cortados. Em caixa normal e seminegrito o título cabe. */
+            className="font-body font-semibold whitespace-nowrap truncate min-w-0"
+            style={{ fontSize: Math.min(14, Math.max(13, w * 0.05)), letterSpacing: "0", color: dark ? "rgba(255,255,255,.9)" : mix(c, 0.35) }}
           >
             {card.label[lang]}
           </span>
