@@ -17,8 +17,8 @@ export function DevProcess({ dark, t }: DevProcessProps) {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-24 md:py-32 relative">
+      <div className="max-w-6xl mx-auto px-6">
         <SectionHeader label={t.process_label} title={t.process_title} dark={dark} />
         {/* Seis colunas só a partir de `xl`. Em `lg` (1024px) cada card ficava com 108px de
             conteúdo e "Desenvolvimento" — a palavra mais longa da lista — vazava 19px para
@@ -36,7 +36,7 @@ export function DevProcess({ dark, t }: DevProcessProps) {
                 transition={{ duration: 0.4, delay: i * 0.06 }}
                 onHoverStart={() => hasHover && setHovered(i)}
                 onHoverEnd={() => hasHover && setHovered(null)}
-                className={`relative p-5 rounded-2xl border cursor-default transition-colors duration-300 ${
+                className={`relative p-5 rounded-xl border cursor-default transition-colors duration-300 ${
                   dark
                     ? isHovered ? "bg-[color:var(--p-surface-2)]/95 border-white/[0.14]" : "bg-[color:var(--p-surface)]/95 border-white/[0.09]"
                     : isHovered ? "bg-black/[0.03] border-black/[0.22]" : "bg-white border-black/[0.16]"

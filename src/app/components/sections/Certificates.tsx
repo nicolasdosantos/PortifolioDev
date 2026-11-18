@@ -18,8 +18,8 @@ export function Certificates({ dark, t }: CertificatesProps) {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section id="certificados" className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="certificados" className="py-24 md:py-32 relative">
+      <div className="max-w-6xl mx-auto px-6">
         <SectionHeader label={t.certs_label} title={t.certs_title} dark={dark} />
 
         {/* Summary strip */}
@@ -56,7 +56,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
                 whileHover={hasHover ? { y: -5, transition: { duration: 0.25, ease: "easeOut" } } : undefined}
                 onHoverStart={() => hasHover && setHovered(cert.title)}
                 onHoverEnd={() => hasHover && setHovered(null)}
-                className="relative rounded-2xl overflow-hidden transition-shadow duration-300"
+                className="relative rounded-xl overflow-hidden transition-shadow duration-300"
                 style={{
                   background: dark
                     ? "linear-gradient(150deg, rgba(255,255,255,0.07), rgba(255,255,255,0.015))"
@@ -64,11 +64,11 @@ export function Certificates({ dark, t }: CertificatesProps) {
                 }}
               >
                 <span
-                  className="absolute inset-0 rounded-2xl transition-opacity duration-300 pointer-events-none"
+                  className="absolute inset-0 rounded-xl transition-opacity duration-300 pointer-events-none"
                   style={{ background: "linear-gradient(135deg, var(--p-accent-ink), color-mix(in srgb, var(--p-accent-ink) 40%, transparent))", opacity: isHovered ? 1 : 0 }}
                 />
                 <div
-                  className={`absolute inset-[1.5px] rounded-[14px] transition-colors duration-300 ${dark ? "bg-[color:var(--p-surface)]" : "bg-white"}`}
+                  className={`absolute inset-[1.5px] rounded-[10.5px] transition-colors duration-300 ${dark ? "bg-[color:var(--p-surface)]" : "bg-white"}`}
                 />
 
                 {/* Circuit-style corner accent */}
@@ -151,7 +151,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
                     )}
                     <div className="flex items-center gap-2">
                       {cert.hours && (
-                        <span className={`text-xs font-mono2 px-1.5 py-0.5 rounded ${dark ? "bg-white/[0.06] text-white/70" : "bg-black/[0.06] text-black/70"}`}>
+                        <span className={`text-xs font-mono2 px-1.5 py-0.5 rounded-lg ${dark ? "bg-white/[0.06] text-white/70" : "bg-black/[0.06] text-black/70"}`}>
                           {cert.hours}
                         </span>
                       )}

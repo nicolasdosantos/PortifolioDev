@@ -136,7 +136,7 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
         exit={reduced ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.98 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e: React.MouseEvent) => e.stopPropagation()}
-        className={`relative z-10 w-full md:max-w-4xl max-h-[94vh] md:max-h-[90vh] overflow-y-auto overscroll-contain rounded-t-[28px] md:rounded-[28px] border ${hairline}`}
+        className={`relative z-10 w-full md:max-w-4xl max-h-[94vh] md:max-h-[90vh] overflow-y-auto overscroll-contain rounded-t-xl md:rounded-xl border ${hairline}`}
         style={{
           background: surface,
           boxShadow: `0 40px 120px -20px ${accent}55, 0 0 0 1px ${accent}1f`,
@@ -170,7 +170,7 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
           )}
 
           {p.video && (
-            <div className="absolute top-0 inset-x-0 h-[3px] bg-white/10 overflow-hidden md:rounded-t-[28px]">
+            <div className="absolute top-0 inset-x-0 h-[3px] bg-white/10 overflow-hidden md:rounded-t-xl">
               <div ref={progressRef} className="h-full origin-left" style={{ background: accent, transform: "scaleX(0)" }} />
             </div>
           )}

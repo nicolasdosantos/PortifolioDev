@@ -9,7 +9,7 @@ interface FooterProps {
 export function Footer({ dark, t }: FooterProps) {
   return (
     <footer className={`py-10 border-t ${dark ? "border-white/[0.05]" : "border-black/[0.14]"}`}>
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <div className={`font-display text-base font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>
             Nicolas<span className="text-brand-ink">.</span>

@@ -81,7 +81,7 @@ function Tags({ tags, dark, max }: { tags: string[]; dark: boolean; max?: number
   return (
     <div className="flex flex-wrap gap-1.5">
       {shown.map(tag => (
-        <span key={tag} className={`px-2 py-0.5 rounded text-xs font-mono2 border ${dark ? "border-white/10 bg-white/[0.04] text-white/70" : "border-black/[0.16] bg-black/[0.07] text-black/70"}`}>{tag}</span>
+        <span key={tag} className={`px-2 py-0.5 rounded-lg text-xs font-mono2 border ${dark ? "border-white/10 bg-white/[0.04] text-white/70" : "border-black/[0.16] bg-black/[0.07] text-black/70"}`}>{tag}</span>
       ))}
       {max && tags.length > max && <span className={`text-xs font-mono2 self-center ${dark ? "text-white/50" : "text-black/70"}`}>+{tags.length - max}</span>}
     </div>
@@ -105,11 +105,11 @@ export function Projects({ dark, t, lang }: SectionProps) {
     if (!sel) lastFocus.current?.focus();
   }, [sel]);
 
-  const cardBase = `group cursor-pointer rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-1 ${FOCUS_RING} ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09]" : "bg-white border-black/[0.16]"}`;
+  const cardBase = `group cursor-pointer rounded-xl border overflow-hidden transition-all duration-300 hover:-translate-y-1 ${FOCUS_RING} ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09]" : "bg-white border-black/[0.16]"}`;
 
   return (
-    <section id="projetos" className="py-32 relative">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="projetos" className="py-24 md:py-32 relative">
+      <div className="max-w-6xl mx-auto px-6">
         <SectionHeader label={t.projects_label} title={t.projects_title} dark={dark} />
 
         {/* Destaques: os dois projetos com vídeo, lado a lado */}
@@ -171,7 +171,7 @@ export function Projects({ dark, t, lang }: SectionProps) {
               <div className="p-5 flex flex-col flex-1">
                 <div className="flex items-start justify-between gap-3 mb-1.5">
                   <h3 className={`font-display font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{p.title}</h3>
-                  <span className={`shrink-0 px-2 py-0.5 rounded text-xs border ${STATUS_STYLE[dark ? "dark" : "light"][p.status]}`}>{t[p.status]}</span>
+                  <span className={`shrink-0 px-2 py-0.5 rounded-lg text-xs border ${STATUS_STYLE[dark ? "dark" : "light"][p.status]}`}>{t[p.status]}</span>
                 </div>
                 <span className={`text-xs font-body mb-3 ${dark ? "text-white/50" : "text-black/70"}`}>{p.category[lang]} · {p.year}</span>
                 <p className={`text-sm font-body mb-4 ${dark ? "text-white/70" : "text-black/70"}`}>{p.description[lang]}</p>

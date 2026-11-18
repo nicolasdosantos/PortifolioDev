@@ -96,7 +96,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
           }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
           {/* Links de verdade (href com âncora): abrem em nova aba, podem ser copiados e
               funcionam sem JavaScript. O onClick só troca o salto seco pela rolagem suave. */}
           <motion.a
@@ -115,7 +115,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
               botões de idioma/tema não caíam na largura disponível: o par PT-BR + tema
               transbordava para FORA da tela (medido em 768px: terminava em 829px de 765
               úteis) e ficava inalcançável. Nessa faixa o menu hambúrguer é a navegação. */}
-          <div className="hidden lg:flex items-center gap-1 relative p-1 rounded-2xl">
+          <div className="hidden lg:flex items-center gap-1 relative p-1 rounded-xl">
             {present.map(i => {
               const label = t.nav[i];
               const id = NAV_IDS[i];

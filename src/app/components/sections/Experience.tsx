@@ -5,10 +5,11 @@ import { experience } from "../../data";
 
 export function Experience({ dark, t, lang }: SectionProps) {
   return (
-    <section id="experiencia" className="py-32 relative">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="experiencia" className="py-24 md:py-32 relative">
+      <div className="max-w-6xl mx-auto px-6">
         <SectionHeader label={t.experience_label} title={t.experience_title} dark={dark} />
-        <div className="space-y-5">
+        {/* lista limitada a uma largura de leitura, alinhada à esquerda com as outras seções */}
+        <div className="space-y-5 max-w-4xl">
           {experience.map((exp, i) => (
             <motion.div
               key={exp.company}
@@ -17,7 +18,7 @@ export function Experience({ dark, t, lang }: SectionProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
               whileHover={{ x: 5 }}
-              className={`p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09] hover:border-brand-ink/25 hover:shadow-[0_0_28px_color-mix(in_srgb,var(--p-accent-ink)_5%,transparent)]" : "bg-white border-black/[0.16] hover:border-brand-ink hover:shadow-[0_8px_28px_color-mix(in_srgb,var(--p-accent-ink)_4%,transparent)]"}`}
+              className={`p-6 rounded-xl border cursor-default transition-all duration-300 ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09] hover:border-brand-ink/25 hover:shadow-[0_0_28px_color-mix(in_srgb,var(--p-accent-ink)_5%,transparent)]" : "bg-white border-black/[0.16] hover:border-brand-ink hover:shadow-[0_8px_28px_color-mix(in_srgb,var(--p-accent-ink)_4%,transparent)]"}`}
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
                 <div>
@@ -39,7 +40,7 @@ export function Experience({ dark, t, lang }: SectionProps) {
               </ul>
               <div className="flex flex-wrap gap-2">
                 {exp.tags.map(tag => (
-                  <span key={tag} className={`px-2 py-1 rounded-md text-xs font-mono2 border ${dark ? "border-white/10 bg-white/[0.04] text-white/70" : "border-black/[0.16] bg-black/[0.07] text-black/70"}`}>{tag}</span>
+                  <span key={tag} className={`px-2 py-1 rounded-lg text-xs font-mono2 border ${dark ? "border-white/10 bg-white/[0.04] text-white/70" : "border-black/[0.16] bg-black/[0.07] text-black/70"}`}>{tag}</span>
                 ))}
               </div>
             </motion.div>

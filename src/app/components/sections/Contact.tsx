@@ -48,8 +48,8 @@ export function Contact({ dark, t }: ContactProps) {
   const inputBase = `w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-body outline-none transition-all duration-200 focus:border-brand-ink focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--p-accent-ink)_8%,transparent)] ${dark ? "bg-[#101016]/95 border-white/[0.12] text-white placeholder:text-white/50" : "bg-black/[0.045] border-black/[0.16] text-[color:var(--p-bg)] placeholder:text-black/70"}`;
 
   return (
-    <section id="contato" className="py-32 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="contato" className="py-24 md:py-32 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6">
         <SectionHeader label={t.contact_label} title={t.contact_title} dark={dark} />
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 items-start lg:items-center">
           <div>
