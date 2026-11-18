@@ -8,14 +8,16 @@ import { ProjectModal } from "./ProjectModal";
 
 /* Por tema: no claro, o verde e o âmbar 400 sobre fundo quase branco davam 1,6–1,8:1 de
    contraste. Os tons 700 passam de 4,5:1. */
+/* Status na paleta: "em andamento" é o único que usa o destaque (é a informação que
+   importa); "concluído" fica neutro. Antes eram verde e amarelo, fora da paleta. */
 const STATUS_STYLE: Record<"dark" | "light", Record<ProjectStatus, string>> = {
   dark: {
-    completed: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
-    in_progress: "text-amber-400 bg-amber-400/10 border-amber-400/20",
+    completed: "text-white/70 bg-white/[0.04] border-white/15",
+    in_progress: "text-brand-ink bg-brand-ink/10 border-brand-ink/30",
   },
   light: {
-    completed: "text-emerald-700 bg-emerald-50 border-emerald-200",
-    in_progress: "text-amber-700 bg-amber-50 border-amber-200",
+    completed: "text-black/70 bg-black/[0.04] border-black/15",
+    in_progress: "text-brand-dark bg-brand/10 border-brand/30",
   },
 };
 
