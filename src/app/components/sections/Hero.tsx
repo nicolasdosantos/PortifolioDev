@@ -55,7 +55,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.25 }}
-              className={`font-display text-[clamp(2.75rem,7vw,5.25rem)] font-bold leading-[0.95] tracking-tight mb-6 ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}
+              className={`font-display text-[clamp(2.75rem,6vw,4.5rem)] font-bold leading-[0.95] tracking-tight mb-6 ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}
             >
               {nameLines.map((w, i) => (
                 <span key={i} className="block">
@@ -173,19 +173,21 @@ export function Hero({ dark, t, lang }: HeroProps) {
               className={`relative w-full max-w-[25rem] mx-auto lg:mx-0 rounded-xl border overflow-hidden ${codeDark ? "border-white/[0.09]" : ""}`}
             >
               <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${codeDark ? "border-white/[0.06]" : "border-black/[0.15]"}`}>
-                {["#FF5F57", "#FFBD2E", "#28C840"].map(c => <span key={c} className="w-3 h-3 rounded-full" style={{ background: c }} />)}
+                {[0, 1, 2].map(i => <span key={i} className="w-2.5 h-2.5 rounded-full bg-white/15" />)}
                 <span className={`ml-2 text-xs font-mono2 ${codeDark ? "text-white/50" : "text-black/70"}`}>developer.ts</span>
               </div>
               <div className="p-5 space-y-1.5">
                 {(() => {
-                  const kw = codeDark ? "text-brand-ink/70" : "text-brand-dark";
-                  const ident = codeDark ? "text-blue-400/70" : "text-blue-600";
+                  /* Sintaxe em dois tons da paleta: palavras-chave e números no vinho, strings num creme
+                     mais quente, chaves e pontuação apagadas. Antes eram azul, verde, ciano e amarelo. */
+                  const kw = "text-brand-ink";
+                  const ident = "text-white/90";
                   const punct = codeDark ? "text-white/50" : "text-black/70";
                   const key = codeDark ? "text-white/50" : "text-black/70";
                   const comma = codeDark ? "text-white/35" : "text-black/70";
-                  const str = codeDark ? "text-emerald-400/70" : "text-emerald-600";
-                  const num = codeDark ? "text-sky-400/70" : "text-sky-600";
-                  const kw2 = codeDark ? "text-amber-400/70" : "text-amber-600";
+                  const str = "text-[color:color-mix(in_srgb,var(--p-secondary)_80%,#C08A4A)]";
+                  const num = "text-brand-ink/85";
+                  const kw2 = str;
                   const lines = [
                     { code: <><span className={kw}>const </span><span className={ident}>dev</span><span className={punct}> = {"{"}</span></> },
                     { indent: true, code: <><span className={key}>role: </span><span className={kw2}>&quot;Full Stack Developer&quot;</span><span className={comma}>,</span></> },

@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     id: 5,
     title: "B4 Charge",
-    accent: "#2563EB",
+    accent: "#7A0C1B",
     description: {
       pt: "SaaS financeiro multiempresa para quem vende a prazo: gera as parcelas, cobra pelo WhatsApp e dá baixa sozinho quando o cliente paga.",
       en: "Multi-tenant financial SaaS for businesses that sell on credit: it generates installments, collects over WhatsApp and settles payments on its own.",
@@ -39,7 +39,7 @@ export const projects: Project[] = [
   {
     id: 2,
     title: "Nexo — Controle Financeiro",
-    accent: "#4352EA",
+    accent: "#7A0C1B",
     description: {
       pt: "Finanças pessoais multiusuário: importa extrato OFX, divide uma compra em várias categorias e isola os dados de cada usuário com RLS.",
       en: "Multi-user personal finance: imports OFX statements, splits one purchase across categories and isolates each user's data with RLS.",
@@ -74,7 +74,7 @@ export const projects: Project[] = [
   {
     id: 1,
     title: "Obsidian",
-    accent: "#C9A24D",
+    accent: "#7A0C1B",
     description: {
       pt: "Projeto de estudo: landing page de uma marca fictícia de estética automotiva premium, feita para praticar React 19, TanStack Start e animações.",
       en: "Study project: a landing page for a fictional premium auto detailing brand, built to practice React 19, TanStack Start and animation.",
@@ -107,7 +107,7 @@ export const projects: Project[] = [
   {
     id: 3,
     title: "Pokedex Full Stack",
-    accent: "#DC2626",
+    accent: "#7A0C1B",
     description: {
       pt: "Projeto acadêmico em equipe: Pokédex com login, busca na PokéAPI e favoritos salvos por usuário em uma API própria em PHP.",
       en: "Team academic project: a Pokédex with login, PokéAPI search and per-user favorites stored through a custom PHP API.",
@@ -139,7 +139,7 @@ export const projects: Project[] = [
   {
     id: 4,
     title: "Biblioteca Web + API",
-    accent: "#B45309",
+    accent: "#7A0C1B",
     description: {
       pt: "Aplicação para cadastro, consulta e gerenciamento de acervo de biblioteca, com API REST em Flask.",
       en: "Application to register, search and manage a library's book collection, with a Flask REST API.",
