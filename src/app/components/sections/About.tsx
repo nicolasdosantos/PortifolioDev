@@ -83,8 +83,7 @@ export function About({ dark, t }: SectionProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
-                  whileHover={{ y: -2 }}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border transition-colors duration-300 cursor-default ${dark ? "border-white/10 bg-white/[0.04] text-white/70 hover:border-brand-ink/40 hover:text-white" : "border-black/[0.16] bg-black/[0.07] text-black/70 hover:border-brand-ink hover:text-black"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border cursor-default ${dark ? "border-white/10 bg-white/[0.04] text-white/70" : "border-black/[0.16] bg-black/[0.07] text-black/70"}`}
                 >
                   {tech}
                 </motion.span>
