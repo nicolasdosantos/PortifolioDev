@@ -60,7 +60,18 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
     );
 
     sections.forEach(s => observer.observe(s));
-    return () => observer.disconnect();
+
+    /* De volta ao Hero (que não é item do menu) nenhuma seção entra na faixa observada e o
+       item ativo ficava preso no último visitado, como "Contato" no topo da página. */
+    const onScroll = () => {
+      if (clickLock.current !== null) return;
+      if (window.scrollY + window.innerHeight * 0.45 < sections[0].offsetTop) setActive("");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   const go = (id: string) => {
