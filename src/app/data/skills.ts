@@ -1,12 +1,10 @@
-import { Bot, Clapperboard, Database, Monitor, Server, Sparkles, Wrench } from "lucide-react";
+import { Database, Monitor, Server, Wrench } from "lucide-react";
 import { FaJava } from "react-icons/fa";
 import {
-  SiClaude,
   SiDocker,
   SiFigma,
   SiFlask,
   SiGit,
-  SiGooglegemini,
   SiJavascript,
   SiLaravel,
   SiLivewire,
@@ -80,20 +78,6 @@ export const skillCategories: SkillCategory[] = [
       { name: "Vercel", desc: "Deploys, Hosting", icon: SiVercel, color: "#FFFFFF", lightColor: "#000000" },
       { name: "Docker", desc: "Containers, ambiente local", icon: SiDocker, color: "#2496ED" },
       { name: "n8n", desc: "Automações de fluxo", icon: SiN8N, color: "#EA4B71" },
-    ],
-  },
-  {
-    id: "ai",
-    label: { pt: "Inteligência Artificial", en: "Artificial Intelligence" },
-    icon: Sparkles,
-    color: "#D97757",
-    skills: [
-      { name: "ChatGPT", desc: "Prompting, automações", icon: Bot, color: "#74AA9C" },
-      { name: "Claude", desc: "Coding agent, prompting", icon: SiClaude, color: "#D97757" },
-      { name: "Gemini", desc: "Prompting, multimodal", icon: SiGooglegemini, color: "#4285F4", colors: ["#4796E3", "#9177C7"] },
-      /* Higgsfield não tem ícone de marca no react-icons; Clapperboard (lucide) traduz
-         geração de imagem e vídeo, que é o uso da plataforma. */
-      { name: "Higgsfield", desc: "Geração de imagem e vídeo", icon: Clapperboard, color: "var(--p-accent-soft)" },
     ],
   },
 ];

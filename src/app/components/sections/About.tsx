@@ -1,23 +1,14 @@
 import { motion } from "motion/react";
-import { Briefcase, Code2, FolderGit2, MapPin, Sparkles } from "lucide-react";
+import { Code2, Sparkles } from "lucide-react";
 import type { SectionProps } from "../../types";
 import { SectionHeader } from "../common";
-import { projects } from "../../data";
 
 /* Na ordem do posicionamento: o principal (estágio e projetos) primeiro, depois dados e apoio. */
 const STACK = ["PHP", "Laravel", "React", "TypeScript", "MariaDB", "MySQL", "Supabase", "Tailwind CSS", "Python"];
 
-const WITH_VIDEO = projects.filter(p => p.video).length;
 
-/* Números que só aparecem aqui. Antes eram "41 repositórios" (fixo e já desatualizado),
-   certificados (repetido na seção de Formação) e "∞ cafés". */
-const CARDS = [
-  { icon: Code2, val: "2022", lbl: { pt: "Estudando programação desde", en: "Studying programming since" }, clr: "text-black/70 dark:text-white/70", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
-  { icon: Briefcase, val: "2026", lbl: { pt: "Estagiando em desenvolvimento desde abril", en: "Development intern since April" }, clr: "text-black/70 dark:text-white/70", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
-  { icon: FolderGit2, val: `${projects.length}`, lbl: { pt: `Projetos no portfólio, ${WITH_VIDEO} com vídeo`, en: `Portfolio projects, ${WITH_VIDEO} with video` }, clr: "text-black/70 dark:text-white/70", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
-];
 
-export function About({ dark, t, lang }: SectionProps) {
+export function About({ dark, t }: SectionProps) {
   return (
     <section id="sobre" className="py-24 md:py-32 relative overflow-hidden">
       {/* Ambient background glow, echoes the Hero aurora for visual continuity */}
@@ -79,10 +70,7 @@ export function About({ dark, t, lang }: SectionProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <div className={`inline-flex items-center gap-1.5 mb-4 text-xs font-body ${dark ? "text-white/50" : "text-black/70"}`}>
-              <MapPin size={12} /> {t.location}
-            </div>
-            <p className={`font-body text-lg leading-relaxed mb-8 ${dark ? "text-white/70" : "text-black/70"}`}>{t.about_bio}</p>
+            <p className={`font-body text-base leading-relaxed mb-8 max-w-[62ch] ${dark ? "text-white/70" : "text-black/70"}`}>{t.about_bio}</p>
             <div className="flex items-center gap-1.5 mb-3">
               <Sparkles size={13} className="opacity-60" />
               <span className={`text-xs font-body uppercase tracking-[0.16em] ${dark ? "text-white/50" : "text-black/70"}`}>Stack</span>
@@ -105,29 +93,6 @@ export function About({ dark, t, lang }: SectionProps) {
           </motion.div>
         </div>
 
-        {/* Stats strip */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-          {CARDS.map(({ icon: Icon, val, lbl, clr, bg }, i) => (
-            <motion.div
-              key={val}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-              className={`group flex items-center gap-4 p-4 sm:block sm:p-6 rounded-xl border cursor-default transition-all duration-300 ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09] hover:border-brand-ink/30 hover:shadow-[0_0_30px_color-mix(in_srgb,var(--p-accent-ink)_7%,transparent)]" : "bg-white border-black/[0.16] hover:border-brand-ink hover:shadow-[0_8px_30px_color-mix(in_srgb,var(--p-accent-ink)_5%,transparent)]"}`}
-            >
-              {/* no celular vira uma linha (ícone ao lado do número); a partir de `sm`, card */}
-              <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center sm:mb-4 transition-transform duration-300 group-hover:scale-110 ${bg}`}>
-                <Icon size={18} className={clr} />
-              </div>
-              <div>
-                <div className={`font-display text-3xl sm:text-4xl font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{val}</div>
-                <div className={`text-xs mt-1 font-body ${dark ? "text-white/70" : "text-black/70"}`}>{lbl[lang]}</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
