@@ -7,9 +7,43 @@ import { Footer, Navbar } from "./components/layout";
 import { About, Certificates, Contact, DevProcess, Experience, Hero, Projects, StackHero } from "./components/sections";
 import { currentHashId } from "./utils/sections";
 
+const THEME_KEY = "theme";
+const LANG_KEY = "lang";
+
+function readStored(key: string) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null; // storage bloqueado: vale o padrão
+  }
+}
+
+function store(key: string, value: string) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    /* sem storage a escolha vale só nesta visita */
+  }
+}
+
+/* Idioma: `?lang=en` na URL tem prioridade (para mandar o link em inglês numa vaga), depois
+   a última escolha da pessoa, depois o idioma do navegador. */
+function initialLang(): Lang {
+  const fromUrl = new URLSearchParams(window.location.search).get("lang");
+  if (fromUrl === "en" || fromUrl === "pt") return fromUrl;
+  const saved = readStored(LANG_KEY);
+  if (saved === "en" || saved === "pt") return saved;
+  return navigator.language?.toLowerCase().startsWith("pt") ? "pt" : "en";
+}
+
+/* Tema: a última escolha da pessoa; sem escolha, o escuro, que é o tema principal do site. */
+function initialDark() {
+  return readStored(THEME_KEY) !== "light";
+}
+
 export default function App() {
-  const [dark, setDark] = useState(true);
-  const [lang, setLang] = useState<Lang>("pt");
+  const [dark, setDark] = useState(initialDark);
+  const [lang, setLang] = useState<Lang>(initialLang);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
@@ -19,6 +53,21 @@ export default function App() {
   useEffect(() => {
     document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
   }, [lang]);
+
+  /* Só grava quando a pessoa troca, para a escolha automática (navegador) não virar
+     preferência salva. A URL acompanha o idioma, mantendo a âncora da seção. */
+  const changeDark = (value: boolean) => {
+    setDark(value);
+    store(THEME_KEY, value ? "dark" : "light");
+  };
+  const changeLang = (value: Lang) => {
+    setLang(value);
+    store(LANG_KEY, value);
+    const url = new URL(window.location.href);
+    if (value === "en") url.searchParams.set("lang", "en");
+    else url.searchParams.delete("lang");
+    window.history.replaceState(null, "", url);
+  };
 
   /* Link direto (`/#projetos`): o navegador tenta pular para a âncora antes do React montar
      as seções e não acha nada. Aqui, já com tudo montado, a rolagem é feita de novo — e mais
@@ -72,7 +121,7 @@ export default function App() {
           >
             {t.skip_to_content}
           </a>
-          <Navbar dark={dark} setDark={setDark} lang={lang} setLang={setLang} t={t} />
+          <Navbar dark={dark} setDark={changeDark} lang={lang} setLang={changeLang} t={t} />
           <main id="conteudo" tabIndex={-1} className="outline-none">
           <Hero dark={dark} t={t} lang={lang} />
           <About dark={dark} t={t} lang={lang} />
