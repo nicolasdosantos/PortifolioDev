@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronDown, Download, Github, Linkedin, Mail, MapPin, MessageSquare } from "lucide-react";
+import { ArrowRight, ChevronDown, Download, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import type { Lang, Translation } from "../../types";
 import { goToSection } from "../../utils/sections";
 
@@ -98,7 +98,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.65 }}
-              className="flex flex-wrap gap-3 mb-10"
+              className="flex flex-wrap items-center gap-3 mb-10"
             >
               <a
                 href="#projetos"
@@ -114,19 +114,21 @@ export function Hero({ dark, t, lang }: HeroProps) {
                   {t.cta_projects} <ArrowRight size={15} aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </a>
-              <a
-                href="#contato"
-                onClick={e => { e.preventDefault(); goToSection("contato"); }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/70 hover:bg-white/[0.05] hover:border-white/22" : "border-black/[0.18] text-black/85 hover:bg-black/[0.07]"}`}
-              >
-                {t.cta_contact} <MessageSquare size={15} aria-hidden />
-              </a>
+              {/* Hierarquia: "Ver Projetos" é a ação principal, o CV é secundário (contorno) e o
+                  contato vira link de texto. Antes eram três botões, dois deles com o mesmo peso. */}
               <a
                 href={cvHref}
                 download={cvFilename}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/70 hover:bg-white/[0.05]" : "border-black/[0.18] text-black/85 hover:bg-black/[0.07]"}`}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-colors duration-300 ${dark ? "border-white/15 text-white/90 hover:bg-white/[0.05] hover:border-white/25" : "border-black/[0.18] text-black/85 hover:bg-black/[0.07]"}`}
               >
-                <Download size={15} /> {t.cta_cv}
+                <Download size={15} aria-hidden /> {t.cta_cv}
+              </a>
+              <a
+                href="#contato"
+                onClick={e => { e.preventDefault(); goToSection("contato"); }}
+                className={`group flex items-center gap-1.5 px-2 py-3 text-sm font-body font-medium underline underline-offset-4 transition-colors ${dark ? "text-white/70 decoration-white/25 hover:text-white hover:decoration-brand-ink" : "text-black/70 decoration-black/25 hover:text-black hover:decoration-brand"}`}
+              >
+                {t.cta_contact}
               </a>
             </motion.div>
 
@@ -170,7 +172,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
           >
             <div
               style={{ background: "linear-gradient(160deg, #18181C 0%, #0F0F12 60%, #121216 100%)" }}
-              className={`relative w-full max-w-[25rem] mx-auto lg:mx-0 rounded-xl border overflow-hidden ${codeDark ? "border-white/[0.09]" : ""}`}
+              className={`relative w-full max-w-[22rem] mx-auto lg:mx-0 rounded-xl border overflow-hidden ${codeDark ? "border-white/[0.09]" : ""}`}
             >
               <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${codeDark ? "border-white/[0.06]" : "border-black/[0.15]"}`}>
                 {[0, 1, 2].map(i => <span key={i} className="w-2.5 h-2.5 rounded-full bg-white/15" />)}
