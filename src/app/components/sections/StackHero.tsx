@@ -73,7 +73,9 @@ export const STACK_CARDS: StackCard[] = skillCategories
   }));
 
 function syncPalette() {
-  CORE_CYAN = readVar("--p-secondary", CORE_CYAN);
+  /* no tema claro as arestas e ícones usam o tom escuro da paleta: creme sobre creme sumia */
+  const light = !document.documentElement.classList.contains("dark");
+  CORE_CYAN = readVar(light ? "--p-bg" : "--p-secondary", CORE_CYAN);
   CORE_VIOLET = readVar("--p-accent-ink", CORE_VIOLET);
   CORE_BLUE = readVar("--p-accent", CORE_BLUE);
   for (const card of STACK_CARDS) {
@@ -261,12 +263,16 @@ interface StackHeroProps {
 
 export function StackHero({ dark = true, lang = "pt", config, cards = STACK_CARDS }: StackHeroProps) {
   const cfg = { ...STACK_HERO_DEFAULTS, ...config };
-  /* lê as cores da paleta no mount; o setState só força o redesenho com elas */
+  /* lê as cores da paleta no mount e ao trocar o tema; o setState só força o redesenho */
   const [, setPaletteTick] = useState(0);
   useEffect(() => {
-    syncPalette();
-    setPaletteTick(t => t + 1);
-  }, []);
+    /* no próximo quadro: o efeito do App que troca a classe `dark` roda depois deste */
+    const id = requestAnimationFrame(() => {
+      syncPalette();
+      setPaletteTick(t => t + 1);
+    });
+    return () => cancelAnimationFrame(id);
+  }, [dark]);
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   /** trilho de scroll: carrega a altura e é o alvo do useScroll (ver o return) */

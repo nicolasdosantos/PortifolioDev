@@ -78,7 +78,7 @@ export function Contact({ dark, t }: ContactProps) {
                 /* Ícones na cor da paleta, não na da marca: verde, azul, vermelho e branco lado a lado
                    quebravam a harmonia. `color`/`lightColor` ficam nos dados, sem uso aqui. */
                 void color; void lightColor;
-                const brand = "var(--p-secondary)";
+                const brand = dark ? "var(--p-secondary)" : "var(--p-bg)";
                 const isHovered = hasHover ? hovered === label : true;
                 return (
                   <motion.button
@@ -111,7 +111,7 @@ export function Contact({ dark, t }: ContactProps) {
                       />
                       <div
                         className="relative w-11 h-11 rounded-full flex items-center justify-center transition-colors duration-300"
-                        style={{ background: "color-mix(in srgb, var(--p-secondary) 7%, transparent)" }}
+                        style={{ background: `color-mix(in srgb, ${brand} 7%, transparent)` }}
                       >
                         <Icon size={16} style={{ color: brand }} />
                       </div>

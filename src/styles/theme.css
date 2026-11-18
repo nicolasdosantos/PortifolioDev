@@ -193,14 +193,23 @@
      legível para texto, ícones e linhas. Com um destaque escuro (um vinho, por exemplo) os
      dois se separam. Valores calculados pelo contraste: ink é o vinho clareado até 4.6:1
      sobre o fundo; sobre o vinho cheio, o texto é creme. */
-  --p-accent-ink: #EA2B45;
+  --p-accent-ink: #B5122A; /* tema claro: 5:1 sobre o fundo creme */
   --p-on-accent: #FBE8CF;
+  /* faixa clara que atravessa os títulos em degradê (name-sweep) */
+  --p-sweep: var(--p-bg);
   --p-surface: color-mix(in oklab, var(--p-bg), white 4%);
   --p-surface-2: color-mix(in oklab, var(--p-bg), white 8%);
   --p-accent-soft: color-mix(in oklab, var(--p-accent-ink), white 30%);
   --p-accent-strong: color-mix(in oklab, var(--p-accent), black 10%);
   --p-accent-dark: color-mix(in oklab, var(--p-accent), black 45%);
   --p-light-bg: color-mix(in oklab, var(--p-secondary), var(--p-bg) 6%);
+}
+
+/* Tema escuro: tom legível e faixa do brilho calculados para o fundo escuro. Fica depois
+   do :root da paleta para vencer na ordem (mesma especificidade). */
+.dark {
+  --p-accent-ink: #EA2B45; /* 4.6:1 sobre o fundo escuro */
+  --p-sweep: var(--p-secondary);
 }
 
 /* Cores da paleta por papel, para as classes do Tailwind (bg-brand, text-brand-ink…).
