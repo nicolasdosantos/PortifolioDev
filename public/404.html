@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0D0A0B" />
+    <title>Página não encontrada | Nicolas Pichiteli dos Santos</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      /* Mesma paleta do site (theme.css), sem depender do bundle do React. */
+      :root { --bg: #0D0A0B; --cream: #FBE8CF; --ink: #EA2B45; --wine: #7A0C1B; }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; }
+      body {
+        display: grid; place-items: center; padding: 24px;
+        background: var(--bg); color: var(--cream);
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      main { max-width: 32rem; }
+      .code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; letter-spacing: .16em; color: var(--ink); }
+      h1 { font-family: Sora, Inter, system-ui, sans-serif; font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; margin: 12px 0 16px; }
+      p { color: color-mix(in srgb, var(--cream) 70%, transparent); line-height: 1.65; margin: 0 0 32px; }
+      a {
+        display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 12px;
+        background: var(--wine); color: var(--cream); text-decoration: none; font-weight: 500; font-size: 14px;
+      }
+      a:hover { background: color-mix(in oklab, var(--wine), black 10%); }
+      a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="code">ERRO 404</div>
+      <h1>Esta página não existe.</h1>
+      <p>O link pode estar errado ou a página mudou de lugar. O portfólio inteiro está na página inicial.</p>
+      <a href="/">Voltar ao portfólio →</a>
+    </main>
+  </body>
+</html>
