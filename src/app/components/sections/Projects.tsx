@@ -38,7 +38,7 @@ function cardA11y(p: Project, lang: Lang, open: (p: Project) => void) {
   };
 }
 
-const FOCUS_RING = "outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--p-bg)]";
+const FOCUS_RING = "outline-none focus-visible:ring-2 focus-visible:ring-brand-ink focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--p-bg)]";
 
 /** Prévia do card: toca sem som só enquanto está visível e para ao sair da tela.
     preload="none" + poster: nada do vídeo baixa até o card chegar perto da tela.
@@ -81,9 +81,9 @@ function Tags({ tags, dark, max }: { tags: string[]; dark: boolean; max?: number
   return (
     <div className="flex flex-wrap gap-1.5">
       {shown.map(tag => (
-        <span key={tag} className={`px-2 py-0.5 rounded text-xs font-mono2 border ${dark ? "border-white/10 bg-white/[0.04] text-white/58" : "border-black/[0.16] bg-black/[0.07] text-black/70"}`}>{tag}</span>
+        <span key={tag} className={`px-2 py-0.5 rounded text-xs font-mono2 border ${dark ? "border-white/10 bg-white/[0.04] text-white/70" : "border-black/[0.16] bg-black/[0.07] text-black/70"}`}>{tag}</span>
       ))}
-      {max && tags.length > max && <span className={`text-xs font-mono2 self-center ${dark ? "text-white/50" : "text-black/62"}`}>+{tags.length - max}</span>}
+      {max && tags.length > max && <span className={`text-xs font-mono2 self-center ${dark ? "text-white/50" : "text-black/70"}`}>+{tags.length - max}</span>}
     </div>
   );
 }
@@ -128,11 +128,11 @@ export function Projects({ dark, t, lang }: SectionProps) {
                 {p.video ? <CardVideo src={p.videoPreview ?? p.video} poster={p.image} /> : (
                   <img src={p.image} alt="" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
                 )}
-                <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[color:var(--p-accent)] text-[color:var(--p-on-accent)] text-xs font-mono2">
+                <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[color:var(--p-accent)] text-[color:var(--p-on-accent)] text-xs font-body">
                   ★ {lang === "pt" ? "Destaque" : "Featured"}
                 </span>
                 {p.video && (
-                  <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white/85 text-xs font-mono2">
+                  <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white/90 text-xs font-body">
                     <Play size={11} fill="currentColor" /> {lang === "pt" ? "Ver vídeo" : "Watch video"}
                   </span>
                 )}
@@ -141,11 +141,11 @@ export function Projects({ dark, t, lang }: SectionProps) {
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div>
                     <h3 className={`font-display text-xl font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{p.title}</h3>
-                    <span className={`text-xs font-mono2 ${dark ? "text-white/50" : "text-black/66"}`}>{p.category[lang]} · {p.year}</span>
+                    <span className={`text-xs font-body ${dark ? "text-white/50" : "text-black/70"}`}>{p.category[lang]} · {p.year}</span>
                   </div>
                   <span className={`shrink-0 px-2 py-1 rounded-lg text-xs border ${STATUS_STYLE[dark ? "dark" : "light"][p.status]}`}>{t[p.status]}</span>
                 </div>
-                <p className={`text-sm font-body mb-5 ${dark ? "text-white/68" : "text-black/74"}`}>{p.description[lang]}</p>
+                <p className={`text-sm font-body mb-5 ${dark ? "text-white/70" : "text-black/70"}`}>{p.description[lang]}</p>
                 <div className="mt-auto"><Tags tags={p.tags} dark={dark} /></div>
               </div>
             </motion.div>
@@ -173,8 +173,8 @@ export function Projects({ dark, t, lang }: SectionProps) {
                   <h3 className={`font-display font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{p.title}</h3>
                   <span className={`shrink-0 px-2 py-0.5 rounded text-xs border ${STATUS_STYLE[dark ? "dark" : "light"][p.status]}`}>{t[p.status]}</span>
                 </div>
-                <span className={`text-xs font-mono2 mb-3 ${dark ? "text-white/50" : "text-black/66"}`}>{p.category[lang]} · {p.year}</span>
-                <p className={`text-sm font-body mb-4 ${dark ? "text-white/62" : "text-black/70"}`}>{p.description[lang]}</p>
+                <span className={`text-xs font-body mb-3 ${dark ? "text-white/50" : "text-black/70"}`}>{p.category[lang]} · {p.year}</span>
+                <p className={`text-sm font-body mb-4 ${dark ? "text-white/70" : "text-black/70"}`}>{p.description[lang]}</p>
                 <div className="mt-auto"><Tags tags={p.tags} dark={dark} max={3} /></div>
               </div>
             </motion.div>

@@ -37,7 +37,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
           ].map((s, i) => (
             <div key={i} className="flex items-center gap-2">
               <span className={`font-display text-xl font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{s.value}</span>
-              <span className={`text-xs font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>{s.label}</span>
+              <span className={`text-xs font-body ${dark ? "text-white/50" : "text-black/70"}`}>{s.label}</span>
             </div>
           ))}
         </motion.div>
@@ -99,14 +99,14 @@ export function Certificates({ dark, t }: CertificatesProps) {
                       animate={isHovered ? { y: [0, -3, 0] } : { y: 0 }}
                       transition={isHovered ? { duration: 1.1, ease: "easeInOut", repeat: hasHover ? Infinity : 0 } : { duration: 0.3 }}
                     >
-                      <CertIcon size={19} className="text-black/60 dark:text-white/70" aria-hidden />
+                      <CertIcon size={19} className="text-black/70 dark:text-white/70" aria-hidden />
                     </motion.div>
 
                     <div className="flex-1 min-w-0 pt-0.5">
                       <div className={`font-body font-semibold text-sm leading-snug mb-1 ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>
                         {cert.title}
                       </div>
-                      <div className={`text-xs font-body ${dark ? "text-white/58" : "text-black/66"}`}>{cert.issuer}</div>
+                      <div className={`text-xs font-body ${dark ? "text-white/70" : "text-black/70"}`}>{cert.issuer}</div>
                     </div>
                   </div>
 
@@ -130,32 +130,32 @@ export function Certificates({ dark, t }: CertificatesProps) {
                            do mínimo confortável para o toque, sem mudar nada no visual. */
                         className="flex items-center gap-1.5 py-1.5 -my-1.5 group/verify"
                       >
-                        <BadgeCheck size={13} className={dark ? "text-white/60" : "text-black/55"} />
-                        <span className={`text-[10px] font-mono2 uppercase tracking-wide underline decoration-dotted underline-offset-2 transition-colors ${dark ? "text-white/70 decoration-white/30 group-hover/verify:text-white" : "text-black/65 decoration-violet-700/40 group-hover/verify:text-black"}`}>
+                        <BadgeCheck size={13} className={dark ? "text-white/70" : "text-black/58"} />
+                        <span className={`text-xs font-body uppercase tracking-wide underline decoration-dotted underline-offset-2 transition-colors ${dark ? "text-white/70 decoration-white/30 group-hover/verify:text-white" : "text-black/70 decoration-brand-dark/40 group-hover/verify:text-black"}`}>
                           {t.certs_verified}
                         </span>
-                        <ExternalLink size={9} className={`transition-colors ${dark ? "text-white/70 group-hover/verify:text-white" : "text-black/55 group-hover/verify:text-black"}`} />
+                        <ExternalLink size={9} className={`transition-colors ${dark ? "text-white/70 group-hover/verify:text-white" : "text-black/58 group-hover/verify:text-black"}`} />
                       </a>
                     ) : cert.inProgress ? (
                       <div className="flex items-center gap-1.5">
-                        <Clock size={13} className={dark ? "text-white/60" : "text-black/55"} />
-                        <span className={`text-[10px] font-mono2 uppercase tracking-wide ${dark ? "text-white/70" : "text-black/65"}`}>{t.certs_in_progress}</span>
+                        <Clock size={13} className={dark ? "text-white/70" : "text-black/58"} />
+                        <span className={`text-xs font-body uppercase tracking-wide ${dark ? "text-white/70" : "text-black/70"}`}>{t.certs_in_progress}</span>
                       </div>
                     ) : (
                       /* Sem comprovante público: mostra só que foi concluído, sem o selo de
                          verificação, que sugeriria uma validação externa que não existe aqui. */
                       <div className="flex items-center gap-1.5">
-                        <CircleCheck size={13} className={dark ? "text-white/45" : "text-black/50"} />
-                        <span className={`text-[10px] font-mono2 uppercase tracking-wide ${dark ? "text-white/55" : "text-black/62"}`}>{t.certs_completed}</span>
+                        <CircleCheck size={13} className={dark ? "text-white/35" : "text-black/58"} />
+                        <span className={`text-xs font-body uppercase tracking-wide ${dark ? "text-white/50" : "text-black/70"}`}>{t.certs_completed}</span>
                       </div>
                     )}
                     <div className="flex items-center gap-2">
                       {cert.hours && (
-                        <span className={`text-[10px] font-mono2 px-1.5 py-0.5 rounded ${dark ? "bg-white/[0.06] text-white/58" : "bg-black/[0.06] text-black/62"}`}>
+                        <span className={`text-xs font-mono2 px-1.5 py-0.5 rounded ${dark ? "bg-white/[0.06] text-white/70" : "bg-black/[0.06] text-black/70"}`}>
                           {cert.hours}
                         </span>
                       )}
-                      <span className={`text-xs font-mono2 ${dark ? "text-white/60" : "text-black/62"}`}>{cert.year}</span>
+                      <span className={`text-xs font-mono2 ${dark ? "text-white/70" : "text-black/70"}`}>{cert.year}</span>
                     </div>
                   </div>
                 </div>

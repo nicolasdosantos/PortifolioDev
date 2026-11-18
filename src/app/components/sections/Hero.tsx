@@ -78,10 +78,10 @@ export function Hero({ dark, t, lang }: HeroProps) {
               transition={{ duration: 0.6, delay: 0.45 }}
               className="flex items-start gap-3 mb-6"
             >
-              <span className={`text-xl font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>—</span>
+              <span className={`text-xl font-body ${dark ? "text-white/50" : "text-black/70"}`}>—</span>
               <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span className={`text-lg font-body font-medium ${dark ? "text-white/85" : "text-black/80"}`}>{t.role}</span>
-                <span className={`text-sm font-mono2 ${dark ? "text-white/55" : "text-black/60"}`}>{t.role_stack}</span>
+                <span className={`text-lg font-body font-medium ${dark ? "text-white/90" : "text-black/85"}`}>{t.role}</span>
+                <span className={`text-sm font-body ${dark ? "text-white/50" : "text-black/70"}`}>{t.role_stack}</span>
               </span>
             </motion.div>
 
@@ -89,7 +89,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className={`font-body text-base max-w-lg leading-relaxed mb-8 ${dark ? "text-white/58" : "text-black/74"}`}
+              className={`font-body text-base max-w-lg leading-relaxed mb-8 ${dark ? "text-white/70" : "text-black/70"}`}
             >
               {t.description}
             </motion.p>
@@ -117,14 +117,14 @@ export function Hero({ dark, t, lang }: HeroProps) {
               <a
                 href="#contato"
                 onClick={e => { e.preventDefault(); goToSection("contato"); }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/75 hover:bg-white/[0.05] hover:border-white/22" : "border-black/[0.18] text-black/80 hover:bg-black/[0.07]"}`}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/70 hover:bg-white/[0.05] hover:border-white/22" : "border-black/[0.18] text-black/85 hover:bg-black/[0.07]"}`}
               >
                 {t.cta_contact} <MessageSquare size={15} aria-hidden />
               </a>
               <a
                 href={cvHref}
                 download={cvFilename}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/75 hover:bg-white/[0.05]" : "border-black/[0.18] text-black/80 hover:bg-black/[0.07]"}`}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 ${dark ? "border-white/12 text-white/70 hover:bg-white/[0.05]" : "border-black/[0.18] text-black/85 hover:bg-black/[0.07]"}`}
               >
                 <Download size={15} /> {t.cta_cv}
               </a>
@@ -136,7 +136,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
               transition={{ duration: 0.6, delay: 0.75 }}
               className="flex flex-wrap items-center gap-4"
             >
-              <div className={`flex items-center gap-1.5 text-xs font-mono2 ${dark ? "text-white/50" : "text-black/66"}`}>
+              <div className={`flex items-center gap-1.5 text-xs font-body ${dark ? "text-white/50" : "text-black/70"}`}>
                 <MapPin size={12} /> {t.location}
               </div>
               <div className={`w-px h-4 ${dark ? "bg-white/10" : "bg-black/[0.14]"}`} />
@@ -151,7 +151,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
                     aria-label={label}
                     target={href.startsWith("mailto:") ? undefined : "_blank"}
                     rel={href.startsWith("mailto:") ? undefined : "noreferrer noopener"}
-                    className={`p-2 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 ${dark ? "border-white/10 text-white/58 hover:text-white hover:bg-white/[0.05] hover:border-white/20" : "border-black/[0.16] text-black/70 hover:text-black hover:bg-black/[0.07]"}`}
+                    className={`p-2 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 ${dark ? "border-white/10 text-white/70 hover:text-white hover:bg-white/[0.05] hover:border-white/20" : "border-black/[0.16] text-black/70 hover:text-black hover:bg-black/[0.07]"}`}
                   >
                     <Icon size={15} />
                   </a>
@@ -174,15 +174,15 @@ export function Hero({ dark, t, lang }: HeroProps) {
             >
               <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${codeDark ? "border-white/[0.06]" : "border-black/[0.15]"}`}>
                 {["#FF5F57", "#FFBD2E", "#28C840"].map(c => <span key={c} className="w-3 h-3 rounded-full" style={{ background: c }} />)}
-                <span className={`ml-2 text-xs font-mono2 ${codeDark ? "text-white/50" : "text-black/62"}`}>developer.ts</span>
+                <span className={`ml-2 text-xs font-mono2 ${codeDark ? "text-white/50" : "text-black/70"}`}>developer.ts</span>
               </div>
               <div className="p-5 space-y-1.5">
                 {(() => {
-                  const kw = codeDark ? "text-violet-400/70" : "text-violet-600";
+                  const kw = codeDark ? "text-brand-ink/70" : "text-brand-dark";
                   const ident = codeDark ? "text-blue-400/70" : "text-blue-600";
-                  const punct = codeDark ? "text-white/50" : "text-black/62";
-                  const key = codeDark ? "text-white/50" : "text-black/62";
-                  const comma = codeDark ? "text-white/38" : "text-black/62";
+                  const punct = codeDark ? "text-white/50" : "text-black/70";
+                  const key = codeDark ? "text-white/50" : "text-black/70";
+                  const comma = codeDark ? "text-white/35" : "text-black/70";
                   const str = codeDark ? "text-emerald-400/70" : "text-emerald-600";
                   const num = codeDark ? "text-sky-400/70" : "text-sky-600";
                   const kw2 = codeDark ? "text-amber-400/70" : "text-amber-600";
@@ -240,7 +240,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
                     <>
                       {rendered}
                       <motion.span
-                        className={`inline-block w-[6px] h-[12px] align-middle ${codeDark ? "bg-cyan-300/80" : "bg-cyan-600"}`}
+                        className={`inline-block w-[6px] h-[12px] align-middle ${codeDark ? "bg-cream/80" : "bg-brand-dark"}`}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: [1, 0, 1] }}
                         transition={{ duration: 0.9, repeat: Infinity, delay: typingEnd }}
@@ -259,9 +259,9 @@ export function Hero({ dark, t, lang }: HeroProps) {
           transition={{ delay: 1.6, duration: 0.6 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className={`text-xs font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>{t.scroll_hint}</span>
+          <span className={`text-xs font-body ${dark ? "text-white/50" : "text-black/70"}`}>{t.scroll_hint}</span>
           <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            <ChevronDown size={16} className={dark ? "text-white/50" : "text-black/62"} />
+            <ChevronDown size={16} className={dark ? "text-white/50" : "text-black/70"} />
           </motion.div>
         </motion.div>
       </div>
