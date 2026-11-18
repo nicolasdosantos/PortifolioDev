@@ -29,7 +29,7 @@ export const skillCategories: SkillCategory[] = [
     id: "frontend",
     label: { pt: "Frontend", en: "Frontend" },
     icon: Monitor,
-    color: "#7C3AED",
+    color: "var(--p-accent)",
     skills: [
       { name: "React", desc: "Hooks, Components, State", icon: SiReact, color: "#61DAFB" },
       { name: "TypeScript", desc: "Types, Interfaces", icon: SiTypescript, color: "#3178C6" },
@@ -93,7 +93,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Gemini", desc: "Prompting, multimodal", icon: SiGooglegemini, color: "#4285F4", colors: ["#4796E3", "#9177C7"] },
       /* Higgsfield não tem ícone de marca no react-icons; Clapperboard (lucide) traduz
          geração de imagem e vídeo, que é o uso da plataforma. */
-      { name: "Higgsfield", desc: "Geração de imagem e vídeo", icon: Clapperboard, color: "#A78BFA" },
+      { name: "Higgsfield", desc: "Geração de imagem e vídeo", icon: Clapperboard, color: "var(--p-accent-soft)" },
     ],
   },
 ];

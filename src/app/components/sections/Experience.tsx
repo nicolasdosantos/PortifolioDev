@@ -17,12 +17,12 @@ export function Experience({ dark, t, lang }: SectionProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
               whileHover={{ x: 5 }}
-              className={`p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[#0d0d12]/95 border-white/[0.09] hover:border-violet-500/25 hover:shadow-[0_0_28px_rgba(124,58,237,0.08)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_28px_rgba(124,58,237,0.07)]"}`}
+              className={`p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09] hover:border-violet-500/25 hover:shadow-[0_0_28px_color-mix(in_srgb,var(--p-accent-ink)_5%,transparent)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_28px_color-mix(in_srgb,var(--p-accent-ink)_4%,transparent)]"}`}
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
                 <div>
-                  <div className={`font-display font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{exp.role[lang]}</div>
-                  <div className={`font-body text-sm font-medium ${dark ? "text-violet-400" : "text-violet-700"}`}>{exp.company}</div>
+                  <div className={`font-display font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{exp.role[lang]}</div>
+                  <div className={`font-body text-sm font-medium ${dark ? "text-white/75" : "text-black/75"}`}>{exp.company}</div>
                   <div className={`text-xs font-mono2 mt-0.5 ${dark ? "text-white/50" : "text-black/66"}`}>{exp.type[lang]}</div>
                 </div>
                 <span className={`text-xs font-mono2 px-3 py-1.5 rounded-xl flex-shrink-0 ${dark ? "bg-white/[0.05] text-white/58" : "bg-black/[0.07] text-black/70"}`}>
@@ -32,7 +32,7 @@ export function Experience({ dark, t, lang }: SectionProps) {
               <ul className={`space-y-2 text-sm font-body leading-relaxed mb-5 ${dark ? "text-white/68" : "text-black/74"}`}>
                 {exp.highlights[lang].map(item => (
                   <li key={item} className="flex gap-3">
-                    <span className="mt-[0.55em] w-1.5 h-1.5 rounded-full bg-violet-500/70 flex-shrink-0" aria-hidden="true" />
+                    <span className="mt-[0.55em] w-1.5 h-1.5 rounded-full bg-black/30 dark:bg-white/30 flex-shrink-0" aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}

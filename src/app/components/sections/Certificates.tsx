@@ -36,7 +36,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
             { value: `${totalHours}h+`, label: t.certs_stat_hours },
           ].map((s, i) => (
             <div key={i} className="flex items-center gap-2">
-              <span className={`font-display text-xl font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{s.value}</span>
+              <span className={`font-display text-xl font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{s.value}</span>
               <span className={`text-xs font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>{s.label}</span>
             </div>
           ))}
@@ -65,10 +65,10 @@ export function Certificates({ dark, t }: CertificatesProps) {
               >
                 <span
                   className="absolute inset-0 rounded-2xl transition-opacity duration-300 pointer-events-none"
-                  style={{ background: `linear-gradient(135deg, ${cert.color}, ${cert.color}66)`, opacity: isHovered ? 1 : 0 }}
+                  style={{ background: "linear-gradient(135deg, var(--p-accent-ink), color-mix(in srgb, var(--p-accent-ink) 40%, transparent))", opacity: isHovered ? 1 : 0 }}
                 />
                 <div
-                  className={`absolute inset-[1.5px] rounded-[14px] transition-colors duration-300 ${dark ? "bg-[#0d0d12]" : "bg-white"}`}
+                  className={`absolute inset-[1.5px] rounded-[14px] transition-colors duration-300 ${dark ? "bg-[color:var(--p-surface)]" : "bg-white"}`}
                 />
 
                 {/* Circuit-style corner accent */}
@@ -95,15 +95,15 @@ export function Certificates({ dark, t }: CertificatesProps) {
                     {/* Seal */}
                     <motion.div
                       className="relative flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
-                      style={{ background: `${cert.color}1f`, border: `1px solid ${cert.color}40` }}
+                      style={{ background: "color-mix(in srgb, var(--p-secondary) 6%, transparent)", border: "1px solid color-mix(in srgb, var(--p-secondary) 12%, transparent)" }}
                       animate={isHovered ? { y: [0, -3, 0] } : { y: 0 }}
                       transition={isHovered ? { duration: 1.1, ease: "easeInOut", repeat: hasHover ? Infinity : 0 } : { duration: 0.3 }}
                     >
-                      <CertIcon size={19} style={{ color: cert.color }} aria-hidden />
+                      <CertIcon size={19} className="text-black/60 dark:text-white/70" aria-hidden />
                     </motion.div>
 
                     <div className="flex-1 min-w-0 pt-0.5">
-                      <div className={`font-body font-semibold text-sm leading-snug mb-1 ${dark ? "text-white" : "text-[#08080A]"}`}>
+                      <div className={`font-body font-semibold text-sm leading-snug mb-1 ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>
                         {cert.title}
                       </div>
                       <div className={`text-xs font-body ${dark ? "text-white/58" : "text-black/66"}`}>{cert.issuer}</div>
@@ -130,16 +130,16 @@ export function Certificates({ dark, t }: CertificatesProps) {
                            do mínimo confortável para o toque, sem mudar nada no visual. */
                         className="flex items-center gap-1.5 py-1.5 -my-1.5 group/verify"
                       >
-                        <BadgeCheck size={13} className={dark ? "text-emerald-400" : "text-emerald-600"} />
-                        <span className={`text-[10px] font-mono2 uppercase tracking-wide underline decoration-dotted underline-offset-2 transition-colors ${dark ? "text-emerald-400/80 decoration-emerald-400/40 group-hover/verify:text-emerald-300" : "text-emerald-700 decoration-emerald-700/40 group-hover/verify:text-emerald-800"}`}>
+                        <BadgeCheck size={13} className={dark ? "text-white/60" : "text-black/55"} />
+                        <span className={`text-[10px] font-mono2 uppercase tracking-wide underline decoration-dotted underline-offset-2 transition-colors ${dark ? "text-white/70 decoration-white/30 group-hover/verify:text-white" : "text-black/65 decoration-violet-700/40 group-hover/verify:text-black"}`}>
                           {t.certs_verified}
                         </span>
-                        <ExternalLink size={9} className={`transition-colors ${dark ? "text-emerald-400/50 group-hover/verify:text-emerald-300" : "text-emerald-700/60 group-hover/verify:text-emerald-800"}`} />
+                        <ExternalLink size={9} className={`transition-colors ${dark ? "text-white/70 group-hover/verify:text-white" : "text-black/55 group-hover/verify:text-black"}`} />
                       </a>
                     ) : cert.inProgress ? (
                       <div className="flex items-center gap-1.5">
-                        <Clock size={13} className={dark ? "text-amber-400" : "text-amber-600"} />
-                        <span className={`text-[10px] font-mono2 uppercase tracking-wide ${dark ? "text-amber-400/85" : "text-amber-700"}`}>{t.certs_in_progress}</span>
+                        <Clock size={13} className={dark ? "text-white/60" : "text-black/55"} />
+                        <span className={`text-[10px] font-mono2 uppercase tracking-wide ${dark ? "text-white/70" : "text-black/65"}`}>{t.certs_in_progress}</span>
                       </div>
                     ) : (
                       /* Sem comprovante público: mostra só que foi concluído, sem o selo de
@@ -155,7 +155,7 @@ export function Certificates({ dark, t }: CertificatesProps) {
                           {cert.hours}
                         </span>
                       )}
-                      <span className="text-xs font-mono2" style={{ color: cert.color }}>{cert.year}</span>
+                      <span className={`text-xs font-mono2 ${dark ? "text-white/60" : "text-black/62"}`}>{cert.year}</span>
                     </div>
                   </div>
                 </div>

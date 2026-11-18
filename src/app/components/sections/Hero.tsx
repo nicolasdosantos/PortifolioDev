@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Download, Github, Linkedin, Mail, MapPin, MessageSquare } from "lucide-react";
 import type { Lang, Translation } from "../../types";
 import { goToSection } from "../../utils/sections";
@@ -15,6 +16,10 @@ const SOCIALS = [
   { Icon: Mail, href: "mailto:nicolaspichiteli245@gmail.com", label: "E-mail" },
 ];
 
+/* O card de código é sempre escuro (preto suave, não #000), nos dois temas: as cores da
+   sintaxe seguem o tema escuro mesmo com o site no claro. */
+const codeDark = true;
+
 export function Hero({ dark, t, lang }: HeroProps) {
   /* Nome completo, como no currículo, no LinkedIn e na busca: "Nicolas Pichiteli" em
      cima e "dos Santos" com o degradê. Cada linha quebra nos espaços em telas estreitas. */
@@ -23,8 +28,19 @@ export function Hero({ dark, t, lang }: HeroProps) {
   const cvHref = lang === "en" ? "/nicolas-pichiteli-cv-en.pdf" : "/nicolas-pichiteli-cv.pdf";
   const cvFilename = lang === "en" ? "Nicolas-Pichiteli-CV-EN.pdf" : "Nicolas-Pichiteli-CV.pdf";
 
+  /* o brilho do nome pausa quando o Hero sai da tela (regra [data-paused] no theme.css) */
+  const sectionRef = useRef<HTMLElement>(null);
+  const [onScreen, setOnScreen] = useState(true);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setOnScreen(e.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section id="home" ref={sectionRef} data-paused={!onScreen || undefined} className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       <div
         className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
@@ -35,32 +51,17 @@ export function Hero({ dark, t, lang }: HeroProps) {
       <div className="max-w-7xl mx-auto px-6 py-24 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-center">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-400 text-xs font-mono2 mb-8"
-              style={{ boxShadow: "0 0 20px rgba(124,58,237,0.15)" }}
-            >
-              <span className="relative flex w-2 h-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full w-2 h-2 bg-emerald-400" />
-              </span>
-              {t.badge}
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.25 }}
-              className={`font-display text-[clamp(2.75rem,7vw,5.25rem)] font-bold leading-[0.95] tracking-tight mb-6 ${dark ? "text-white" : "text-[#08080A]"}`}
+              className={`font-display text-[clamp(2.75rem,7vw,5.25rem)] font-bold leading-[0.95] tracking-tight mb-6 ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}
             >
               {nameLines.map((w, i) => (
                 <span key={i} className="block">
                   {i === 1 ? (
                     <span
-                      className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-300 text-shimmer"
-                      style={{ filter: "drop-shadow(0 0 30px rgba(124,58,237,0.35))" }}
+                      className="bg-clip-text text-transparent name-sweep"
                     >
                       {w}
                     </span>
@@ -80,7 +81,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
               <span className={`text-xl font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>—</span>
               <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <span className={`text-lg font-body font-medium ${dark ? "text-white/85" : "text-black/80"}`}>{t.role}</span>
-                <span className={`text-sm font-mono2 ${dark ? "text-violet-300/90" : "text-violet-700"}`}>{t.role_stack}</span>
+                <span className={`text-sm font-mono2 ${dark ? "text-white/55" : "text-black/60"}`}>{t.role_stack}</span>
               </span>
             </motion.div>
 
@@ -102,12 +103,12 @@ export function Hero({ dark, t, lang }: HeroProps) {
               <a
                 href="#projetos"
                 onClick={e => { e.preventDefault(); goToSection("projetos"); }}
-                className="group relative flex items-center gap-2 px-6 py-3 rounded-xl text-white text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(124,58,237,0.45)] overflow-hidden"
-                style={{ background: "linear-gradient(135deg, #7C3AED, #6D28D9)" }}
+                className="group relative flex items-center gap-2 px-6 py-3 rounded-xl text-[color:var(--p-on-accent)] text-sm font-body font-medium transition-all duration-300 hover:-translate-y-0.5 overflow-hidden"
+                style={{ background: "linear-gradient(135deg, var(--p-accent), var(--p-accent-strong))" }}
               >
                 <span
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: "linear-gradient(135deg, #8B5CF6, #06B6D4)" }}
+                  style={{ background: "linear-gradient(135deg, var(--p-accent-strong), var(--p-accent))" }}
                 />
                 <span className="relative flex items-center gap-2">
                   {t.cta_projects} <ArrowRight size={15} aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -167,47 +168,26 @@ export function Hero({ dark, t, lang }: HeroProps) {
             whileHover={{ y: -4, transition: { duration: 0.3, ease: "easeOut" } }}
             className="relative group/card w-full"
           >
-            <motion.div
-              className="absolute -inset-8 rounded-3xl -z-10 pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(124,58,237,0.28) 0%, transparent 70%)", filter: "blur(24px)", willChange: "opacity" }}
-              animate={{ opacity: [0.5, 0.9, 0.5] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
             <div
-              className={`relative w-full max-w-[25rem] mx-auto lg:mx-0 rounded-2xl border overflow-hidden transition-shadow duration-300 ease-out group-hover/card:shadow-[0_0_50px_rgba(124,58,237,0.25)] ${dark ? "bg-[#0d0d12]/95 border-white/[0.09]" : "bg-black/[0.045] border-black/[0.16]"}`}
+              style={{ background: "linear-gradient(160deg, #18181C 0%, #0F0F12 60%, #121216 100%)" }}
+              className={`relative w-full max-w-[25rem] mx-auto lg:mx-0 rounded-2xl border overflow-hidden ${codeDark ? "border-white/[0.09]" : ""}`}
             >
-              <motion.div
-                className="absolute inset-x-0 top-0 h-px"
-                style={{ background: "linear-gradient(90deg, transparent, #C4B5FD, #67E8F9, transparent)", backgroundSize: "200% auto" }}
-                animate={{ backgroundPosition: ["0% 0%", "200% 0%"] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              />
-              <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${dark ? "border-white/[0.06]" : "border-black/[0.15]"}`}>
+              <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${codeDark ? "border-white/[0.06]" : "border-black/[0.15]"}`}>
                 {["#FF5F57", "#FFBD2E", "#28C840"].map(c => <span key={c} className="w-3 h-3 rounded-full" style={{ background: c }} />)}
-                <span className={`ml-2 text-xs font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>developer.ts</span>
-                <span className={`ml-auto flex items-center gap-1.5 text-[10px] font-mono2 ${dark ? "text-emerald-400/70" : "text-emerald-600"}`}>
-                  <span className="relative flex w-1.5 h-1.5">
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                    <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-400" />
-                  </span>
-                  online
-                </span>
+                <span className={`ml-2 text-xs font-mono2 ${codeDark ? "text-white/50" : "text-black/62"}`}>developer.ts</span>
               </div>
               <div className="p-5 space-y-1.5">
                 {(() => {
-                  const kw = dark ? "text-violet-400/70" : "text-violet-600";
-                  const ident = dark ? "text-blue-400/70" : "text-blue-600";
-                  const punct = dark ? "text-white/50" : "text-black/62";
-                  const key = dark ? "text-white/50" : "text-black/62";
-                  const comma = dark ? "text-white/38" : "text-black/62";
-                  const str = dark ? "text-emerald-400/70" : "text-emerald-600";
-                  const num = dark ? "text-sky-400/70" : "text-sky-600";
-                  const kw2 = dark ? "text-amber-400/70" : "text-amber-600";
+                  const kw = codeDark ? "text-violet-400/70" : "text-violet-600";
+                  const ident = codeDark ? "text-blue-400/70" : "text-blue-600";
+                  const punct = codeDark ? "text-white/50" : "text-black/62";
+                  const key = codeDark ? "text-white/50" : "text-black/62";
+                  const comma = codeDark ? "text-white/38" : "text-black/62";
+                  const str = codeDark ? "text-emerald-400/70" : "text-emerald-600";
+                  const num = codeDark ? "text-sky-400/70" : "text-sky-600";
+                  const kw2 = codeDark ? "text-amber-400/70" : "text-amber-600";
                   const lines = [
                     { code: <><span className={kw}>const </span><span className={ident}>dev</span><span className={punct}> = {"{"}</span></> },
-                    { indent: true, code: <><span className={key}>name: </span><span className={str}>&quot;Nicolas Santos&quot;</span><span className={comma}>,</span></> },
-                    { indent: true, code: <><span className={key}>fullName: </span><span className={str}>&quot;Nicolas Pichiteli dos Santos&quot;</span><span className={comma}>,</span></> },
-                    { indent: true, code: <><span className={key}>age: </span><span className={num}>19</span><span className={comma}>,</span></> },
                     { indent: true, code: <><span className={key}>role: </span><span className={kw2}>&quot;Full Stack Developer&quot;</span><span className={comma}>,</span></> },
                     { indent: true, code: <><span className={key}>location: </span><span className={kw2}>&quot;Birigui, BR&quot;</span><span className={comma}>,</span></> },
                     { indent: true, code: <><span className={key}>studyingSince: </span><span className={num}>2022</span><span className={comma}>,</span></> },
@@ -260,7 +240,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
                     <>
                       {rendered}
                       <motion.span
-                        className={`inline-block w-[6px] h-[12px] align-middle ${dark ? "bg-cyan-300/80" : "bg-cyan-600"}`}
+                        className={`inline-block w-[6px] h-[12px] align-middle ${codeDark ? "bg-cyan-300/80" : "bg-cyan-600"}`}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: [1, 0, 1] }}
                         transition={{ duration: 0.9, repeat: Infinity, delay: typingEnd }}

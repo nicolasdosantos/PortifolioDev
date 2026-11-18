@@ -53,7 +53,7 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
     const b = parseInt(m.slice(4, 6), 16);
     return (r * 299 + g * 587 + b * 114) / 1000 > 190;
   };
-  const buttonTextClass = pending && isLight(pending.colors[0]) ? "text-[#08080A]" : "text-white";
+  const buttonTextClass = pending && isLight(pending.colors[0]) ? "text-[color:var(--p-bg)]" : "text-white";
 
   return (
     <AnimatePresence>
@@ -78,7 +78,7 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className={`relative w-full max-w-sm rounded-2xl overflow-hidden ${dark ? "bg-[#0d0d12]" : "bg-white"}`}
+            className={`relative w-full max-w-sm rounded-2xl overflow-hidden ${dark ? "bg-[color:var(--p-surface)]" : "bg-white"}`}
             initial={{ opacity: 0, scale: 0.92, y: 14 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 8 }}
@@ -110,7 +110,7 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
                 <GradientIcon icon={pending.icon} colors={pending.colors} size={26} />
               </div>
 
-              <h3 id={titleId} className={`font-display text-lg font-bold mb-1.5 ${dark ? "text-white" : "text-[#08080A]"}`}>
+              <h3 id={titleId} className={`font-display text-lg font-bold mb-1.5 ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>
                 {title ?? "Ir para a documentação?"}
               </h3>
               <p className={`text-sm font-body leading-relaxed mb-1 ${dark ? "text-white/68" : "text-black/66"}`}>

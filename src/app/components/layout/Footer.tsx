@@ -11,7 +11,7 @@ export function Footer({ dark, t }: FooterProps) {
     <footer className={`py-10 border-t ${dark ? "border-white/[0.05]" : "border-black/[0.14]"}`}>
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <div className={`font-display text-base font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>
+          <div className={`font-display text-base font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>
             Nicolas<span className="text-violet-500">.</span>
           </div>
           <div className={`text-xs font-body mt-1 ${dark ? "text-white/50" : "text-black/62"}`}>{t.footer_tagline}</div>

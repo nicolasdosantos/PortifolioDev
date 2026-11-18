@@ -12,7 +12,7 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
-const DEFAULT_ACCENT = "#7C3AED";
+const DEFAULT_ACCENT = "var(--p-accent)";
 
 /* O vídeo some na cor do card por máscara, não por um véu por cima: assim nada cobre a imagem
    e o fim do vídeo vira o fundo do texto. Os controles nativos ficariam dentro da parte
@@ -27,7 +27,7 @@ function inkFor(hex: string) {
     const x = c / 255;
     return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
   });
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.3 ? "#08080A" : "#FFFFFF";
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.3 ? "var(--p-bg)" : "#FFFFFF";
 }
 
 function MediaButton({ onClick, label, children }: { onClick: () => void; label: string; children: React.ReactNode }) {
@@ -109,8 +109,8 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
     { label: pt ? "Onde está hoje" : "Where it stands", text: p.results[lang] },
   ];
 
-  const surface = dark ? "#0D0D12" : "#FFFFFF";
-  const ink = dark ? "text-white" : "text-[#08080A]";
+  const surface = dark ? "var(--p-surface)" : "#FFFFFF";
+  const ink = dark ? "text-white" : "text-[color:var(--p-bg)]";
   const body = dark ? "text-white/70" : "text-black/72";
   const muted2 = dark ? "text-white/50" : "text-black/55";
   const hairline = dark ? "border-white/[0.08]" : "border-black/[0.09]";

@@ -45,7 +45,7 @@ export function Contact({ dark, t }: ContactProps) {
 
   const labelBase = `block mb-1.5 text-xs font-body font-medium ${dark ? "text-white/75" : "text-black/75"}`;
   const iconBase = `absolute left-4 ${dark ? "text-white/50" : "text-black/62"}`;
-  const inputBase = `w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-body outline-none transition-all duration-200 focus:border-violet-500 focus:shadow-[0_0_0_3px_rgba(124,58,237,0.14)] ${dark ? "bg-[#101016]/95 border-white/[0.12] text-white placeholder:text-white/48" : "bg-black/[0.045] border-black/[0.16] text-[#08080A] placeholder:text-black/62"}`;
+  const inputBase = `w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-body outline-none transition-all duration-200 focus:border-violet-500 focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--p-accent-ink)_8%,transparent)] ${dark ? "bg-[#101016]/95 border-white/[0.12] text-white placeholder:text-white/48" : "bg-black/[0.045] border-black/[0.16] text-[color:var(--p-bg)] placeholder:text-black/62"}`;
 
   return (
     <section id="contato" className="py-32 relative overflow-hidden">
@@ -68,18 +68,17 @@ export function Contact({ dark, t }: ContactProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 text-emerald-400 text-xs font-mono2 mb-8"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-400 text-xs font-mono2 mb-8"
             >
-              <span className="relative flex w-1.5 h-1.5">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-400" />
-              </span>
               <Briefcase size={12} /> {t.contact_response_badge}
             </motion.div>
 
             <div className="space-y-2">
               {SOCIALS.map(({ Icon, label, val, href, color, lightColor }, i) => {
-                const brand = dark ? color : lightColor ?? color;
+                /* Ícones na cor da paleta, não na da marca: verde, azul, vermelho e branco lado a lado
+                   quebravam a harmonia. `color`/`lightColor` ficam nos dados, sem uso aqui. */
+                void color; void lightColor;
+                const brand = "var(--p-secondary)";
                 const isHovered = hasHover ? hovered === label : true;
                 return (
                   <motion.button
@@ -112,7 +111,7 @@ export function Contact({ dark, t }: ContactProps) {
                       />
                       <div
                         className="relative w-11 h-11 rounded-full flex items-center justify-center transition-colors duration-300"
-                        style={{ background: `${brand}1a` }}
+                        style={{ background: "color-mix(in srgb, var(--p-secondary) 7%, transparent)" }}
                       >
                         <Icon size={16} style={{ color: brand }} />
                       </div>
@@ -143,12 +142,6 @@ export function Contact({ dark, t }: ContactProps) {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <motion.div
-              className="absolute -inset-10 rounded-3xl -z-10 pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(124,58,237,0.22) 0%, transparent 70%)", filter: "blur(28px)", willChange: "opacity" }}
-              animate={{ opacity: [0.5, 0.9, 0.5] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
             <form onSubmit={handleSubmit} className="space-y-4">
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -196,10 +189,10 @@ export function Contact({ dark, t }: ContactProps) {
                 transition={{ duration: 0.4, delay: 0.34 }}
                 whileHover={{ scale: 1.015, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.98 }}
-                className="relative w-full py-3.5 rounded-xl font-body font-medium text-sm text-white overflow-hidden flex items-center justify-center gap-2"
+                className="relative w-full py-3.5 rounded-xl font-body font-medium text-sm text-[color:var(--p-on-accent)] overflow-hidden flex items-center justify-center gap-2"
                 style={{
-                  background: sent ? "linear-gradient(135deg, #059669, #10B981)" : "linear-gradient(135deg, #7C3AED, #6D28D9)",
-                  boxShadow: sent ? "0 0 28px rgba(16,185,129,0.4)" : "0 0 28px rgba(124,58,237,0.35)",
+                  background: sent ? "linear-gradient(135deg, #059669, #10B981)" : "linear-gradient(135deg, var(--p-accent), var(--p-accent-strong))",
+                  boxShadow: "none",
                 }}
               >
                 <AnimatePresence mode="wait" initial={false}>
