@@ -56,8 +56,6 @@ const ORBIT: Record<string, { role: Role; angle: number; radius: number; depth: 
   backend: { role: "ink", angle: -18, radius: 1.06, depth: 1.05, short: { pt: "Back-end", en: "Back-end" } },
   database: { role: "secondary", angle: 46, radius: 1, depth: 1.08, short: { pt: "Dados", en: "Data" } },
   tools: { role: "ink", angle: 132, radius: 0.92, depth: 1, short: { pt: "Ferramentas", en: "Tooling" } },
-  /* "Inteligência Artificial" de skillCategories quebra em duas linhas no card */
-  ai: { role: "secondary", angle: -168, radius: 1.08, depth: 0.93, short: { pt: "IA", en: "AI" } },
 };
 
 /* Derivado de data/skills.ts em vez de reescrito à mão: nome, nível, descrição e ícone

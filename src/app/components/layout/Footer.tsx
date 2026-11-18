@@ -14,7 +14,6 @@ export function Footer({ dark, t }: FooterProps) {
           <div className={`font-display text-base font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>
             Nicolas<span className="text-brand-ink">.</span>
           </div>
-          <div className={`text-xs font-body mt-1 ${dark ? "text-white/50" : "text-black/70"}`}>{t.footer_tagline}</div>
         </div>
         <div className={`text-xs font-body ${dark ? "text-white/50" : "text-black/70"}`}>
           © 2026 Nicolas Pichiteli dos Santos · {t.all_rights}

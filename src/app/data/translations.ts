@@ -56,7 +56,6 @@ export const translations: Record<Lang, Translation> = {
     completed: "Concluído",
     in_progress: "Em andamento",
     all_rights: "Todos os direitos reservados",
-    footer_tagline: "Construindo o futuro, uma linha de código por vez.",
     back_top: "Topo",
     process_steps: [
       { title: "Entendimento", desc: "Entender o problema, quem vai usar e o que precisa funcionar antes de escrever código." },
@@ -122,7 +121,6 @@ export const translations: Record<Lang, Translation> = {
     completed: "Completed",
     in_progress: "In Progress",
     all_rights: "All rights reserved",
-    footer_tagline: "Building the future, one line of code at a time.",
     back_top: "Top",
     process_steps: [
       { title: "Understanding", desc: "Understand the problem, who will use it and what has to work before writing code." },

@@ -70,7 +70,6 @@ export interface Translation {
   completed: string;
   in_progress: string;
   all_rights: string;
-  footer_tagline: string;
   back_top: string;
   process_steps: ProcessStep[];
 }
