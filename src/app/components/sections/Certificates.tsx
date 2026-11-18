@@ -48,14 +48,15 @@ export function Certificates({ dark, t }: CertificatesProps) {
             return (
               <motion.article
                 key={cert.title}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.06 }}
-                className={`flex gap-4 p-5 rounded-xl border ${dark ? "bg-[color:var(--p-surface)] border-white/[0.08]" : "bg-white border-black/[0.12]"}`}
+                transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                /* hover: a borda acende em vinho e o ícone ganha o tom do destaque */
+                className={`group flex gap-4 p-5 rounded-xl border transition-colors duration-300 hover:border-brand-ink/40 ${dark ? "bg-[color:var(--p-surface)] border-white/[0.08]" : "bg-white border-black/[0.12]"}`}
               >
                 <span
-                  className={`shrink-0 grid place-items-center w-10 h-10 rounded-lg ${dark ? "bg-white/[0.05] text-white/70" : "bg-black/[0.05] text-black/70"}`}
+                  className={`shrink-0 grid place-items-center w-10 h-10 rounded-lg transition-colors duration-300 group-hover:bg-brand-ink/10 group-hover:text-brand-ink ${dark ? "bg-white/[0.05] text-white/70" : "bg-black/[0.05] text-black/70"}`}
                   aria-hidden
                 >
                   <CertIcon size={18} />
