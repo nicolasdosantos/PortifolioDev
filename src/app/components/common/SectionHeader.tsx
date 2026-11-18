@@ -18,7 +18,7 @@ export function SectionHeader({ label, title, dark }: SectionHeaderProps) {
       <motion.div variants={revealChildX} className="flex items-center gap-2.5">
         <span className="w-6 h-px bg-[color:var(--p-accent-ink)]" />
         <span
-          className={`text-xs font-mono2 tracking-[0.22em] uppercase ${dark ? "text-white/55" : "text-black/60"}`}
+          className={`text-xs font-body tracking-[0.16em] uppercase ${dark ? "text-white/50" : "text-black/70"}`}
         >
           {label}
         </span>

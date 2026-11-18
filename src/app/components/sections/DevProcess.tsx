@@ -42,12 +42,12 @@ export function DevProcess({ dark, t }: DevProcessProps) {
                     : isHovered ? "bg-black/[0.03] border-black/[0.22]" : "bg-white border-black/[0.16]"
                 }`}
               >
-                <div className={`text-xs font-mono2 mb-3 ${dark ? "text-white/50" : "text-black/62"}`}>0{i + 1}</div>
-                <Icon size={18} className={`mb-3 transition-colors duration-300 ${dark ? "text-white/68" : "text-black/74"}`} />
+                <div className={`text-xs font-mono2 mb-3 ${dark ? "text-white/50" : "text-black/70"}`}>0{i + 1}</div>
+                <Icon size={18} className={`mb-3 transition-colors duration-300 ${dark ? "text-white/70" : "text-black/70"}`} />
                 {/* `break-words`: em 2 colunas no celular o card tem ~120px de conteúdo e
                     "Desenvolvimento" não caberia numa linha só. */}
                 <div className={`font-display font-semibold text-sm leading-snug mb-2 break-words ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{step.title}</div>
-                <div className={`text-xs leading-relaxed font-body ${dark ? "text-white/58" : "text-black/70"}`}>{step.desc}</div>
+                <div className={`text-xs leading-relaxed font-body ${dark ? "text-white/70" : "text-black/70"}`}>{step.desc}</div>
 
                 {i < 5 && (
                   <div
@@ -56,7 +56,7 @@ export function DevProcess({ dark, t }: DevProcessProps) {
                     className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 hidden xl:flex z-20"
                     style={{ left: "calc(100% + 0.5rem)" }}
                   >
-                    <ArrowRight size={13} className={dark ? "text-white/30" : "text-black/40"} />
+                    <ArrowRight size={13} className={dark ? "text-white/35" : "text-black/40"} />
                   </div>
                 )}
               </motion.div>

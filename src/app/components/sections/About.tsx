@@ -12,9 +12,9 @@ const WITH_VIDEO = projects.filter(p => p.video).length;
 /* Números que só aparecem aqui. Antes eram "41 repositórios" (fixo e já desatualizado),
    certificados (repetido na seção de Formação) e "∞ cafés". */
 const CARDS = [
-  { icon: Code2, val: "2022", lbl: { pt: "Estudando programação desde", en: "Studying programming since" }, clr: "text-black/60 dark:text-white/65", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
-  { icon: Briefcase, val: "2026", lbl: { pt: "Estagiando em desenvolvimento desde abril", en: "Development intern since April" }, clr: "text-black/60 dark:text-white/65", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
-  { icon: FolderGit2, val: `${projects.length}`, lbl: { pt: `Projetos no portfólio, ${WITH_VIDEO} com vídeo`, en: `Portfolio projects, ${WITH_VIDEO} with video` }, clr: "text-black/60 dark:text-white/65", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
+  { icon: Code2, val: "2022", lbl: { pt: "Estudando programação desde", en: "Studying programming since" }, clr: "text-black/70 dark:text-white/70", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
+  { icon: Briefcase, val: "2026", lbl: { pt: "Estagiando em desenvolvimento desde abril", en: "Development intern since April" }, clr: "text-black/70 dark:text-white/70", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
+  { icon: FolderGit2, val: `${projects.length}`, lbl: { pt: `Projetos no portfólio, ${WITH_VIDEO} com vídeo`, en: `Portfolio projects, ${WITH_VIDEO} with video` }, clr: "text-black/70 dark:text-white/70", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
 ];
 
 export function About({ dark, t, lang }: SectionProps) {
@@ -63,7 +63,7 @@ export function About({ dark, t, lang }: SectionProps) {
                 whileInView={{ opacity: 1, y: 0, rotate: -4 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className={`absolute -top-4 -left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-mono2 backdrop-blur-md ${dark ? "bg-[color:var(--p-surface)]/90 border-white/10 text-white/80" : "bg-white/90 border-black/10 text-black/80"}`}
+                className={`absolute -top-4 -left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-body backdrop-blur-md ${dark ? "bg-[color:var(--p-surface)]/90 border-white/10 text-white/90" : "bg-white/90 border-black/10 text-black/85"}`}
                 style={{ boxShadow: "0 8px 24px rgba(0,0,0,0.25)" }}
               >
                 <Code2 size={12} className="opacity-70" /> {t.role}
@@ -79,13 +79,13 @@ export function About({ dark, t, lang }: SectionProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <div className={`inline-flex items-center gap-1.5 mb-4 text-xs font-mono2 ${dark ? "text-white/50" : "text-black/62"}`}>
+            <div className={`inline-flex items-center gap-1.5 mb-4 text-xs font-body ${dark ? "text-white/50" : "text-black/70"}`}>
               <MapPin size={12} /> {t.location}
             </div>
-            <p className={`font-body text-lg leading-relaxed mb-8 ${dark ? "text-white/68" : "text-black/74"}`}>{t.about_bio}</p>
+            <p className={`font-body text-lg leading-relaxed mb-8 ${dark ? "text-white/70" : "text-black/70"}`}>{t.about_bio}</p>
             <div className="flex items-center gap-1.5 mb-3">
               <Sparkles size={13} className="opacity-60" />
-              <span className={`text-[11px] font-mono2 uppercase tracking-[0.18em] ${dark ? "text-white/50" : "text-black/62"}`}>Stack</span>
+              <span className={`text-xs font-body uppercase tracking-[0.16em] ${dark ? "text-white/50" : "text-black/70"}`}>Stack</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {STACK.map((tech, i) => (
@@ -96,7 +96,7 @@ export function About({ dark, t, lang }: SectionProps) {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
                   whileHover={{ y: -2 }}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border transition-colors duration-300 cursor-default ${dark ? "border-white/10 bg-white/[0.04] text-white/68 hover:border-violet-500/40 hover:text-white" : "border-black/[0.16] bg-black/[0.07] text-black/74 hover:border-violet-400 hover:text-black"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border transition-colors duration-300 cursor-default ${dark ? "border-white/10 bg-white/[0.04] text-white/70 hover:border-brand-ink/40 hover:text-white" : "border-black/[0.16] bg-black/[0.07] text-black/70 hover:border-brand-ink hover:text-black"}`}
                 >
                   {tech}
                 </motion.span>
@@ -115,7 +115,7 @@ export function About({ dark, t, lang }: SectionProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-              className={`group flex items-center gap-4 p-4 sm:block sm:p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09] hover:border-violet-500/30 hover:shadow-[0_0_30px_color-mix(in_srgb,var(--p-accent-ink)_7%,transparent)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_30px_color-mix(in_srgb,var(--p-accent-ink)_5%,transparent)]"}`}
+              className={`group flex items-center gap-4 p-4 sm:block sm:p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09] hover:border-brand-ink/30 hover:shadow-[0_0_30px_color-mix(in_srgb,var(--p-accent-ink)_7%,transparent)]" : "bg-white border-black/[0.16] hover:border-brand-ink hover:shadow-[0_8px_30px_color-mix(in_srgb,var(--p-accent-ink)_5%,transparent)]"}`}
             >
               {/* no celular vira uma linha (ícone ao lado do número); a partir de `sm`, card */}
               <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center sm:mb-4 transition-transform duration-300 group-hover:scale-110 ${bg}`}>
@@ -123,7 +123,7 @@ export function About({ dark, t, lang }: SectionProps) {
               </div>
               <div>
                 <div className={`font-display text-3xl sm:text-4xl font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{val}</div>
-                <div className={`text-xs mt-1 font-body ${dark ? "text-white/58" : "text-black/70"}`}>{lbl[lang]}</div>
+                <div className={`text-xs mt-1 font-body ${dark ? "text-white/70" : "text-black/70"}`}>{lbl[lang]}</div>
               </div>
             </motion.div>
           ))}

@@ -203,28 +203,15 @@
   --p-light-bg: color-mix(in oklab, var(--p-secondary), var(--p-bg) 6%);
 }
 
-/* As escalas violet, fuchsia e cyan ainda usadas nos componentes apontam para a paleta;
-   violet-500 (bordas e fundos tingidos) usa o tom legível do destaque. */
+/* Cores da paleta por papel, para as classes do Tailwind (bg-brand, text-brand-ink…).
+   `white` também aponta para a secundária: no tema escuro todo text-white/NN é creme. */
 @theme {
-  --color-violet-50: color-mix(in oklab, var(--p-accent-ink), white 85%);
-  --color-violet-100: color-mix(in oklab, var(--p-accent-ink), white 70%);
-  --color-violet-200: color-mix(in oklab, var(--p-accent-ink), white 50%);
-  --color-violet-300: var(--p-accent-soft);
-  --color-violet-400: var(--p-accent-ink);
-  --color-violet-500: var(--p-accent-ink);
-  --color-violet-600: var(--p-accent-strong);
-  --color-violet-700: var(--p-accent-dark);
-  --color-violet-800: color-mix(in oklab, var(--p-accent), black 55%);
-  --color-violet-900: color-mix(in oklab, var(--p-accent), black 65%);
-  --color-fuchsia-300: var(--p-accent-soft);
-  --color-fuchsia-400: var(--p-accent-ink);
+  --color-brand: var(--p-accent);
+  --color-brand-ink: var(--p-accent-ink);
+  --color-brand-strong: var(--p-accent-strong);
+  --color-brand-dark: var(--p-accent-dark);
+  --color-cream: var(--p-secondary);
   --color-white: var(--p-secondary);
-  --color-cyan-200: var(--p-secondary);
-  --color-cyan-300: var(--p-secondary);
-  --color-cyan-400: var(--p-secondary);
-  --color-cyan-500: var(--p-secondary);
-  --color-cyan-600: var(--p-accent-dark);
-  --color-cyan-700: var(--p-accent-dark);
 }
 
 /* seção fora da tela: animações CSS paradas (Hero e StackHero) */
@@ -232,4 +219,30 @@
 [data-paused] *::before,
 [data-paused] *::after {
   animation-play-state: paused !important;
+}
+
+/* Escala tipográfica: 13 / 14 / 16 / 20 / 32 / 48px (o nome do Hero tem tamanho próprio).
+   Os nomes do Tailwind apontam para esses seis valores, então text-xs nunca fica abaixo
+   de 13px e lg/xl, 2xl/3xl/4xl e 5xl/6xl caem no mesmo degrau. */
+@theme {
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.45;
+  --text-2xl: 2rem;
+  --text-2xl--line-height: 1.15;
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 1.15;
+  --text-4xl: 2rem;
+  --text-4xl--line-height: 1.12;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1.08;
+  --text-6xl: 3rem;
+  --text-6xl--line-height: 1.05;
 }

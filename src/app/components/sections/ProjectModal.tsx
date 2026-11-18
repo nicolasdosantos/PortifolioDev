@@ -111,8 +111,8 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
 
   const surface = dark ? "var(--p-surface)" : "#FFFFFF";
   const ink = dark ? "text-white" : "text-[color:var(--p-bg)]";
-  const body = dark ? "text-white/70" : "text-black/72";
-  const muted2 = dark ? "text-white/50" : "text-black/55";
+  const body = dark ? "text-white/70" : "text-black/70";
+  const muted2 = dark ? "text-white/50" : "text-black/58";
   const hairline = dark ? "border-white/[0.08]" : "border-black/[0.09]";
 
   return (
@@ -206,16 +206,16 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.status === "completed" ? "#34D399" : "#FBBF24" }} />
               {t[p.status]}
             </span>
-            <span aria-hidden="true" className={dark ? "text-white/20" : "text-black/20"}>/</span>
+            <span aria-hidden="true" className={dark ? "text-white/35" : "text-black/40"}>/</span>
             <span>{p.category[lang]}</span>
-            <span aria-hidden="true" className={dark ? "text-white/20" : "text-black/20"}>/</span>
+            <span aria-hidden="true" className={dark ? "text-white/35" : "text-black/40"}>/</span>
             <span>{p.year}</span>
           </div>
           <h2 id="project-modal-title" className={`font-display font-bold tracking-[-0.03em] leading-[0.95] text-4xl md:text-6xl mt-3 ${ink}`}>
             {name}
           </h2>
-          {subtitle && <p className={`mt-2 font-display text-lg md:text-2xl font-semibold tracking-[-0.01em] ${dark ? "text-white/55" : "text-black/50"}`}>{subtitle}</p>}
-          <p className={`mt-5 max-w-2xl text-base md:text-lg font-body leading-relaxed ${dark ? "text-white/80" : "text-black/78"}`}>
+          {subtitle && <p className={`mt-2 font-display text-lg md:text-2xl font-semibold tracking-[-0.01em] ${dark ? "text-white/50" : "text-black/58"}`}>{subtitle}</p>}
+          <p className={`mt-5 max-w-2xl text-base md:text-lg font-body leading-relaxed ${dark ? "text-white/90" : "text-black/85"}`}>
             {p.description[lang]}
           </p>
 
@@ -237,13 +237,13 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
                 href={p.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm font-medium border transition-colors outline-none focus-visible:ring-2 ${dark ? "border-white/15 text-white/85 hover:bg-white/[0.06]" : "border-black/15 text-black/80 hover:bg-black/[0.05]"}`}
+                className={`inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm font-medium border transition-colors outline-none focus-visible:ring-2 ${dark ? "border-white/15 text-white/90 hover:bg-white/[0.06]" : "border-black/15 text-black/85 hover:bg-black/[0.05]"}`}
                 style={{ ["--tw-ring-color" as string]: accent }}
               >
                 <Github size={16} /> {pt ? "Ver código" : "View code"}
               </a>
             ) : (
-              <span className={`inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm border border-dashed ${dark ? "border-white/15 text-white/55" : "border-black/20 text-black/55"}`}>
+              <span className={`inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm border border-dashed ${dark ? "border-white/15 text-white/50" : "border-black/20 text-black/58"}`}>
                 <Lock size={14} /> {pt ? "Código privado" : "Private code"}
               </span>
             )}
@@ -253,7 +253,7 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
         {/* Corpo */}
         <div className="px-6 md:px-12 pt-10 md:pt-12 pb-10 md:pb-12">
           <div className={`grid md:grid-cols-[1fr_220px] gap-10 md:gap-12 pt-10 border-t ${hairline}`}>
-            <div className={`space-y-4 max-w-[62ch] text-[15px] font-body leading-[1.75] ${body}`}>
+            <div className={`space-y-4 max-w-[62ch] text-base font-body leading-[1.75] ${body}`}>
               {paragraphs.map((para, i) => <p key={i}>{para}</p>)}
             </div>
 
@@ -263,7 +263,7 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
                 {p.tags.map(tag => (
                   <li
                     key={tag}
-                    className={`px-2.5 py-1 rounded-full text-xs font-body border ${dark ? "border-white/10 text-white/75" : "border-black/12 text-black/72"}`}
+                    className={`px-2.5 py-1 rounded-full text-xs font-body border ${dark ? "border-white/10 text-white/70" : "border-black/12 text-black/70"}`}
                     style={{ background: `${accent}${dark ? "14" : "10"}` }}
                   >
                     {tag}
@@ -278,7 +278,7 @@ export function ProjectModal({ project: p, dark, lang, t, onClose }: ProjectModa
             {story.map(({ label, text }) => (
               <div key={label} className={`grid md:grid-cols-[180px_1fr] gap-1 md:gap-8 py-5 border-b ${hairline}`}>
                 <dt className="text-sm font-display font-semibold" style={{ color: dark ? `color-mix(in srgb, ${accent} 60%, white)` : accent }}>{label}</dt>
-                <dd className={`text-[15px] font-body leading-relaxed max-w-[62ch] ${body}`}>{text}</dd>
+                <dd className={`text-base font-body leading-relaxed max-w-[62ch] ${body}`}>{text}</dd>
               </div>
             ))}
           </dl>

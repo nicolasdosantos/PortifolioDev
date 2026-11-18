@@ -43,9 +43,9 @@ export function Contact({ dark, t }: ContactProps) {
     setTimeout(() => setSent(false), 3500);
   };
 
-  const labelBase = `block mb-1.5 text-xs font-body font-medium ${dark ? "text-white/75" : "text-black/75"}`;
-  const iconBase = `absolute left-4 ${dark ? "text-white/50" : "text-black/62"}`;
-  const inputBase = `w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-body outline-none transition-all duration-200 focus:border-violet-500 focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--p-accent-ink)_8%,transparent)] ${dark ? "bg-[#101016]/95 border-white/[0.12] text-white placeholder:text-white/48" : "bg-black/[0.045] border-black/[0.16] text-[color:var(--p-bg)] placeholder:text-black/62"}`;
+  const labelBase = `block mb-1.5 text-xs font-body font-medium ${dark ? "text-white/70" : "text-black/70"}`;
+  const iconBase = `absolute left-4 ${dark ? "text-white/50" : "text-black/70"}`;
+  const inputBase = `w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm font-body outline-none transition-all duration-200 focus:border-brand-ink focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--p-accent-ink)_8%,transparent)] ${dark ? "bg-[#101016]/95 border-white/[0.12] text-white placeholder:text-white/50" : "bg-black/[0.045] border-black/[0.16] text-[color:var(--p-bg)] placeholder:text-black/70"}`;
 
   return (
     <section id="contato" className="py-32 relative overflow-hidden">
@@ -58,7 +58,7 @@ export function Contact({ dark, t }: ContactProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className={`text-sm font-body leading-relaxed mb-5 ${dark ? "text-white/68" : "text-black/74"}`}
+              className={`text-sm font-body leading-relaxed mb-5 ${dark ? "text-white/70" : "text-black/70"}`}
             >
               {t.contact_subtitle}
             </motion.p>
@@ -68,7 +68,7 @@ export function Contact({ dark, t }: ContactProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-400 text-xs font-mono2 mb-8"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-brand-ink/30 bg-brand-ink/10 text-brand-ink text-xs font-body mb-8"
             >
               <Briefcase size={12} /> {t.contact_response_badge}
             </motion.div>
@@ -118,8 +118,8 @@ export function Contact({ dark, t }: ContactProps) {
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <div className={`text-[10px] font-mono2 uppercase tracking-wide ${dark ? "text-white/50" : "text-black/62"}`}>{label}</div>
-                      <div className={`text-sm font-body truncate ${dark ? "text-white/80" : "text-black/82"}`}>{val}</div>
+                      <div className={`text-xs font-body uppercase tracking-wide ${dark ? "text-white/50" : "text-black/70"}`}>{label}</div>
+                      <div className={`text-sm font-body truncate ${dark ? "text-white/90" : "text-black/85"}`}>{val}</div>
                     </div>
 
                     <motion.div
@@ -236,7 +236,7 @@ export function Contact({ dark, t }: ContactProps) {
                   )}
                 </AnimatePresence>
               </motion.button>
-              <p className={`text-xs font-body text-center ${dark ? "text-white/55" : "text-black/62"}`}>{t.form_hint}</p>
+              <p className={`text-xs font-body text-center ${dark ? "text-white/50" : "text-black/70"}`}>{t.form_hint}</p>
               {/* anuncia para leitor de tela o que o botão animado mostra visualmente */}
               <p role="status" aria-live="polite" className="sr-only">{sent ? t.form_sent : ""}</p>
             </form>

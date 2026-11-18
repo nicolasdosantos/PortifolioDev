@@ -497,19 +497,18 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
   const pt = lang === "pt";
   return (
     <div className="relative z-10 pointer-events-auto">
-      <p className={`font-mono2 text-[11px] tracking-[0.24em] uppercase mb-5 ${dark ? "text-white/50" : "text-black/62"}`}>
+      <p className={`font-body text-xs tracking-[0.16em] uppercase mb-5 ${dark ? "text-white/50" : "text-black/70"}`}>
         {pt ? "Como eu construo" : "How I build"}
       </p>
 
       {/* Headline. As três linhas coloridas ficam num ÚNICO span com bg-clip-text para o
           gradiente atravessar a frase inteira e poder varrer — com um span por linha, cada
           um teria seu próprio background e a varredura reiniciaria em cada linha.
-          `text-shimmer` é a mesma classe que anima o seu nome na Hero (GlobalStyles). */}
-      <h2 className="font-display font-bold leading-[1.02] tracking-tight text-[clamp(2.1rem,3.7vw,3.4rem)]">
+          `name-sweep` é o mesmo brilho do nome na Hero (GlobalStyles). */}
+      <h2 className="font-display font-bold leading-[1.02] tracking-tight text-[clamp(2rem,3.4vw,3rem)]">
         <span className={dark ? "text-white" : "text-[color:var(--p-bg)]"}>Full stack,</span>
         <span
-          className="block bg-clip-text text-transparent"
-          style={{ backgroundImage: `linear-gradient(100deg, ${CORE_VIOLET} 0%, var(--p-secondary) 22%, ${CORE_CYAN} 52%, ${CORE_BLUE} 82%, ${CORE_VIOLET} 100%)` }}
+          className="block bg-clip-text text-transparent name-sweep"
         >
           {pt ? (
             <>
@@ -538,7 +537,7 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
         <span className="w-1 h-1 rounded-full" style={{ background: rgba(CORE_CYAN, 0.4) }} />
       </div>
 
-      <p className={`font-body text-[15px] leading-relaxed max-w-sm ${dark ? "text-white/68" : "text-black/66"}`}>
+      <p className={`font-body text-base leading-relaxed max-w-sm ${dark ? "text-white/70" : "text-black/70"}`}>
         {pt
           ? "Do banco de dados à interface: modelo as tabelas, escrevo as regras de negócio e construo as telas."
           : "From the database to the interface: I model the tables, write the business rules and build the screens."}
@@ -550,7 +549,7 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
           return (
             <li key={f.pt} className="flex items-center gap-3">
               <Icon size={15} className="shrink-0" style={{ color: CORE_CYAN }} aria-hidden />
-              <span className={`font-body text-sm ${dark ? "text-white/70" : "text-black/74"}`}>{pt ? f.pt : f.en}</span>
+              <span className={`font-body text-sm ${dark ? "text-white/70" : "text-black/70"}`}>{pt ? f.pt : f.en}</span>
             </li>
           );
         })}
@@ -912,8 +911,8 @@ function OrbitCard({
           </motion.span>
           <span
             id={labelId}
-            className="font-mono2 uppercase whitespace-nowrap"
-            style={{ fontSize: w * 0.058, letterSpacing: "0.16em", color: dark ? "rgba(255,255,255,.9)" : mix(c, 0.35) }}
+            className="font-body uppercase whitespace-nowrap"
+            style={{ fontSize: Math.max(13, w * 0.058), letterSpacing: "0.16em", color: dark ? "rgba(255,255,255,.9)" : mix(c, 0.35) }}
           >
             {card.label[lang]}
           </span>
@@ -957,7 +956,7 @@ function OrbitCard({
                 >
                   <div className="flex items-center" style={{ gap: w * 0.045 }}>
                     <ItemIcon size={w * 0.055} className="shrink-0" style={{ color: dark ? c : mix(c, 0.5) }} aria-hidden />
-                    <span className="font-body" style={{ fontSize: w * 0.058, color: dark ? "rgba(255,255,255,.86)" : "rgba(0,0,0,.74)" }}>
+                    <span className="font-body" style={{ fontSize: Math.max(13, w * 0.058), color: dark ? "rgba(255,255,255,.86)" : "rgba(0,0,0,.74)" }}>
                       {it.name}
                     </span>
                   </div>
@@ -972,7 +971,7 @@ function OrbitCard({
                     >
                       <p
                         className="font-body"
-                        style={{ fontSize: w * 0.05, marginTop: w * 0.028, color: dark ? "rgba(255,255,255,.62)" : "rgba(0,0,0,.62)" }}
+                        style={{ fontSize: Math.max(13, w * 0.05), marginTop: w * 0.028, color: dark ? "rgba(255,255,255,.62)" : "rgba(0,0,0,.62)" }}
                       >
                         {it.desc}
                       </p>
@@ -986,7 +985,7 @@ function OrbitCard({
 
         {/* dica de que há mais techs por trás do clique */}
         {!isOpen && hidden > 0 && (
-          <p className="relative font-mono2" style={{ marginTop: w * 0.05, fontSize: w * 0.048, color: rgba(c, 0.75) }}>
+          <p className="relative font-body" style={{ marginTop: w * 0.05, fontSize: Math.max(13, w * 0.048), color: rgba(c, 0.75) }}>
             +{hidden} {lang === "pt" ? "e detalhes" : "and details"}
           </p>
         )}
@@ -1178,16 +1177,16 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
   const pt = lang === "pt";
   return (
     <div className="px-6 py-24 max-w-xl mx-auto">
-      <p className={`font-mono2 text-[11px] tracking-[0.24em] uppercase mb-4 ${dark ? "text-white/50" : "text-black/62"}`}>
+      <p className={`font-body text-xs tracking-[0.16em] uppercase mb-4 ${dark ? "text-white/50" : "text-black/70"}`}>
         {pt ? "Como eu construo" : "How I build"}
       </p>
-      <h2 className="font-display font-bold leading-[1.06] tracking-tight text-[2rem] mb-5">
+      <h2 className="font-display font-bold leading-[1.06] tracking-tight text-3xl mb-5">
         <span className={dark ? "text-white" : "text-[color:var(--p-bg)]"}>Full stack,</span>
-        <span className="block bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(92deg, ${CORE_VIOLET}, ${CORE_CYAN}, ${CORE_BLUE})` }}>
+        <span className="block bg-clip-text text-transparent name-sweep">
           {pt ? "do front-end ao banco de dados." : "from the front-end to the database."}
         </span>
       </h2>
-      <p className={`font-body text-[15px] leading-relaxed mb-10 ${dark ? "text-white/68" : "text-black/66"}`}>
+      <p className={`font-body text-base leading-relaxed mb-10 ${dark ? "text-white/70" : "text-black/70"}`}>
         {pt
           ? "Do banco de dados à interface: modelo as tabelas, escrevo as regras de negócio e construo as telas."
           : "From the database to the interface: I model the tables, write the business rules and build the screens."}
@@ -1252,7 +1251,7 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
                 >
                   <Icon size={17} style={{ color: dark ? c : mix(c, 0.55) }} aria-hidden />
                 </span>
-                <span className="font-mono2 text-[11px] uppercase tracking-[0.16em]" style={{ color: dark ? "rgba(255,255,255,.9)" : mix(c, 0.35) }}>
+                <span className="font-body text-xs uppercase tracking-[0.16em]" style={{ color: dark ? "rgba(255,255,255,.9)" : mix(c, 0.35) }}>
                   {card.label[lang]}
                 </span>
               </div>

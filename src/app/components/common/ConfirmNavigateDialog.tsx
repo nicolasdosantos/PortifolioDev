@@ -97,7 +97,7 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
             <button
               onClick={onCancel}
               aria-label="Fechar"
-              className={`absolute top-4 right-4 p-1.5 rounded-lg transition-colors duration-200 ${dark ? "text-white/58 hover:text-white hover:bg-white/[0.08]" : "text-black/62 hover:text-black hover:bg-black/[0.06]"}`}
+              className={`absolute top-4 right-4 p-1.5 rounded-lg transition-colors duration-200 ${dark ? "text-white/70 hover:text-white hover:bg-white/[0.08]" : "text-black/70 hover:text-black hover:bg-black/[0.06]"}`}
             >
               <X size={16} />
             </button>
@@ -113,7 +113,7 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
               <h3 id={titleId} className={`font-display text-lg font-bold mb-1.5 ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>
                 {title ?? "Ir para a documentação?"}
               </h3>
-              <p className={`text-sm font-body leading-relaxed mb-1 ${dark ? "text-white/68" : "text-black/66"}`}>
+              <p className={`text-sm font-body leading-relaxed mb-1 ${dark ? "text-white/70" : "text-black/70"}`}>
                 {description ?? (
                   <>
                     Você será redirecionado para o site oficial de{" "}
@@ -124,13 +124,13 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
                   </>
                 )}
               </p>
-              <span className={`text-xs font-mono2 mb-6 ${dark ? "text-white/50" : "text-black/62"}`}>{host}</span>
+              <span className={`text-xs font-mono2 mb-6 ${dark ? "text-white/50" : "text-black/70"}`}>{host}</span>
 
               <div className="flex items-center gap-3 w-full">
                 <button
                   ref={cancelRef}
                   onClick={onCancel}
-                  className={`flex-1 px-4 py-2.5 rounded-xl text-sm font-body font-medium border transition-colors duration-200 ${dark ? "border-white/10 text-white/70 hover:bg-white/[0.06]" : "border-black/[0.16] text-black/74 hover:bg-black/[0.06]"}`}
+                  className={`flex-1 px-4 py-2.5 rounded-xl text-sm font-body font-medium border transition-colors duration-200 ${dark ? "border-white/10 text-white/70 hover:bg-white/[0.06]" : "border-black/[0.16] text-black/70 hover:bg-black/[0.06]"}`}
                 >
                   Cancelar
                 </button>

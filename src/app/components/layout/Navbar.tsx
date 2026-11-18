@@ -128,7 +128,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
                   onClick={e => { e.preventDefault(); go(id); }}
                   className={`relative px-3.5 py-1.5 rounded-xl text-sm font-body transition-colors duration-200 ${isActive
                     ? dark ? "text-white" : "text-[color:var(--p-bg)]"
-                    : dark ? "text-white/68 hover:text-white" : "text-black/66 hover:text-black"
+                    : dark ? "text-white/70 hover:text-white" : "text-black/70 hover:text-black"
                   }`}
                 >
                   {isActive && (
@@ -151,7 +151,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
               whileTap={{ scale: 0.95 }}
               onClick={() => setLang(lang === "pt" ? "en" : "pt")}
               aria-label={`${lang === "pt" ? "PT-BR" : "EN"}: ${t.lang_switch}`}
-              className={`px-3 py-1.5 rounded-lg text-xs font-mono2 border transition-colors duration-200 ${dark ? "border-white/10 text-white/68 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/74 hover:text-black hover:bg-black/[0.08]"}`}
+              className={`px-3 py-1.5 rounded-lg text-xs font-body border transition-colors duration-200 ${dark ? "border-white/10 text-white/70 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/70 hover:text-black hover:bg-black/[0.08]"}`}
             >
               {lang === "pt" ? "PT-BR" : "EN"}
             </motion.button>
@@ -161,7 +161,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
               onClick={() => setDark(!dark)}
               aria-label={dark ? t.theme_to_light : t.theme_to_dark}
               title={dark ? t.theme_to_light : t.theme_to_dark}
-              className={`p-2 rounded-lg border transition-colors duration-200 ${dark ? "border-white/10 text-white/68 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/74 hover:text-black hover:bg-black/[0.08]"}`}
+              className={`p-2 rounded-lg border transition-colors duration-200 ${dark ? "border-white/10 text-white/70 hover:text-white hover:bg-white/[0.05]" : "border-black/[0.16] text-black/70 hover:text-black hover:bg-black/[0.08]"}`}
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -181,7 +181,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
           <div className="flex items-center gap-2 lg:hidden">
             <motion.button
               whileTap={{ scale: 0.9 }}
-              className={`lg:hidden p-2 rounded-lg ${dark ? "text-white/72" : "text-black/75"}`}
+              className={`lg:hidden p-2 rounded-lg ${dark ? "text-white/70" : "text-black/70"}`}
               aria-label={open ? "Fechar menu" : "Abrir menu"}
               aria-expanded={open}
               onClick={() => setOpen(!open)}
@@ -229,21 +229,21 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
                     whileTap={{ scale: 0.97 }}
                     className={`text-left px-4 py-3 rounded-xl text-sm flex items-center gap-3 transition-colors ${isActive
                       ? dark ? "text-white bg-white/[0.07]" : "text-black bg-black/[0.06]"
-                      : dark ? "text-white/72 hover:text-white hover:bg-white/[0.05]" : "text-black/75 hover:text-black hover:bg-black/[0.08]"
+                      : dark ? "text-white/70 hover:text-white hover:bg-white/[0.05]" : "text-black/70 hover:text-black hover:bg-black/[0.08]"
                     }`}
                   >
                     <span
-                      className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${isActive ? "bg-violet-500 scale-100" : "bg-transparent scale-0"}`}
+                      className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${isActive ? "bg-brand-ink scale-100" : "bg-transparent scale-0"}`}
                     />
                     {label}
                   </motion.a>
                 );
               })}
               <div className={`flex gap-2 mt-4 pt-4 border-t ${dark ? "border-white/[0.05]" : "border-black/[0.14]"}`}>
-                <button onClick={() => setLang(lang === "pt" ? "en" : "pt")} aria-label={`${lang === "pt" ? "EN" : "PT-BR"}: ${t.lang_switch}`} className={`flex-1 py-2 rounded-xl text-xs font-mono2 border ${dark ? "border-white/10 text-white/68" : "border-black/[0.16] text-black/74"}`}>
+                <button onClick={() => setLang(lang === "pt" ? "en" : "pt")} aria-label={`${lang === "pt" ? "EN" : "PT-BR"}: ${t.lang_switch}`} className={`flex-1 py-2 rounded-xl text-xs font-body border ${dark ? "border-white/10 text-white/70" : "border-black/[0.16] text-black/70"}`}>
                   {lang === "pt" ? "EN" : "PT-BR"}
                 </button>
-                <button onClick={() => setDark(!dark)} aria-label={dark ? t.theme_to_light : t.theme_to_dark} className={`flex-1 py-2 rounded-xl flex items-center justify-center gap-2 text-xs border ${dark ? "border-white/10 text-white/68" : "border-black/[0.16] text-black/74"}`}>
+                <button onClick={() => setDark(!dark)} aria-label={dark ? t.theme_to_light : t.theme_to_dark} className={`flex-1 py-2 rounded-xl flex items-center justify-center gap-2 text-xs border ${dark ? "border-white/10 text-white/70" : "border-black/[0.16] text-black/70"}`}>
                   {dark ? <><Sun size={13} aria-hidden />{t.theme_light}</> : <><Moon size={13} aria-hidden />{t.theme_dark}</>}
                 </button>
               </div>
