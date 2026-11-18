@@ -16,8 +16,8 @@ const SOCIALS = [
   { Icon: Mail, href: "mailto:nicolaspichiteli245@gmail.com", label: "E-mail" },
 ];
 
-/* O card de código é sempre escuro (preto suave, não #000), nos dois temas: as cores da
-   sintaxe seguem o tema escuro mesmo com o site no claro. */
+/* O card de código é sempre escuro (preto suave, não #000), nos dois temas. A classe `dark`
+   no card faz as variáveis da paleta (vinho legível, creme) seguirem o tema escuro lá dentro. */
 const codeDark = true;
 
 export function Hero({ dark, t, lang }: HeroProps) {
@@ -171,7 +171,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
           >
             <div
               style={{ background: "linear-gradient(160deg, #18181C 0%, #0F0F12 60%, #121216 100%)" }}
-              className={`relative w-full max-w-[22rem] mx-auto lg:mx-0 rounded-xl border overflow-hidden ${codeDark ? "border-white/[0.09]" : ""}`}
+              className={`dark relative w-full max-w-[22rem] mx-auto lg:mx-0 rounded-xl border overflow-hidden ${codeDark ? "border-white/[0.09]" : ""}`}
             >
               <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${codeDark ? "border-white/[0.06]" : "border-black/[0.15]"}`}>
                 {[0, 1, 2].map(i => <span key={i} className="w-2.5 h-2.5 rounded-full bg-white/15" />)}

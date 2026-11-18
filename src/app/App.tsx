@@ -36,9 +36,15 @@ function initialLang(): Lang {
   return navigator.language?.toLowerCase().startsWith("pt") ? "pt" : "en";
 }
 
-/* Tema: a última escolha da pessoa; sem escolha, o escuro, que é o tema principal do site. */
+/* Tema: a última escolha da pessoa; sem escolha, o do sistema operacional. */
 function initialDark() {
-  return readStored(THEME_KEY) !== "light";
+  const saved = readStored(THEME_KEY);
+  if (saved === "light" || saved === "dark") return saved === "dark";
+  try {
+    return !window.matchMedia("(prefers-color-scheme: light)").matches;
+  } catch {
+    return true;
+  }
 }
 
 export default function App() {
