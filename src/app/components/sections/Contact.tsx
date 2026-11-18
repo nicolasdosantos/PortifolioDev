@@ -22,25 +22,36 @@ const SOCIALS = [
 
 export function Contact({ dark, t }: ContactProps) {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
   const { pending, request, cancel, confirm } = useConfirmNavigate();
   const hasHover = useHasHover();
 
-  /* O formulário não tem backend. Antes ele apenas mostrava "Mensagem enviada!" e descartava
-     o conteúdo — quem escrevesse daqui acreditaria ter feito contato e nunca receberia
-     resposta. Agora ele abre o cliente de e-mail com assunto e corpo prontos, então a
-     mensagem realmente chega. Trocar por um endpoint (Formspree, Resend, rota própria) é só
-     substituir o `window.location.href` abaixo. */
+  /* Envio real pela função /api/contact (Resend). Se falhar, a mensagem de erro oferece o
+     e-mail direto, com o texto já escrito, para a pessoa não perder o que digitou. */
   const MAIL_TO = "nicolaspichiteli245@gmail.com";
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [website, setWebsite] = useState(""); // campo-isca para robôs
+  const sent = status === "sent";
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const mailtoFallback = `mailto:${MAIL_TO}?subject=${encodeURIComponent(`Contato pelo portfólio — ${form.name}`)}&body=${encodeURIComponent(`${form.message}\n\n—\n${form.name}\n${form.email}`)}`;
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Contato pelo portfólio — ${form.name}`;
-    const body = `${form.message}\n\n—\n${form.name}\n${form.email}`;
-    window.location.href = `mailto:${MAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
-    setTimeout(() => setSent(false), 3500);
+    if (status === "sending") return;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, website }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setStatus("sent");
+      setForm({ name: "", email: "", message: "" });
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch {
+      setStatus("error");
+    }
   };
 
   const labelBase = `block mb-1.5 text-xs font-body font-medium ${dark ? "text-white/70" : "text-black/70"}`;
@@ -143,6 +154,11 @@ export function Contact({ dark, t }: ContactProps) {
             className="relative"
           >
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* campo-isca: escondido de pessoas e leitores de tela; robôs costumam preencher */}
+              <div aria-hidden className="absolute -left-[9999px] w-px h-px overflow-hidden">
+                <label htmlFor="contato-site">Site</label>
+                <input id="contato-site" name="website" type="text" tabIndex={-1} autoComplete="off" value={website} onChange={e => setWebsite(e.target.value)} />
+              </div>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -177,12 +193,13 @@ export function Contact({ dark, t }: ContactProps) {
                 <label htmlFor="contato-mensagem" className={labelBase}>{t.form_message}</label>
                 <div className="relative">
                   <MessageSquare size={15} aria-hidden className={`${iconBase} top-4`} />
-                  <textarea id="contato-mensagem" name="message" placeholder={t.form_message_ph} required rows={5} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} className={`${inputBase} resize-none`} />
+                  <textarea id="contato-mensagem" name="message" placeholder={t.form_message_ph} required rows={5} minLength={10} maxLength={5000} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} className={`${inputBase} resize-none`} />
                 </div>
               </motion.div>
 
               <motion.button
                 type="submit"
+                disabled={status === "sending"}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -191,7 +208,8 @@ export function Contact({ dark, t }: ContactProps) {
                 whileTap={{ scale: 0.98 }}
                 className="relative w-full py-3.5 rounded-xl font-body font-medium text-sm text-[color:var(--p-on-accent)] overflow-hidden flex items-center justify-center gap-2"
                 style={{
-                  background: sent ? "linear-gradient(135deg, #059669, #10B981)" : "linear-gradient(135deg, var(--p-accent), var(--p-accent-strong))",
+                  background: "linear-gradient(135deg, var(--p-accent), var(--p-accent-strong))",
+                  opacity: status === "sending" ? 0.7 : 1,
                   boxShadow: "none",
                 }}
               >
@@ -231,14 +249,21 @@ export function Contact({ dark, t }: ContactProps) {
                       >
                         <Send size={15} />
                       </motion.span>
-                      {t.form_send}
+                      {status === "sending" ? t.form_sending : t.form_send}
                     </motion.span>
                   )}
                 </AnimatePresence>
               </motion.button>
-              <p className={`text-xs font-body text-center ${dark ? "text-white/50" : "text-black/70"}`}>{t.form_hint}</p>
+              {status === "error" ? (
+                <p role="alert" className="text-xs font-body text-center text-brand-ink">
+                  {t.form_error}{" "}
+                  <a href={mailtoFallback} className="underline underline-offset-2">{t.form_error_mail}</a>
+                </p>
+              ) : (
+                <p className={`text-xs font-body text-center ${dark ? "text-white/50" : "text-black/70"}`}>{t.form_hint}</p>
+              )}
               {/* anuncia para leitor de tela o que o botão animado mostra visualmente */}
-              <p role="status" aria-live="polite" className="sr-only">{sent ? t.form_sent : ""}</p>
+              <p role="status" aria-live="polite" className="sr-only">{sent ? t.form_sent : status === "sending" ? t.form_sending : ""}</p>
             </form>
           </motion.div>
         </div>

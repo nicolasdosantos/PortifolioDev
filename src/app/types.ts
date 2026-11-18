@@ -56,6 +56,9 @@ export interface Translation {
   lang_switch: string;
   form_send: string;
   form_sent: string;
+  form_sending: string;
+  form_error: string;
+  form_error_mail: string;
   process_label: string;
   process_title: string;
   certs_label: string;
