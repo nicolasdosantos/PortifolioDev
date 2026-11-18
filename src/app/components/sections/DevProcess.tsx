@@ -38,7 +38,7 @@ export function DevProcess({ dark, t }: DevProcessProps) {
                 onHoverEnd={() => hasHover && setHovered(null)}
                 className={`relative p-5 rounded-2xl border cursor-default transition-colors duration-300 ${
                   dark
-                    ? isHovered ? "bg-[#15151c]/95 border-white/[0.14]" : "bg-[#0d0d12]/95 border-white/[0.09]"
+                    ? isHovered ? "bg-[color:var(--p-surface-2)]/95 border-white/[0.14]" : "bg-[color:var(--p-surface)]/95 border-white/[0.09]"
                     : isHovered ? "bg-black/[0.03] border-black/[0.22]" : "bg-white border-black/[0.16]"
                 }`}
               >
@@ -46,7 +46,7 @@ export function DevProcess({ dark, t }: DevProcessProps) {
                 <Icon size={18} className={`mb-3 transition-colors duration-300 ${dark ? "text-white/68" : "text-black/74"}`} />
                 {/* `break-words`: em 2 colunas no celular o card tem ~120px de conteúdo e
                     "Desenvolvimento" não caberia numa linha só. */}
-                <div className={`font-display font-semibold text-sm leading-snug mb-2 break-words ${dark ? "text-white" : "text-[#08080A]"}`}>{step.title}</div>
+                <div className={`font-display font-semibold text-sm leading-snug mb-2 break-words ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{step.title}</div>
                 <div className={`text-xs leading-relaxed font-body ${dark ? "text-white/58" : "text-black/70"}`}>{step.desc}</div>
 
                 {i < 5 && (

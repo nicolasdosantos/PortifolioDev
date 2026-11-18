@@ -12,9 +12,9 @@ const WITH_VIDEO = projects.filter(p => p.video).length;
 /* Números que só aparecem aqui. Antes eram "41 repositórios" (fixo e já desatualizado),
    certificados (repetido na seção de Formação) e "∞ cafés". */
 const CARDS = [
-  { icon: Code2, val: "2022", lbl: { pt: "Estudando programação desde", en: "Studying programming since" }, clr: "text-violet-400", bg: "bg-violet-500/10" },
-  { icon: Briefcase, val: "2026", lbl: { pt: "Estagiando em desenvolvimento desde abril", en: "Development intern since April" }, clr: "text-blue-400", bg: "bg-blue-500/10" },
-  { icon: FolderGit2, val: `${projects.length}`, lbl: { pt: `Projetos no portfólio, ${WITH_VIDEO} com vídeo`, en: `Portfolio projects, ${WITH_VIDEO} with video` }, clr: "text-emerald-400", bg: "bg-emerald-500/10" },
+  { icon: Code2, val: "2022", lbl: { pt: "Estudando programação desde", en: "Studying programming since" }, clr: "text-black/60 dark:text-white/65", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
+  { icon: Briefcase, val: "2026", lbl: { pt: "Estagiando em desenvolvimento desde abril", en: "Development intern since April" }, clr: "text-black/60 dark:text-white/65", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
+  { icon: FolderGit2, val: `${projects.length}`, lbl: { pt: `Projetos no portfólio, ${WITH_VIDEO} com vídeo`, en: `Portfolio projects, ${WITH_VIDEO} with video` }, clr: "text-black/60 dark:text-white/65", bg: "bg-black/[0.05] dark:bg-white/[0.05]" },
 ];
 
 export function About({ dark, t, lang }: SectionProps) {
@@ -23,11 +23,11 @@ export function About({ dark, t, lang }: SectionProps) {
       {/* Ambient background glow, echoes the Hero aurora for visual continuity */}
       <div
         className="absolute -left-40 top-1/4 w-[420px] h-[420px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(124,58,237,0.14) 0%, transparent 70%)", filter: "blur(60px)" }}
+        style={{ background: "radial-gradient(circle, color-mix(in srgb, var(--p-accent-ink) 8%, transparent) 0%, transparent 70%)", filter: "blur(60px)" }}
       />
       <div
         className="absolute -right-32 bottom-0 w-[380px] h-[380px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%)", filter: "blur(60px)" }}
+        style={{ background: "radial-gradient(circle, color-mix(in srgb, var(--p-accent-ink) 7%, transparent) 0%, transparent 70%)", filter: "blur(60px)" }}
       />
 
       <div className="max-w-7xl mx-auto px-6 relative">
@@ -43,18 +43,11 @@ export function About({ dark, t, lang }: SectionProps) {
             className="relative mx-auto lg:mx-0 w-full max-w-[300px] sm:max-w-[320px]"
           >
             <div className="relative aspect-[4/5] rounded-[2rem]">
-              {/* Soft pulsing glow behind the frame */}
-              <motion.div
-                className="absolute -inset-6 rounded-[2.5rem] pointer-events-none"
-                style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.35), rgba(6,182,212,0.25))", filter: "blur(36px)" }}
-                animate={{ opacity: [0.5, 0.9, 0.5] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              />
 
               {/* Photo */}
               <div
                 className={`absolute inset-0 rounded-[2rem] overflow-hidden border ${dark ? "border-white/10" : "border-black/10"}`}
-                style={{ boxShadow: "0 20px 60px -12px rgba(124,58,237,0.35)" }}
+                style={{ boxShadow: "0 20px 60px -12px color-mix(in srgb, var(--p-accent-ink) 21%, transparent)" }}
               >
                 <img
                   src="/profile.jpg"
@@ -64,58 +57,18 @@ export function About({ dark, t, lang }: SectionProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               </div>
 
-              {/* Rotating gradient ring, same technique as the intro logo mark */}
-              <div
-                className="absolute inset-0 rounded-[2rem] overflow-hidden pointer-events-none"
-                style={{
-                  padding: 2,
-                  WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                  WebkitMaskComposite: "xor",
-                  maskComposite: "exclude",
-                }}
-              >
-                <motion.div
-                  className="absolute"
-                  style={{
-                    width: "220%",
-                    height: "220%",
-                    top: "-60%",
-                    left: "-60%",
-                    background: "conic-gradient(from 0deg, #8B5CF6, #67E8F9, #F0ABFC, #8B5CF6)",
-                    willChange: "transform",
-                  }}
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                />
-              </div>
-
               {/* Floating role chip */}
               <motion.div
                 initial={{ opacity: 0, y: -10, rotate: -6 }}
                 whileInView={{ opacity: 1, y: 0, rotate: -4 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className={`absolute -top-4 -left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-mono2 backdrop-blur-md ${dark ? "bg-[#0B0B0F]/90 border-white/10 text-white/80" : "bg-white/90 border-black/10 text-black/80"}`}
+                className={`absolute -top-4 -left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-mono2 backdrop-blur-md ${dark ? "bg-[color:var(--p-surface)]/90 border-white/10 text-white/80" : "bg-white/90 border-black/10 text-black/80"}`}
                 style={{ boxShadow: "0 8px 24px rgba(0,0,0,0.25)" }}
               >
-                <Code2 size={12} className="text-violet-400" /> {t.role}
+                <Code2 size={12} className="opacity-70" /> {t.role}
               </motion.div>
 
-              {/* Floating availability pill */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.65 }}
-                className={`absolute -bottom-4 -right-2 sm:-right-6 flex items-center gap-2 px-3.5 py-2 rounded-xl border backdrop-blur-md ${dark ? "bg-[#0B0B0F]/90 border-white/10" : "bg-white/90 border-black/10"}`}
-                style={{ boxShadow: "0 8px 24px rgba(0,0,0,0.25)" }}
-              >
-                <span className="relative flex w-2 h-2">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                  <span className="relative inline-flex rounded-full w-2 h-2 bg-emerald-400" />
-                </span>
-                <span className={`text-xs font-body font-medium whitespace-nowrap ${dark ? "text-white/80" : "text-black/80"}`}>{t.badge}</span>
-              </motion.div>
             </div>
           </motion.div>
 
@@ -131,7 +84,7 @@ export function About({ dark, t, lang }: SectionProps) {
             </div>
             <p className={`font-body text-lg leading-relaxed mb-8 ${dark ? "text-white/68" : "text-black/74"}`}>{t.about_bio}</p>
             <div className="flex items-center gap-1.5 mb-3">
-              <Sparkles size={13} className="text-violet-400" />
+              <Sparkles size={13} className="opacity-60" />
               <span className={`text-[11px] font-mono2 uppercase tracking-[0.18em] ${dark ? "text-white/50" : "text-black/62"}`}>Stack</span>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -157,19 +110,19 @@ export function About({ dark, t, lang }: SectionProps) {
           {CARDS.map(({ icon: Icon, val, lbl, clr, bg }, i) => (
             <motion.div
               key={val}
-              initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-              className={`group flex items-center gap-4 p-4 sm:block sm:p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[#0d0d12]/95 border-white/[0.09] hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.12)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_30px_rgba(124,58,237,0.08)]"}`}
+              className={`group flex items-center gap-4 p-4 sm:block sm:p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09] hover:border-violet-500/30 hover:shadow-[0_0_30px_color-mix(in_srgb,var(--p-accent-ink)_7%,transparent)]" : "bg-white border-black/[0.16] hover:border-violet-300 hover:shadow-[0_8px_30px_color-mix(in_srgb,var(--p-accent-ink)_5%,transparent)]"}`}
             >
               {/* no celular vira uma linha (ícone ao lado do número); a partir de `sm`, card */}
               <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center sm:mb-4 transition-transform duration-300 group-hover:scale-110 ${bg}`}>
                 <Icon size={18} className={clr} />
               </div>
               <div>
-                <div className={`font-display text-3xl sm:text-4xl font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{val}</div>
+                <div className={`font-display text-3xl sm:text-4xl font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{val}</div>
                 <div className={`text-xs mt-1 font-body ${dark ? "text-white/58" : "text-black/70"}`}>{lbl[lang]}</div>
               </div>
             </motion.div>

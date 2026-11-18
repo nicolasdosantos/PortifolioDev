@@ -79,7 +79,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
         transition={{ duration: 0.6, delay: 0.15 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? dark
-            ? "bg-[#08080A]/90 backdrop-blur-xl py-3"
+            ? "bg-[color:var(--p-bg)]/90 backdrop-blur-xl py-3"
             : "bg-white/90 backdrop-blur-xl py-3"
           : "py-5"
         }`}
@@ -91,8 +91,8 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
           transition={{ duration: 0.6 }}
           style={{
             background: dark
-              ? "radial-gradient(60% 140% at 50% 0%, rgba(124,58,237,0.16), transparent 70%)"
-              : "radial-gradient(60% 140% at 50% 0%, rgba(124,58,237,0.08), transparent 70%)",
+              ? "radial-gradient(60% 140% at 50% 0%, color-mix(in srgb, var(--p-accent-ink) 10%, transparent), transparent 70%)"
+              : "radial-gradient(60% 140% at 50% 0%, color-mix(in srgb, var(--p-accent-ink) 5%, transparent), transparent 70%)",
           }}
         />
 
@@ -108,12 +108,6 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
             whileTap={{ scale: 0.94 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
-            <motion.span
-              className="absolute -inset-2 rounded-full blur-md -z-10"
-              style={{ background: "radial-gradient(circle, rgba(139,92,246,0.35), transparent 70%)", willChange: "transform, opacity" }}
-              animate={{ opacity: [0.4, 0.85, 0.4], scale: [0.9, 1.08, 0.9] }}
-              transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-            />
             <Logo size={36} />
           </motion.a>
 
@@ -133,7 +127,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
                   aria-current={isActive ? "location" : undefined}
                   onClick={e => { e.preventDefault(); go(id); }}
                   className={`relative px-3.5 py-1.5 rounded-xl text-sm font-body transition-colors duration-200 ${isActive
-                    ? dark ? "text-white" : "text-[#08080A]"
+                    ? dark ? "text-white" : "text-[color:var(--p-bg)]"
                     : dark ? "text-white/68 hover:text-white" : "text-black/66 hover:text-black"
                   }`}
                 >
@@ -141,7 +135,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
                     <motion.span
                       layoutId="nav-pill"
                       className={`absolute inset-0 rounded-xl ${dark ? "bg-white/[0.09]" : "bg-black/[0.08]"}`}
-                      style={{ boxShadow: dark ? "0 0 16px rgba(124,58,237,0.18)" : "0 0 12px rgba(124,58,237,0.12)" }}
+                      style={{ boxShadow: dark ? "0 0 16px color-mix(in srgb, var(--p-accent-ink) 11%, transparent)" : "0 0 12px color-mix(in srgb, var(--p-accent-ink) 7%, transparent)" }}
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
@@ -184,26 +178,28 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
             </motion.button>
           </div>
 
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            className={`lg:hidden p-2 rounded-lg ${dark ? "text-white/72" : "text-black/75"}`}
-            aria-label={open ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={open}
-            onClick={() => setOpen(!open)}
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span
-                key={open ? "x" : "menu"}
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="block"
-              >
-                {open ? <X size={20} /> : <Menu size={20} />}
-              </motion.span>
-            </AnimatePresence>
-          </motion.button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              className={`lg:hidden p-2 rounded-lg ${dark ? "text-white/72" : "text-black/75"}`}
+              aria-label={open ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={open}
+              onClick={() => setOpen(!open)}
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={open ? "x" : "menu"}
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="block"
+                >
+                  {open ? <X size={20} /> : <Menu size={20} />}
+                </motion.span>
+              </AnimatePresence>
+            </motion.button>
+          </div>
         </div>
       </motion.nav>
 
@@ -214,7 +210,7 @@ export function Navbar({ dark, setDark, lang, setLang, t }: NavbarProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.18 }}
-            className={`fixed inset-x-0 top-[56px] z-40 p-6 border-b ${dark ? "bg-[#0F0F14]/95 backdrop-blur-xl border-white/[0.05]" : "bg-white/95 backdrop-blur-xl border-black/[0.14]"}`}
+            className={`fixed inset-x-0 top-[56px] z-40 p-6 border-b ${dark ? "bg-[color:var(--p-surface)]/95 backdrop-blur-xl border-white/[0.05]" : "bg-white/95 backdrop-blur-xl border-black/[0.14]"}`}
           >
             <div className="flex flex-col gap-1">
               {present.map(i => {

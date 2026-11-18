@@ -38,7 +38,7 @@ function cardA11y(p: Project, lang: Lang, open: (p: Project) => void) {
   };
 }
 
-const FOCUS_RING = "outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08080A]";
+const FOCUS_RING = "outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--p-bg)]";
 
 /** Prévia do card: toca sem som só enquanto está visível e para ao sair da tela.
     preload="none" + poster: nada do vídeo baixa até o card chegar perto da tela.
@@ -105,7 +105,7 @@ export function Projects({ dark, t, lang }: SectionProps) {
     if (!sel) lastFocus.current?.focus();
   }, [sel]);
 
-  const cardBase = `group cursor-pointer rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-1 ${FOCUS_RING} ${dark ? "bg-[#0d0d12]/95 border-white/[0.09]" : "bg-white border-black/[0.16]"}`;
+  const cardBase = `group cursor-pointer rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-1 ${FOCUS_RING} ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09]" : "bg-white border-black/[0.16]"}`;
 
   return (
     <section id="projetos" className="py-32 relative">
@@ -122,13 +122,13 @@ export function Projects({ dark, t, lang }: SectionProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               {...cardA11y(p, lang, open)}
-              className={`${cardBase} flex flex-col hover:shadow-[0_20px_60px_rgba(124,58,237,0.15)]`}
+              className={`${cardBase} flex flex-col hover:shadow-[0_20px_60px_color-mix(in_srgb,var(--p-accent-ink)_9%,transparent)]`}
             >
               <div className="relative aspect-video overflow-hidden bg-black">
                 {p.video ? <CardVideo src={p.videoPreview ?? p.video} poster={p.image} /> : (
                   <img src={p.image} alt="" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
                 )}
-                <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-violet-600 text-white text-xs font-mono2">
+                <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[color:var(--p-accent)] text-[color:var(--p-on-accent)] text-xs font-mono2">
                   ★ {lang === "pt" ? "Destaque" : "Featured"}
                 </span>
                 {p.video && (
@@ -140,7 +140,7 @@ export function Projects({ dark, t, lang }: SectionProps) {
               <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div>
-                    <h3 className={`font-display text-xl font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{p.title}</h3>
+                    <h3 className={`font-display text-xl font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{p.title}</h3>
                     <span className={`text-xs font-mono2 ${dark ? "text-white/50" : "text-black/66"}`}>{p.category[lang]} · {p.year}</span>
                   </div>
                   <span className={`shrink-0 px-2 py-1 rounded-lg text-xs border ${STATUS_STYLE[dark ? "dark" : "light"][p.status]}`}>{t[p.status]}</span>
@@ -162,15 +162,15 @@ export function Projects({ dark, t, lang }: SectionProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               {...cardA11y(p, lang, open)}
-              className={`${cardBase} flex flex-col hover:shadow-[0_15px_40px_rgba(124,58,237,0.1)]`}
+              className={`${cardBase} flex flex-col hover:shadow-[0_15px_40px_color-mix(in_srgb,var(--p-accent-ink)_6%,transparent)]`}
             >
               <div className="relative overflow-hidden">
                 <img src={p.image} alt="" loading="lazy" decoding="async" className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className={`absolute inset-0 bg-gradient-to-t to-transparent ${dark ? "from-[#08080A]/50" : "from-white/60"}`} />
+                <div className={`absolute inset-0 bg-gradient-to-t to-transparent ${dark ? "from-[color:var(--p-bg)]/50" : "from-white/60"}`} />
               </div>
               <div className="p-5 flex flex-col flex-1">
                 <div className="flex items-start justify-between gap-3 mb-1.5">
-                  <h3 className={`font-display font-bold ${dark ? "text-white" : "text-[#08080A]"}`}>{p.title}</h3>
+                  <h3 className={`font-display font-bold ${dark ? "text-white" : "text-[color:var(--p-bg)]"}`}>{p.title}</h3>
                   <span className={`shrink-0 px-2 py-0.5 rounded text-xs border ${STATUS_STYLE[dark ? "dark" : "light"][p.status]}`}>{t[p.status]}</span>
                 </div>
                 <span className={`text-xs font-mono2 mb-3 ${dark ? "text-white/50" : "text-black/66"}`}>{p.category[lang]} · {p.year}</span>

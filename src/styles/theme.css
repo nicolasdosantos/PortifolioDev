@@ -2,20 +2,20 @@
 
 :root {
   --font-size: 16px;
-  --background: #E9E9F0;
-  --foreground: #08080A;
+  --background: var(--p-light-bg);
+  --foreground: var(--p-bg);
   --card: #FFFFFF;
-  --card-foreground: #08080A;
+  --card-foreground: var(--p-bg);
   --popover: #FFFFFF;
-  --popover-foreground: #08080A;
-  --primary: #7C3AED;
-  --primary-foreground: #FFFFFF;
-  --secondary: #F3F0FF;
-  --secondary-foreground: #08080A;
-  --muted: #E4E4EC;
+  --popover-foreground: var(--p-bg);
+  --primary: var(--p-accent);
+  --primary-foreground: var(--p-bg);
+  --secondary: #FEEFD3;
+  --secondary-foreground: var(--p-bg);
+  --muted: #F3DBBB;
   --muted-foreground: #52525B;
-  --accent: #EDE9FE;
-  --accent-foreground: #5B21B6;
+  --accent: #FEEFD3;
+  --accent-foreground: var(--p-accent-dark);
   --destructive: #D4183D;
   --destructive-foreground: #FFFFFF;
   --border: rgba(0, 0, 0, 0.16);
@@ -24,45 +24,45 @@
   --switch-background: #CBCED4;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #7C3AED;
+  --ring: var(--p-accent);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.75rem;
-  --sidebar: #E9E9F0;
-  --sidebar-foreground: #08080A;
-  --sidebar-primary: #7C3AED;
+  --sidebar: var(--p-secondary);
+  --sidebar-foreground: var(--p-bg);
+  --sidebar-primary: var(--p-accent);
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #EDE9FE;
-  --sidebar-accent-foreground: #5B21B6;
+  --sidebar-accent: #FEEFD3;
+  --sidebar-accent-foreground: var(--p-accent-dark);
   --sidebar-border: rgba(0, 0, 0, 0.16);
-  --sidebar-ring: #7C3AED;
+  --sidebar-ring: var(--p-accent);
 }
 
 .dark {
-  --background: #08080A;
-  --foreground: #F8F8FF;
-  --card: #0F0F14;
+  --background: var(--p-bg);
+  --foreground: var(--p-secondary);
+  --card: #081633;
   --card-foreground: #F8F8FF;
-  --popover: #0F0F14;
+  --popover: #081633;
   --popover-foreground: #F8F8FF;
-  --primary: #7C3AED;
-  --primary-foreground: #FFFFFF;
-  --secondary: #1A1A2E;
+  --primary: var(--p-accent);
+  --primary-foreground: var(--p-bg);
+  --secondary: #0D1F45;
   --secondary-foreground: #F8F8FF;
-  --muted: #16161D;
+  --muted: #0A1A3B;
   --muted-foreground: #71717A;
-  --accent: #2D1B69;
-  --accent-foreground: #C4B5FD;
+  --accent: #0D1F45;
+  --accent-foreground: var(--p-secondary);
   --destructive: #D4183D;
   --destructive-foreground: #FFFFFF;
   --border: rgba(255, 255, 255, 0.06);
   --input: rgba(255, 255, 255, 0.05);
-  --input-background: #16161D;
+  --input-background: #0A1A3B;
   --switch-background: #374151;
-  --ring: #7C3AED;
+  --ring: var(--p-accent);
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --chart-1: oklch(0.488 0.243 264.376);
@@ -70,14 +70,14 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: #0F0F14;
+  --sidebar: #081633;
   --sidebar-foreground: #F8F8FF;
-  --sidebar-primary: #7C3AED;
+  --sidebar-primary: var(--p-accent);
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #2D1B69;
-  --sidebar-accent-foreground: #C4B5FD;
+  --sidebar-accent: #0D1F45;
+  --sidebar-accent-foreground: var(--p-secondary);
   --sidebar-border: rgba(255, 255, 255, 0.06);
-  --sidebar-ring: #7C3AED;
+  --sidebar-ring: var(--p-accent);
 }
 
 @theme inline {
@@ -180,4 +180,56 @@
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
   }
+}
+
+/* Paleta Vinho, na regra 60/30/10. A paleta inteira sai de três cores: --p-bg é a dominante (60%: fundo e superfícies), --p-secondary a
+   secundária (30%: texto, bordas e brilhos) e --p-accent o destaque (10%: botões, selos,
+   item ativo). Os demais tons são derivados com color-mix. */
+:root {
+  --p-bg: #0D0A0B;
+  --p-secondary: #FBE8CF;
+  --p-accent: #7A0C1B;
+  /* Destaque em dois papéis: --p-accent preenche (botões, selos) e --p-accent-ink é o tom
+     legível para texto, ícones e linhas. Com um destaque escuro (um vinho, por exemplo) os
+     dois se separam. Valores calculados pelo contraste: ink é o vinho clareado até 4.6:1
+     sobre o fundo; sobre o vinho cheio, o texto é creme. */
+  --p-accent-ink: #EA2B45;
+  --p-on-accent: #FBE8CF;
+  --p-surface: color-mix(in oklab, var(--p-bg), white 4%);
+  --p-surface-2: color-mix(in oklab, var(--p-bg), white 8%);
+  --p-accent-soft: color-mix(in oklab, var(--p-accent-ink), white 30%);
+  --p-accent-strong: color-mix(in oklab, var(--p-accent), black 10%);
+  --p-accent-dark: color-mix(in oklab, var(--p-accent), black 45%);
+  --p-light-bg: color-mix(in oklab, var(--p-secondary), var(--p-bg) 6%);
+}
+
+/* As escalas violet, fuchsia e cyan ainda usadas nos componentes apontam para a paleta;
+   violet-500 (bordas e fundos tingidos) usa o tom legível do destaque. */
+@theme {
+  --color-violet-50: color-mix(in oklab, var(--p-accent-ink), white 85%);
+  --color-violet-100: color-mix(in oklab, var(--p-accent-ink), white 70%);
+  --color-violet-200: color-mix(in oklab, var(--p-accent-ink), white 50%);
+  --color-violet-300: var(--p-accent-soft);
+  --color-violet-400: var(--p-accent-ink);
+  --color-violet-500: var(--p-accent-ink);
+  --color-violet-600: var(--p-accent-strong);
+  --color-violet-700: var(--p-accent-dark);
+  --color-violet-800: color-mix(in oklab, var(--p-accent), black 55%);
+  --color-violet-900: color-mix(in oklab, var(--p-accent), black 65%);
+  --color-fuchsia-300: var(--p-accent-soft);
+  --color-fuchsia-400: var(--p-accent-ink);
+  --color-white: var(--p-secondary);
+  --color-cyan-200: var(--p-secondary);
+  --color-cyan-300: var(--p-secondary);
+  --color-cyan-400: var(--p-secondary);
+  --color-cyan-500: var(--p-secondary);
+  --color-cyan-600: var(--p-accent-dark);
+  --color-cyan-700: var(--p-accent-dark);
+}
+
+/* seção fora da tela: animações CSS paradas (Hero e StackHero) */
+[data-paused] *,
+[data-paused] *::before,
+[data-paused] *::after {
+  animation-play-state: paused !important;
 }

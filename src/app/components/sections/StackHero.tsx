@@ -13,13 +13,21 @@ type AnyIcon = ComponentType<{ size?: number | string; className?: string; style
    O render de referência (public/hero/image.png, hoje só no histórico do git) definiu layout e estilo; o conteúdo
    vem do stack declarado em data/skills.ts, não do mockup. */
 
-/* Paleta fixa do cubo — não segue a cor do card ativo.
-   CORE_BLUE entrou porque na referência o cubo lê claramente AZUL: as faces têm dominante
-   azul-royal e só as arestas puxam para o ciano. Sem esse azul, com ciano+violeta apenas,
-   o cubo saía cinza-esverdeado e sem a luminosidade do render. */
-const CORE_CYAN = "#67E8F9";
-const CORE_VIOLET = "#A78BFA";
-const CORE_BLUE = "#4C7DF7";
+/* Cores do cubo, vindas da paleta (theme.css). Precisam ser hex de verdade, não
+   var(--…): rgba()/mix() abaixo fazem conta com os canais, e o núcleo é um SVG em data URI,
+   onde variável CSS não resolve. `syncPalette` lê as variáveis do <html> no mount. CORE_CYAN é a secundária (arestas), CORE_VIOLET o tom
+   legível do destaque e CORE_BLUE o destaque cheio (o tom das faces). */
+let CORE_CYAN = "#FBE8CF";
+let CORE_VIOLET = "#EA2B45";
+let CORE_BLUE = "#7A0C1B";
+
+const ROLE_COLOR = { secondary: () => CORE_CYAN, ink: () => CORE_VIOLET, fill: () => CORE_BLUE };
+type Role = keyof typeof ROLE_COLOR;
+
+function readVar(name: string, fallback: string) {
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return /^#[0-9a-f]{6}$/i.test(v) ? v : fallback;
+}
 
 export interface StackCard {
   id: string;
@@ -41,15 +49,15 @@ export interface StackCard {
 
 /* Posição na órbita e cor por categoria. As cores vêm do mesmo render de referência,
    não das cores de `skillCategories`, que são outra paleta. */
-const ORBIT: Record<string, { color: string; angle: number; radius: number; depth: number; short: { pt: string; en: string } }> = {
+const ORBIT: Record<string, { role: Role; angle: number; radius: number; depth: number; short: { pt: string; en: string } }> = {
   /* topo. Raio menor: na referência a folga vertical é apertada (23px) e a generosa é a
      horizontal — é essa elipse achatada que dá a leitura de órbita. */
-  frontend: { color: "#67E8F9", angle: -90, radius: 0.86, depth: 0.95, short: { pt: "Front-end", en: "Front-end" } },
-  backend: { color: "#FFB454", angle: -18, radius: 1.06, depth: 1.05, short: { pt: "Back-end", en: "Back-end" } },
-  database: { color: "#34D399", angle: 46, radius: 1, depth: 1.08, short: { pt: "Dados", en: "Data" } },
-  tools: { color: "#A78BFA", angle: 132, radius: 0.92, depth: 1, short: { pt: "Ferramentas", en: "Tooling" } },
+  frontend: { role: "secondary", angle: -90, radius: 0.86, depth: 0.95, short: { pt: "Front-end", en: "Front-end" } },
+  backend: { role: "ink", angle: -18, radius: 1.06, depth: 1.05, short: { pt: "Back-end", en: "Back-end" } },
+  database: { role: "secondary", angle: 46, radius: 1, depth: 1.08, short: { pt: "Dados", en: "Data" } },
+  tools: { role: "ink", angle: 132, radius: 0.92, depth: 1, short: { pt: "Ferramentas", en: "Tooling" } },
   /* "Inteligência Artificial" de skillCategories quebra em duas linhas no card */
-  ai: { color: "#F0ABFC", angle: -168, radius: 1.08, depth: 0.93, short: { pt: "IA", en: "AI" } },
+  ai: { role: "secondary", angle: -168, radius: 1.08, depth: 0.93, short: { pt: "IA", en: "AI" } },
 };
 
 /* Derivado de data/skills.ts em vez de reescrito à mão: nome, nível, descrição e ícone
@@ -63,7 +71,19 @@ export const STACK_CARDS: StackCard[] = skillCategories
     items: c.skills,
     icon: c.icon as AnyIcon,
     ...ORBIT[c.id],
+    color: ROLE_COLOR[ORBIT[c.id].role](),
   }));
+
+function syncPalette() {
+  CORE_CYAN = readVar("--p-secondary", CORE_CYAN);
+  CORE_VIOLET = readVar("--p-accent-ink", CORE_VIOLET);
+  CORE_BLUE = readVar("--p-accent", CORE_BLUE);
+  for (const card of STACK_CARDS) {
+    const o = ORBIT[card.id];
+    if (o) card.color = ROLE_COLOR[o.role]();
+  }
+  PCB_URL = pcbUrl();
+}
 
 /* Faixa que o navbar (fixed, z-index 50) ocupa no topo. O card aberto não pode entrar
    aqui, senão o menu passa por cima dele. */
@@ -167,7 +187,7 @@ const EDGE = 1.5;
 /* Núcleo do cubo: placa de circuito em SVG — trilhas com dobras de 45°, barramentos,
    pads com via e die central. Vetor de propósito: repeating-linear-gradient com passo
    fora de pixel inteiro produz moiré em tela não-retina. */
-const PCB_SVG = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'>
+const pcbSvg = () => `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'>
 <g fill='none' stroke-linecap='round' stroke-linejoin='round'>
  <g stroke='${CORE_VIOLET}' stroke-width='.5' opacity='.18'>
   <path d='M0 30h240M0 60h240M0 90h240M0 150h240M0 180h240M0 210h240'/>
@@ -209,7 +229,8 @@ const PCB_SVG = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'>
  </g>
 </g></svg>`;
 
-const PCB_URL = `url("data:image/svg+xml,${encodeURIComponent(PCB_SVG)}")`;
+const pcbUrl = () => `url("data:image/svg+xml,${encodeURIComponent(pcbSvg())}")`;
+let PCB_URL = pcbUrl();
 
 /* As 12 arestas como elementos próprios. Depender do `border` das faces dá linha dupla
    em todo encontro de faces e nunca deixa a aresta mais brilhante que a face — e é esse
@@ -242,6 +263,12 @@ interface StackHeroProps {
 
 export function StackHero({ dark = true, lang = "pt", config, cards = STACK_CARDS }: StackHeroProps) {
   const cfg = { ...STACK_HERO_DEFAULTS, ...config };
+  /* lê as cores da paleta no mount; o setState só força o redesenho com elas */
+  const [, setPaletteTick] = useState(0);
+  useEffect(() => {
+    syncPalette();
+    setPaletteTick(t => t + 1);
+  }, []);
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   /** trilho de scroll: carrega a altura e é o alvo do useScroll (ver o return) */
@@ -279,6 +306,17 @@ export function StackHero({ dark = true, lang = "pt", config, cards = STACK_CARD
       window.removeEventListener("resize", measure);
     };
   }, [isMobile]);
+
+  /* Fora da tela, as animações CSS infinitas (pulso do núcleo, varredura, pontos em
+     órbita) ficam pausadas: rodavam o tempo todo e pesavam no scroll da página inteira. */
+  const [onScreen, setOnScreen] = useState(true);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setOnScreen(e.isIntersecting), { rootMargin: "200px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const { scrollYProgress } = useScroll({ target: trackRef, offset: ["start start", "end end"] });
   /* Sem useSpring de propósito: em scroll-scrub a mola só adiciona latência — o scroll
@@ -332,7 +370,7 @@ export function StackHero({ dark = true, lang = "pt", config, cards = STACK_CARD
 
   if (isMobile)
     return (
-      <section id="stack" ref={sectionRef} className="relative" aria-label={lang === "pt" ? "Como eu construo" : "How I build"}>
+      <section id="stack" ref={sectionRef} data-paused={!onScreen || undefined} className="relative" aria-label={lang === "pt" ? "Como eu construo" : "How I build"}>
         <style>{KEYFRAMES}</style>
         <MobileStack cards={cards} lang={lang} dark={dark} />
       </section>
@@ -344,7 +382,7 @@ export function StackHero({ dark = true, lang = "pt", config, cards = STACK_CARD
        no <section>, o sticky consumia apenas 100vh no fluxo e o irmão seguinte (a faixa
        do processo) se posicionava a 100vh do início, aparecendo no MEIO da animação em
        vez de no fim. Separando os dois, a faixa cai naturalmente depois do trilho. */
-    <section id="stack" ref={sectionRef} className="relative" aria-label={lang === "pt" ? "Como eu construo" : "How I build"}>
+    <section id="stack" ref={sectionRef} data-paused={!onScreen || undefined} className="relative" aria-label={lang === "pt" ? "Como eu construo" : "How I build"}>
       <style>{KEYFRAMES}</style>
       <div ref={trackRef} className="relative" style={{ height: isStatic ? "100vh" : `${cfg.pages * 100}vh` }}>
       <div className="sticky top-0 h-screen overflow-hidden">
@@ -468,10 +506,10 @@ function TextColumn({ lang, dark }: { lang: Lang; dark: boolean }) {
           um teria seu próprio background e a varredura reiniciaria em cada linha.
           `text-shimmer` é a mesma classe que anima o seu nome na Hero (GlobalStyles). */}
       <h2 className="font-display font-bold leading-[1.02] tracking-tight text-[clamp(2.1rem,3.7vw,3.4rem)]">
-        <span className={dark ? "text-white" : "text-[#08080A]"}>Full stack,</span>
+        <span className={dark ? "text-white" : "text-[color:var(--p-bg)]"}>Full stack,</span>
         <span
-          className="block bg-clip-text text-transparent text-shimmer"
-          style={{ backgroundImage: `linear-gradient(100deg, ${CORE_VIOLET} 0%, #C4B5FD 22%, ${CORE_CYAN} 52%, #34D399 82%, ${CORE_VIOLET} 100%)` }}
+          className="block bg-clip-text text-transparent"
+          style={{ backgroundImage: `linear-gradient(100deg, ${CORE_VIOLET} 0%, var(--p-secondary) 22%, ${CORE_CYAN} 52%, ${CORE_BLUE} 82%, ${CORE_VIOLET} 100%)` }}
         >
           {pt ? (
             <>
@@ -826,7 +864,7 @@ function OrbitCard({
           border: `1.5px solid ${dark ? rgba(c, isOpen ? 1 : 0.75) : mix(c, 0.5, isOpen ? 1 : 0.8)}`,
           background: dark
             ? `radial-gradient(120% 120% at 50% 0%, ${rgba(c, isOpen ? 0.22 : 0.14)} 0%, transparent 62%),
-               linear-gradient(160deg, rgba(16,18,26,.94) 0%, rgba(9,10,16,.97) 100%)`
+               linear-gradient(160deg, color-mix(in srgb, var(--p-surface) 94%, transparent) 0%, color-mix(in srgb, var(--p-bg) 97%, transparent) 100%)`
             : `radial-gradient(120% 120% at 50% 0%, ${rgba(c, isOpen ? 0.28 : 0.2)} 0%, transparent 62%),
                linear-gradient(160deg, rgba(255,255,255,.97) 0%, rgba(248,248,252,.99) 100%)`,
         }}
@@ -1144,8 +1182,8 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
         {pt ? "Como eu construo" : "How I build"}
       </p>
       <h2 className="font-display font-bold leading-[1.06] tracking-tight text-[2rem] mb-5">
-        <span className={dark ? "text-white" : "text-[#08080A]"}>Full stack,</span>
-        <span className="block bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(92deg, ${CORE_VIOLET}, ${CORE_CYAN}, #34D399)` }}>
+        <span className={dark ? "text-white" : "text-[color:var(--p-bg)]"}>Full stack,</span>
+        <span className="block bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(92deg, ${CORE_VIOLET}, ${CORE_CYAN}, ${CORE_BLUE})` }}>
           {pt ? "do front-end ao banco de dados." : "from the front-end to the database."}
         </span>
       </h2>
@@ -1197,7 +1235,7 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
               style={{
                 border: `1.5px solid ${dark ? rgba(c, 0.7) : mix(c, 0.5, 0.8)}`,
                 background: dark
-                  ? `radial-gradient(120% 120% at 50% 0%, ${rgba(c, 0.14)} 0%, transparent 62%), linear-gradient(160deg, rgba(16,18,26,.94), rgba(9,10,16,.97))`
+                  ? `radial-gradient(120% 120% at 50% 0%, ${rgba(c, 0.14)} 0%, transparent 62%), linear-gradient(160deg, color-mix(in srgb, var(--p-surface) 94%, transparent), color-mix(in srgb, var(--p-bg) 97%, transparent))`
                   : `radial-gradient(120% 120% at 50% 0%, ${rgba(c, 0.2)} 0%, transparent 62%), linear-gradient(160deg, rgba(255,255,255,.97), rgba(248,248,252,.99))`,
                 boxShadow: `0 0 20px ${rgba(c, 0.24)}, 0 10px 26px rgba(0,0,0,${dark ? 0.45 : 0.1}), inset 0 1px 0 ${rgba(c, dark ? 0.3 : 0.22)}`,
               }}
