@@ -14,7 +14,7 @@ interface SectionHeaderProps {
    títulos que simplesmente não apareciam. */
 export function SectionHeader({ label, title, dark }: SectionHeaderProps) {
   return (
-    <Reveal className="mb-16">
+    <Reveal className="mb-12">
       <motion.div variants={revealChildX} className="flex items-center gap-2.5">
         <span className="w-6 h-px bg-[color:var(--p-accent-ink)]" />
         <span

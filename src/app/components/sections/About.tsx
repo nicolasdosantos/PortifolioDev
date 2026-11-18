@@ -19,7 +19,7 @@ const CARDS = [
 
 export function About({ dark, t, lang }: SectionProps) {
   return (
-    <section id="sobre" className="py-32 relative overflow-hidden">
+    <section id="sobre" className="py-24 md:py-32 relative overflow-hidden">
       {/* Ambient background glow, echoes the Hero aurora for visual continuity */}
       <div
         className="absolute -left-40 top-1/4 w-[420px] h-[420px] rounded-full pointer-events-none"
@@ -30,7 +30,7 @@ export function About({ dark, t, lang }: SectionProps) {
         style={{ background: "radial-gradient(circle, color-mix(in srgb, var(--p-accent-ink) 7%, transparent) 0%, transparent 70%)", filter: "blur(60px)" }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 relative">
+      <div className="max-w-6xl mx-auto px-6 relative">
         <SectionHeader label={t.about_label} title={t.about_title} dark={dark} />
 
         <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-14 lg:gap-20 items-center mb-20">
@@ -42,11 +42,11 @@ export function About({ dark, t, lang }: SectionProps) {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="relative mx-auto lg:mx-0 w-full max-w-[300px] sm:max-w-[320px]"
           >
-            <div className="relative aspect-[4/5] rounded-[2rem]">
+            <div className="relative aspect-[4/5] rounded-xl">
 
               {/* Photo */}
               <div
-                className={`absolute inset-0 rounded-[2rem] overflow-hidden border ${dark ? "border-white/10" : "border-black/10"}`}
+                className={`absolute inset-0 rounded-xl overflow-hidden border ${dark ? "border-white/10" : "border-black/10"}`}
                 style={{ boxShadow: "0 20px 60px -12px color-mix(in srgb, var(--p-accent-ink) 21%, transparent)" }}
               >
                 <img
@@ -115,7 +115,7 @@ export function About({ dark, t, lang }: SectionProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-              className={`group flex items-center gap-4 p-4 sm:block sm:p-6 rounded-2xl border cursor-default transition-all duration-300 ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09] hover:border-brand-ink/30 hover:shadow-[0_0_30px_color-mix(in_srgb,var(--p-accent-ink)_7%,transparent)]" : "bg-white border-black/[0.16] hover:border-brand-ink hover:shadow-[0_8px_30px_color-mix(in_srgb,var(--p-accent-ink)_5%,transparent)]"}`}
+              className={`group flex items-center gap-4 p-4 sm:block sm:p-6 rounded-xl border cursor-default transition-all duration-300 ${dark ? "bg-[color:var(--p-surface)]/95 border-white/[0.09] hover:border-brand-ink/30 hover:shadow-[0_0_30px_color-mix(in_srgb,var(--p-accent-ink)_7%,transparent)]" : "bg-white border-black/[0.16] hover:border-brand-ink hover:shadow-[0_8px_30px_color-mix(in_srgb,var(--p-accent-ink)_5%,transparent)]"}`}
             >
               {/* no celular vira uma linha (ícone ao lado do número); a partir de `sm`, card */}
               <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center sm:mb-4 transition-transform duration-300 group-hover:scale-110 ${bg}`}>

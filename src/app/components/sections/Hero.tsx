@@ -48,7 +48,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
           backgroundSize: "64px 64px",
         }}
       />
-      <div className="max-w-7xl mx-auto px-6 py-24 w-full">
+      <div className="max-w-6xl mx-auto px-6 py-24 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-center">
           <div>
             <motion.h1
@@ -170,7 +170,7 @@ export function Hero({ dark, t, lang }: HeroProps) {
           >
             <div
               style={{ background: "linear-gradient(160deg, #18181C 0%, #0F0F12 60%, #121216 100%)" }}
-              className={`relative w-full max-w-[25rem] mx-auto lg:mx-0 rounded-2xl border overflow-hidden ${codeDark ? "border-white/[0.09]" : ""}`}
+              className={`relative w-full max-w-[25rem] mx-auto lg:mx-0 rounded-xl border overflow-hidden ${codeDark ? "border-white/[0.09]" : ""}`}
             >
               <div className={`flex items-center gap-1.5 px-4 py-3 border-b ${codeDark ? "border-white/[0.06]" : "border-black/[0.15]"}`}>
                 {["#FF5F57", "#FFBD2E", "#28C840"].map(c => <span key={c} className="w-3 h-3 rounded-full" style={{ background: c }} />)}

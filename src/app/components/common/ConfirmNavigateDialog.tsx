@@ -78,7 +78,7 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className={`relative w-full max-w-sm rounded-2xl overflow-hidden ${dark ? "bg-[color:var(--p-surface)]" : "bg-white"}`}
+            className={`relative w-full max-w-sm rounded-xl overflow-hidden ${dark ? "bg-[color:var(--p-surface)]" : "bg-white"}`}
             initial={{ opacity: 0, scale: 0.92, y: 14 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 8 }}
@@ -104,7 +104,7 @@ export function ConfirmNavigateDialog({ pending, dark, onCancel, onConfirm, titl
 
             <div className="relative p-7 pt-8 flex flex-col items-center text-center">
               <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
+                className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
                 style={{ background: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)" }}
               >
                 <GradientIcon icon={pending.icon} colors={pending.colors} size={26} />

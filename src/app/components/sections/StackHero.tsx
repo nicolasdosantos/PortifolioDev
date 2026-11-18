@@ -854,7 +854,7 @@ function OrbitCard({
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-labelledby={labelId}
-        className="relative block w-full text-left rounded-2xl overflow-hidden -translate-y-1/2 cursor-pointer"
+        className="relative block w-full text-left rounded-xl overflow-hidden -translate-y-1/2 cursor-pointer"
         style={{
           padding: w * 0.085,
           /* Contorno luminoso sobre corpo escuro, como na referência: o card NÃO é
@@ -1199,7 +1199,7 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
           style={{ inset: -32, background: `radial-gradient(circle, ${rgba(CORE_CYAN, 0.18)} 0%, ${rgba(CORE_VIOLET, 0.08)} 45%, transparent 72%)` }}
         />
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden"
+          className="absolute inset-0 rounded-xl overflow-hidden"
           style={{
             border: `1px solid ${rgba(CORE_CYAN, 0.45)}`,
             background: `${PCB_URL} center / 100% 100% no-repeat, rgba(255,255,255,${dark ? 0.05 : 0.4})`,
@@ -1230,7 +1230,7 @@ function MobileStack({ cards, lang, dark }: { cards: StackCard[]; lang: Lang; da
           return (
             <li
               key={card.id}
-              className="relative rounded-2xl overflow-hidden p-5"
+              className="relative rounded-xl overflow-hidden p-5"
               style={{
                 border: `1.5px solid ${dark ? rgba(c, 0.7) : mix(c, 0.5, 0.8)}`,
                 background: dark
