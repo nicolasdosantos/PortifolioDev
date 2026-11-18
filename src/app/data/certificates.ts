@@ -10,7 +10,7 @@ export const certificates: Certificate[] = [
   { title: "Programação em Python", issuer: "SENAI Avak Bedouian", year: "2023-2024", color: "#3776AB", icon: SiPython, hours: "160h" },
   { title: "Python no Raspberry", issuer: "SENAI Avak Bedouian", year: "2024", color: "#EA580C", icon: Cpu, hours: "40h" },
   { title: "Cibersegurança com soluções Fortinet", issuer: "SENAI Avak Bedouian", year: "2024", color: "#059669", icon: ShieldCheck, hours: "40h" },
-  { title: "Inglês", issuer: "Wizard", year: "2023", color: "#F59E0B", icon: Languages },
+  { title: "Inglês — nível intermediário", issuer: "Wizard", year: "2023", color: "#F59E0B", icon: Languages },
 ];
 
 /** Só o que já foi concluído entra nas contagens de "certificados" do site. */
